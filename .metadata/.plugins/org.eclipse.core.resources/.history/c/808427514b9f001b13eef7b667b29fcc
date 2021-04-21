@@ -1,0 +1,18 @@
+package poly.service.impl;
+
+import java.util.List;
+
+import poly.dto.ImageDTO;
+import poly.service.IImageService;
+
+public class ImageService implements IImageService {
+
+	@Override
+	public List<ImageDTO> getImageList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+
+}
