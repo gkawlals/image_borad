@@ -12,10 +12,8 @@
 	
 	<insert id="getInsertImage" parameterType="ImageDTO">
 		INSERT INTO IMAGE_TABLE ( 
-		IMAGE_NAME,
-		IMAGE_URL VALUES (
-		#{saveFileName},
-		#{saveFilePth}
+		IMAGE_NAME VALUES (
+		#{image_name}
 		)
 		)
 	</insert>

@@ -11,6 +11,22 @@ public class ImageDTO {
 	private String chg_id;
 	private String like;
 	private String circle_cnt;
+	private String ext; 
+	private String orgfilename;
+	
+	public String getExt() {
+		return ext;
+	}
+	public void setExt(String ext) {
+		this.ext = ext;
+	}
+	public String getOrgfilename() {
+		return orgfilename;
+	}
+	public void setOrgfilename(String orgfilename) {
+		this.orgfilename = orgfilename;
+	}
+	
 	
 	public String getImage_no() {
 		return image_no;

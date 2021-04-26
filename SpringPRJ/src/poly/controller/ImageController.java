@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import poly.dto.ImageDTO;
 import poly.service.IImageService;
+import poly.util.CmmUtil;
 import poly.util.DateUtil;
 import poly.util.FileUtil;
 
@@ -24,7 +25,7 @@ public class ImageController {
 	
 	private Logger log = Logger.getLogger(this.getClass());
 	
-	final private String FILE_UPLOAD_SAVE_PATH = "/Users/hamjimin/imgUpload";
+	final private String FILE_UPLOAD_SAVE_PATH = "/Users/hamjimin/imgUpload/Upload/";
 
 	
 	@Resource(name = "ImageService")
@@ -40,9 +41,11 @@ public class ImageController {
 			ModelMap model, @RequestParam(value="fileUpload")MultipartFile mf) throws IOException{
 		log.info(this.getClass().getName() + " . imageUpload start !");
 		
-		String originFileName = mf.getOriginalFilename();
-		
-		String ext = originFileName.substring(originFileName.lastIndexOf(".") + 1, originFileName.length()).toLowerCase();
+		String orcfilename = mf.getOriginalFilename();
+		// test를 위한 파라미터로 불러오기
+	//	String filename = CmmUtil.nvl(request.getParameter("saveFileName"));
+		log.info(orcfilename);
+		String ext = orcfilename.substring(orcfilename.lastIndexOf(".") + 1, orcfilename.length()).toLowerCase();
 		// 저장되는 파일이 이미지 파일만 저장되게끔 설정해주기
 		if(ext.equals("jpeg") || ext.equals("jpg") || ext.equals("gif") || ext.equals("png")) {
 			
@@ -54,9 +57,9 @@ public class ImageController {
 			
 			
 			log.info("ext : " + ext);
-			log.info("saveFilename : " + saveFileName);
-			log.info("saveFilePath : " + saveFilePath);
-			log.info("fullFileInfo : " + fullFileInfo);
+			log.info("saveFilename : " + CmmUtil.nvl(saveFileName));
+			log.info("saveFilePath : " + CmmUtil.nvl(saveFilePath));
+			log.info("fullFileInfo : " + CmmUtil.nvl(fullFileInfo));
 			
 			mf.transferTo(new File(fullFileInfo));
 			
@@ -64,6 +67,8 @@ public class ImageController {
 			
 			pDTO.setImage_name(saveFileName);
 			pDTO.setImage_url(saveFilePath);
+			pDTO.setOrgfilename(orcfilename);
+			pDTO.setExt(ext);
 			
 			int res = imageService.getInsertImage(pDTO);
 			
@@ -81,7 +86,7 @@ public class ImageController {
 		
 		
 		log.info(this.getClass().getName() + " . imageUpload end !");
-		return "/image/imageText";
+		return "/image/imageUpload";
 	}
 	
 	@RequestMapping(value="image/scrolltest")

@@ -1,30 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="../resourceImg/imgs"/>
+		<item key="selection" value="saveFilePath"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="image_url"/>
+			<item value="image_name"/>
+			<item value="originFileName"/>
+			<item value="oroginFileName"/>
+			<item value="imageName"/>
+			<item value="saveFilePath"/>
+			<item value="fileName"/>
+			<item value="imgUpload"/>
+			<item value="imgUpload\"/>
+			<item value="get"/>
+			<item value="ㅎㄷㅅ"/>
 			<item value="../resource/imgs"/>
 			<item value="img"/>
 			<item value="imgs/"/>
 			<item value="rel=&quot;stylesheet&quot;"/>
-			<item value="css/"/>
-			<item value=" &lt;div class=&quot;sprite_share_icon&quot; data-name=&quot;share&quot;&gt;&lt;/div&gt;"/>
-			<item value="sprite_share_icon"/>
-			<item value="&lt;div class=&quot;sprite_bookmark_outline&quot; data-name=&quot;bookmark&quot;&gt;&lt;/div&gt;"/>
-			<item value="sprite_bookmark_outline"/>
-			<item value="   sprite_bookmark_outline"/>
-			<item value="&lt;div class=&quot;sprite_bubble_icon&quot;&gt;&lt;/div&gt;"/>
-			<item value="sprite_bubble_icon"/>
-			<item value="bubble_icon"/>
-			<item value="camera"/>
-			<item value="right_icon"/>
 		</list>
 		<list key="replacehistory">
+			<item value="saveFilePath"/>
+			<item value="saveFileName"/>
+			<item value="orcfilename"/>
+			<item value="orgfilename"/>
+			<item value="image_name"/>
+			<item value="image_url"/>
 			<item value="../resourceImg/imgs"/>
 			<item value="../resource/imgs/"/>
 			<item value=""/>
@@ -32,8 +38,8 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="975"/>
-		<item key="DIALOG_Y_ORIGIN" value="331"/>
+		<item key="DIALOG_X_ORIGIN" value="918"/>
+		<item key="DIALOG_Y_ORIGIN" value="187"/>
 		<item key="DIALOG_WIDTH" value="294"/>
 		<item key="DIALOG_HEIGHT" value="408"/>
 		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
