@@ -12,10 +12,21 @@
 	
 	<insert id="getInsertImage" parameterType="ImageDTO">
 		INSERT INTO IMAGE_TABLE ( 
-		IMAGE_NAME VALUES (
-		#{image_name}
+			SAVE_FILE_NAME,
+			SAVE_FILE_PATH,
+			ORG_FILE_NAME,
+			EXT,
+			REG_ID,
+			CHG_ID
+		 )  VALUES (
+			#{save_file_name},
+			#{save_file_path},
+			#{org_file_name},
+			#{ext},
+			#{reg_id},
+			#{reg_id}
 		)
-		)
+
 	</insert>
 	
 </mapper>

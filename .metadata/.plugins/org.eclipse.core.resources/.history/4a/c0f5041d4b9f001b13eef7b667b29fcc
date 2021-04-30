@@ -1,7 +1,0 @@
-package poly.service;
-
-public interface IImageService {
-	
-	List<NoticeDTO> getBoardList();
-
-}

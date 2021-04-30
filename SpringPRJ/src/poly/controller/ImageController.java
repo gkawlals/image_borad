@@ -41,34 +41,35 @@ public class ImageController {
 			ModelMap model, @RequestParam(value="fileUpload")MultipartFile mf) throws IOException{
 		log.info(this.getClass().getName() + " . imageUpload start !");
 		
-		String orcfilename = mf.getOriginalFilename();
+		String org_file_name = mf.getOriginalFilename();
 		// test를 위한 파라미터로 불러오기
 	//	String filename = CmmUtil.nvl(request.getParameter("saveFileName"));
-		log.info(orcfilename);
-		String ext = orcfilename.substring(orcfilename.lastIndexOf(".") + 1, orcfilename.length()).toLowerCase();
+		log.info(org_file_name);
+		String ext = org_file_name.substring(org_file_name.lastIndexOf(".") + 1, org_file_name.length()).toLowerCase();
 		// 저장되는 파일이 이미지 파일만 저장되게끔 설정해주기
 		if(ext.equals("jpeg") || ext.equals("jpg") || ext.equals("gif") || ext.equals("png")) {
 			
-			String saveFileName = DateUtil.getDateTime("24hhmmss") + "." + ext;
+			String save_file_ame = DateUtil.getDateTime("24hhmmss") + "." + ext;
 			
-			String saveFilePath = FileUtil.mkdirForDate(FILE_UPLOAD_SAVE_PATH);
+			String save_file_path = FileUtil.mkdirForDate(FILE_UPLOAD_SAVE_PATH);
 			
-			String fullFileInfo = saveFilePath + "/" + saveFileName;
+			String fullFileInfo = save_file_path + "/" + save_file_ame;
 			
 			
 			log.info("ext : " + ext);
-			log.info("saveFilename : " + CmmUtil.nvl(saveFileName));
-			log.info("saveFilePath : " + CmmUtil.nvl(saveFilePath));
+			log.info("saveFilename : " + CmmUtil.nvl(save_file_ame));
+			log.info("save_file_path : " + CmmUtil.nvl(save_file_path));
 			log.info("fullFileInfo : " + CmmUtil.nvl(fullFileInfo));
 			
 			mf.transferTo(new File(fullFileInfo));
-			
+			log.info(" mf.transfer Success ");
 			ImageDTO pDTO = new ImageDTO();
 			
-			pDTO.setImage_name(saveFileName);
-			pDTO.setImage_url(saveFilePath);
-			pDTO.setOrgfilename(orcfilename);
+			pDTO.setSave_file_name(save_file_ame);
+			pDTO.setSave_file_path(save_file_path);
+			pDTO.setOrg_file_name(org_file_name);
 			pDTO.setExt(ext);
+			pDTO.setReg_id("admin");
 			
 			int res = imageService.getInsertImage(pDTO);
 			
