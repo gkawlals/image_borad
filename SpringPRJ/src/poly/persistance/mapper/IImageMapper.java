@@ -9,8 +9,13 @@ import poly.dto.ImageDTO;
 @Mapper("ImageMapper")
 public interface IImageMapper {
 	
-	List<ImageDTO> getImageList();
 
 	int getInsertImage(ImageDTO pDTO);
+
+
+	List<ImageDTO> getsearchList();
+
+
+	List<ImageDTO> imageListTest();
 
 }

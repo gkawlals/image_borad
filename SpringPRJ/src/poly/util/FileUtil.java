@@ -10,7 +10,7 @@ public class FileUtil {
 		
 		File Folder = new File(path);
 		
-		//파일이 존재 하지 않으면 폴더 생
+		//파일이 존재 하지 않으면 폴더 생성
 		if( !Folder.exists()) {
 			
 			Folder.mkdirs();// 폴더 생성

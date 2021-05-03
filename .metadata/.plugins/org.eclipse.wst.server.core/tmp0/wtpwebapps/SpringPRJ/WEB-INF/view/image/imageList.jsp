@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
+<%@page import="java.util.List"%>
+<%@page import="poly.dto.ImageDTO"%>
+<%@page import="poly.util.CmmUtil"%>
+<%
+	List<ImageDTO> rList = (List<ImageDTO>) request.getAttribute("rList");
+%>
 <html>
 <head>
 <meta charset="UTF-8">

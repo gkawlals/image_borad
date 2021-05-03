@@ -6,8 +6,13 @@ import poly.dto.ImageDTO;
 
 public interface IImageService {
 	
-	List<ImageDTO> getImageList();
 
 	int getInsertImage(ImageDTO pDTO);
+
+
+	List<ImageDTO> searchList(ImageDTO pDTO);
+
+
+	List<ImageDTO> imageListTest();
 
 }

@@ -1,0 +1,30 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<%@page import="java.util.List"%>
+<%@page import="poly.dto.ImageDTO"%>
+<%@page import="poly.util.CmmUtil"%>
+<%
+	List<ImageDTO> rList = (List<ImageDTO>) request.getAttribute("rList");
+%>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form>
+	<div>
+	<% 
+		for (ImageDTO img : rList){
+	%>
+		<input type="text" value="<%=img.getReg_id() %>" name="user_id"/>
+		<img src="<%=img.getSave_file_path() %>"height="300px" width="240px" name="imgfile"/>
+		<input type="text" value="<%=img.getChg_dt() %>" name="InsertDate"/>
+	<% 
+		}
+	%>
+	</div>
+</form>
+</body>
+</html>

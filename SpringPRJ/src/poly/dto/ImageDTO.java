@@ -12,7 +12,21 @@ public class ImageDTO {
 	private String like;
 	private String circle_cnt;
 	private String ext; 
+	private String chg_dt;
+	private String save_folder_name;
 	
+	public String getSave_folder_name() {
+		return save_folder_name;
+	}
+	public void setSave_folder_name(String save_folder_name) {
+		this.save_folder_name = save_folder_name;
+	}
+	public String getChg_dt() {
+		return chg_dt;
+	}
+	public void setChg_dt(String chg_dt) {
+		this.chg_dt = chg_dt;
+	}
 	public String getSave_file_name() {
 		return save_file_name;
 	}

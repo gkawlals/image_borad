@@ -21,11 +21,6 @@ public class ImageService implements IImageService {
 	@Resource(name="ImageMapper")
 	private IImageMapper imageMapper;
 
-	@Override
-	public List<ImageDTO> getImageList() {
-		// TODO Auto-generated method stub
-		return imageMapper.getImageList();
-	}
 
 	@Override
 	public int getInsertImage(ImageDTO pDTO) {
@@ -33,6 +28,20 @@ public class ImageService implements IImageService {
 	//	log.info(this.getClass().getName() + " service end");
 		
 		return imageMapper.getInsertImage(pDTO);
+	}
+
+
+	@Override
+	public List<ImageDTO> searchList(ImageDTO pDTO) {
+		// TODO Auto-generated method stub
+		return imageMapper.getsearchList();
+	}
+
+
+	@Override
+	public List<ImageDTO> imageListTest() {
+		// TODO Auto-generated method stub
+		return imageMapper.imageListTest();
 	}
 	
 	
