@@ -55,7 +55,7 @@
 					var resHTML = "";
 					resHTML += '<input type="text"/>';
 					resHTML += '<input type="text"/>';
-					resHTML += '<img  height="300px" width="240px" name="imgfile" />';
+					resHTML += '<img  src="" name="imgfile" />';
 					resHTML += '<input type="text"/>';
 					resHTML += '<br><br>';
 		
@@ -63,7 +63,7 @@
 		
 						resHTML += '<input type="text"/>';
 						resHTML += '<input type="text"/>';
-						resHTML += '<img  height="300px" width="240px" name="imgfile" />';
+						resHTML += '<img  src="" name="imgfile" />';
 						resHTML += '<input type="text"/>';
 						resHTML += '<br><br>';
 		

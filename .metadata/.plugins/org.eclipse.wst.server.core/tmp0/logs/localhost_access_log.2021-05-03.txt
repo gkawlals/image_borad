@@ -327,3 +327,7 @@
 0:0:0:0:0:0:0:1 - - [03/May/2021:19:14:23 +0900] "GET /resourceImg/Image/null/null HTTP/1.1" 404 -
 0:0:0:0:0:0:0:1 - - [03/May/2021:19:14:56 +0900] "GET /image/imageListTest.do HTTP/1.1" 200 3610
 0:0:0:0:0:0:0:1 - - [03/May/2021:19:14:56 +0900] "GET /resourceImg/Image/null/null HTTP/1.1" 404 -
+127.0.0.1 - - [03/May/2021:23:12:13 +0900] "GET / HTTP/1.1" 200 531
+0:0:0:0:0:0:0:1 - - [03/May/2021:23:12:29 +0900] "GET / HTTP/1.1" 200 531
+0:0:0:0:0:0:0:1 - - [03/May/2021:23:12:41 +0900] "GET /image/imageListTest.do HTTP/1.1" 200 3566
+0:0:0:0:0:0:0:1 - - [03/May/2021:23:12:41 +0900] "GET /resourceImg/Image/null/null HTTP/1.1" 404 -

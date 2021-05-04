@@ -39,6 +39,11 @@ public class ImageController {
 	public String imagetest() {
 		return "image/imagetest";
 	}
+	
+	@RequestMapping(value="image/imageList")
+	public String imageList() {
+		return "image/imageList";
+	}
 
 	@RequestMapping(value="/image/imageUpload")
 	public String imageUpload( HttpServletRequest request, HttpServletResponse response, 
@@ -112,7 +117,7 @@ public class ImageController {
 			rList = new ArrayList<>();
 		}
 		
-		log.info(" ImageList 불러오");
+		log.info(" ImageList 불러오기");
 		model.addAttribute("rList", rList);
 		
 		for(ImageDTO e : rList) {
