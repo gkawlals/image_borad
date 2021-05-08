@@ -66,17 +66,20 @@ public class ImageController {
 			
 			String fullFileInfo = save_file_path + "/" + save_file_name;
 			
+			String one_title = CmmUtil.nvl(request.getParameter("one_title"));
 			
 			log.info("ext : " + ext);
 			log.info("saveFilename : " + CmmUtil.nvl(save_file_name));
 			log.info("save_file_path : " + CmmUtil.nvl(save_file_path));
 			log.info("fullFileInfo : " + CmmUtil.nvl(fullFileInfo));
 			log.info("save_folder_name : " + CmmUtil.nvl(save_folder_name));
+			log.info("one title : " + CmmUtil.nvl(one_title));
 			
 			mf.transferTo(new File(fullFileInfo));
 			log.info(" mf.transfer Success ");
 			ImageDTO pDTO = new ImageDTO();
 			
+			pDTO.setOne_title(one_title);
 			pDTO.setSave_file_name(save_file_name);
 			pDTO.setSave_file_path(save_file_path);
 			pDTO.setOrg_file_name(org_file_name);

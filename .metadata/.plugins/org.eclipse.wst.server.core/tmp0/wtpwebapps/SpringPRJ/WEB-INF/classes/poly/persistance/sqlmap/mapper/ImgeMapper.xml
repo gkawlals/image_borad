@@ -12,10 +12,14 @@
 			CHG_DT
 		FROM IMAGE_TABLE;
 	</select>
+	
 	<select id="imageListTest" resultType="ImageDTO">
 		SELECT 
 			IMAGE_NO, 
-			SAVE_FILE_PATH, 
+			SAVE_FOLDER_NAME, 
+			SAVE_FILE_NAME,
+			ONE_TITLE,
+			LIKE_CNT,
 			REG_ID, 
 			CHG_DT
 		FROM IMAGE_TABLE;
@@ -27,6 +31,7 @@
 			SAVE_FILE_PATH,
 			ORG_FILE_NAME,
 			SAVE_FOLDER_NAME,
+			ONE_TITLE,
 			EXT,
 			REG_ID,
 			CHG_ID
@@ -36,6 +41,7 @@
 			#{save_file_path},
 			#{org_file_name},
 			#{save_folder_name},
+			#{one_title},
 			#{ext},
 			#{reg_id},
 			#{reg_id}
@@ -45,7 +51,13 @@
 	
 	<select id="searchList" parameterType="ImageDTO" resultType="ImageDTO">
 	SELECT 
-		* 
+			IMAGE_NO, 
+			SAVE_FOLDER_NAME, 
+			SAVE_FILE_NAME,
+			REG_ID, 
+			LIKE_CNT,
+			ONE_TITLE,
+			CHG_DT
 	FROM 
 		IMAGE_TABLE
 	WHERE 

@@ -9,12 +9,20 @@ public class ImageDTO {
 	private String user_id;
 	private String reg_id;
 	private String chg_id;
-	private String like;
+	private String like_cnt;
 	private String circle_cnt;
 	private String ext; 
 	private String chg_dt;
 	private String save_folder_name;
+	private String one_title;
 	
+	
+	public String getOne_title() {
+		return one_title;
+	}
+	public void setOne_title(String one_title) {
+		this.one_title = one_title;
+	}
 	public String getSave_folder_name() {
 		return save_folder_name;
 	}
@@ -77,11 +85,11 @@ public class ImageDTO {
 	public void setChg_id(String chg_id) {
 		this.chg_id = chg_id;
 	}
-	public String getLike() {
-		return like;
+	public String getLike_cnt() {
+		return like_cnt;
 	}
-	public void setLike(String like) {
-		this.like = like;
+	public void setLike_cnt(String like) {
+		this.like_cnt = like;
 	}
 	public String getCircle_cnt() {
 		return circle_cnt;

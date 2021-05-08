@@ -23,8 +23,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <body>
 <section id="container">
-
-
     <header id="header">
         <section class="inner">
 
@@ -34,7 +32,6 @@
                     <div class="sprite_write_logo"></div>
                 </a>
             </h1>
-
             <div class="search_box">
                 <input type="text" placeholder="검색" id="search-field">
 
@@ -43,25 +40,16 @@
                     <span>검색</span>
                 </div>
             </div>
-
             <div class="right_icons">
                 <a href="login.html"><div class="sprite_compass_icon"></div></a>
                 <a href="follow.html"><div class="sprite_heart_icon_outline"></div></a>
                 <a href="profile.html"><div class="sprite_user_icon_outline"></div></a>
             </div>
-
         </section>
-
     </header>
-    
-
     <section id="main_container">
         <div class="inner">
-        
             <div class="contents_box">
-	            <% 
-					for (ImageDTO img : rList){
-				%>
                 <article class="contents">
                     <header class="top">
                         <div class="user_container">
@@ -69,9 +57,9 @@
                                 <img src="../resourceImg/imgs/thumb.jpeg" alt="프로필이미지">
                             </div>
                             <div class="user_name">
-                            	<div class="board_number" name="img_no" style="display:none" ><%=img.getImage_no() %></div>
-                                <div class="nick_name m_text" name="user_id"><%=img.getReg_id() %></div>
-                                <div class="country s_text" name="LastEdit_DT"><%=img.getChg_dt() %></div>
+                            	<div class="board_number" name="img_no" id="img_no" style="display:none" ></div>
+                                <div class="nick_name m_text" name="user_id"></div>
+                                <div class="country s_text" name="LastEdit_DT"></div>
                             </div>
 
                         </div>
@@ -84,8 +72,7 @@
                             </ul>
                         </div>
                     </header>
-
-                    <div class="img_section">
+                    <div class="iㅊmg_section">
                         <div class="trans_inner">
                             <div><img src="../resourceImg/imgs/img_section/img01.jpg" alt="visual01"></div>
                         </div>
@@ -111,7 +98,7 @@
                     <div class="comment_container">
                         <div class="comment" id="comment-list-ajax-post37">
                             <div class="comment-detail">
-                                <div class="nick_name m_text" name="user_id"><%=img.getReg_id() %></div>
+                                <div class="nick_name m_text" name="user_id" ></div>
                                 <div>강아지가 너무 귀여워요~!</div>
                             </div>
                         </div>
@@ -126,14 +113,10 @@
                         <div class="upload_btn m_text" data-name="comment">게시</div>
                     </div>
                 </article>
-				    <%
-						}
-				    %>
             </div>
             <input type="hidden" id="page" value="1">
         </div>
     </section>
-
 </section>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" >
@@ -159,51 +142,7 @@
 					console.log(data)
 		
 					var resHTML = "";
-					resHTML += '<article class="contents">';
-					resHTML += '<header class="top">';
-					resHTML += '<div class="user_container">';
-					resHTML += '<div class="profile_img">';
-					resHTML += '<img src="../resourceImg/imgs/thumb.jpeg" alt="프로필이미지">';
-					resHTML += '</div>';
-					resHTML += '<div class="user_name">';
-					resHTML += '<div class="board_number" name="img_no" style="display:none" ><</div>';
-					resHTML += '<div class="nick_name m_text" name="user_id"></div>';
-					resHTML += '<div class="country s_text" name="LastEdit_DT"></div>';
-					resHTML += '</div></div>';
-					resHTML += '<div class="sprite_more_icon" data-name="more">';
-					resHTML += '<ul class="toggle_box">';
-					resHTML += '<li><input type="submit" class="follow" value="팔로우" data-name="follow"></li>';
-					resHTML += '<li>수정</li><li>삭제</li>';
-					resHTML += '</ul></div></header>';
-					resHTML += '<div class="img_section">';
-					resHTML += '<div class="trans_inner">';
-					resHTML += '<div><img src="../resourceImg/imgs/img_section/img01.jpg" alt="visual01"></div>';
-					resHTML += '</div></div>';
-					resHTML += '<div class="bottom_icons">';
-					resHTML += '<div class="left_icons">';
-					resHTML += '<div class="heart_btn">';
-					resHTML += '<div class="sprite_heart_icon_outline" name="39" data-name="heartbeat"></div>';
-					resHTML += '</div></div></div>';
-					resHTML += '<div class="likes m_text">좋아요';
-					resHTML += '<span id="like-count-39">2,346</span>';
-					resHTML += '<span id="bookmark-count-39"></span>개';
-					resHTML += '</div>';
-					resHTML += '<div class="comment_container">';
-					resHTML += '<div class="comment" id="comment-list-ajax-post37">';
-					resHTML += '<div class="comment-detail">';
-					resHTML += '<div class="nick_name m_text" name="user_id"></div>';
-					resHTML += '<div>강아지가 너무 귀여워요~!</div>';
-					resHTML += '</div></div>';
-					resHTML += '<div class="small_heart">';
-					resHTML += '<div class="sprite_small_heart_icon_outline"></div>';
-					resHTML += '</div></div>';
-					resHTML += '<<div class="comment_field" id="add-comment-post37">';
-					resHTML += '<div class="upload_btn m_text" data-name="comment">게시</div>';
-					resHTML += '</div></article>';
-
-					if (data.length == 0) {
-		
-						resHTML += '<article class="contents">';
+					
 						resHTML += '<header class="top">';
 						resHTML += '<div class="user_container">';
 						resHTML += '<div class="profile_img">';
@@ -219,39 +158,29 @@
 						resHTML += '<li><input type="submit" class="follow" value="팔로우" data-name="follow"></li>';
 						resHTML += '<li>수정</li><li>삭제</li>';
 						resHTML += '</ul></div></header>';
-						resHTML += '<div class="img_section">';
-						resHTML += '<div class="trans_inner">';
-						resHTML += '<div><img src="../resourceImg/imgs/img_section/img01.jpg" alt="visual01"></div>';
-						resHTML += '</div></div>';
-						resHTML += '<div class="bottom_icons">';
-						resHTML += '<div class="left_icons">';
-						resHTML += '<div class="heart_btn">';
-						resHTML += '<div class="sprite_heart_icon_outline" name="39" data-name="heartbeat"></div>';
-						resHTML += '</div></div></div>';
-						resHTML += '<div class="likes m_text">좋아요';
-						resHTML += '<span id="like-count-39">2,346</span>';
-						resHTML += '<span id="bookmark-count-39"></span>개';
-						resHTML += '</div>';
-						resHTML += '<div class="comment_container">';
-						resHTML += '<div class="comment" id="comment-list-ajax-post37">';
-						resHTML += '<div class="comment-detail">';
-						resHTML += '<div class="nick_name m_text" name="user_id"></div>';
-						resHTML += '<div>강아지가 너무 귀여워요~!</div>';
-						resHTML += '</div></div>';
-						resHTML += '<div class="small_heart">';
-						resHTML += '<div class="sprite_small_heart_icon_outline"></div>';
-						resHTML += '</div></div>';
-						resHTML += '<<div class="comment_field" id="add-comment-post37">';
-						resHTML += '<div class="upload_btn m_text" data-name="comment">게시</div>';
-						resHTML += '</div></article>';
 
-
+					if (data.length == 0) {
 		
+						resHTML += '<header class="top">';
+						resHTML += '<div class="user_container">';
+						resHTML += '<div class="profile_img">';
+						resHTML += '<img src="../resourceImg/imgs/thumb.jpeg" alt="프로필이미지">';
+						resHTML += '</div>';
+						resHTML += '<div class="user_name">';
+						resHTML += '<div class="board_number" name="img_no" style="display:none" ><</div>';
+						resHTML += '<div class="nick_name m_text" name="user_id"></div>';
+						resHTML += '<div class="country s_text" name="LastEdit_DT"></div>';
+						resHTML += '</div></div>';
+						resHTML += '<div class="sprite_more_icon" data-name="more">';
+						resHTML += '<ul class="toggle_box">';
+						resHTML += '<li><input type="submit" class="follow" value="팔로우" data-name="follow"></li>';
+						resHTML += '<li>수정</li><li>삭제</li>';
+						resHTML += '</ul></div></header>';
+
 					} else {
 		
 						for (var i = 0; i < data.length; i++) {
 							
-							resHTML += '<article class="contents">';
 							resHTML += '<header class="top">';
 							resHTML += '<div class="user_container">';
 							resHTML += '<div class="profile_img">';
@@ -267,35 +196,8 @@
 							resHTML += '<li><input type="submit" class="follow" value="팔로우" data-name="follow"></li>';
 							resHTML += '<li>수정</li><li>삭제</li>';
 							resHTML += '</ul></div></header>';
-							resHTML += '<div class="img_section">';
-							resHTML += '<div class="trans_inner">';
-							resHTML += '<div><img src="../resourceImg/imgs/img_section/img01.jpg" alt="visual01"></div>';
-							resHTML += '</div></div>';
-							resHTML += '<div class="bottom_icons">';
-							resHTML += '<div class="left_icons">';
-							resHTML += '<div class="heart_btn">';
-							resHTML += '<div class="sprite_heart_icon_outline" name="39" data-name="heartbeat"></div>';
-							resHTML += '</div></div></div>';
-							resHTML += '<div class="likes m_text">좋아요';
-							resHTML += '<span id="like-count-39">2,346</span>';
-							resHTML += '<span id="bookmark-count-39"></span>개';
-							resHTML += '</div>';
-							resHTML += '<div class="comment_container">';
-							resHTML += '<div class="comment" id="comment-list-ajax-post37">';
-							resHTML += '<div class="comment-detail">';
-							resHTML += '<div class="nick_name m_text" name="user_id">'+data.getReg_id()+'</div>';
-							resHTML += '<div>강아지가 너무 귀여워요~!</div>';
-							resHTML += '</div></div>';
-							resHTML += '<div class="small_heart">';
-							resHTML += '<div class="sprite_small_heart_icon_outline"></div>';
-							resHTML += '</div></div>';
-							resHTML += '<<div class="comment_field" id="add-comment-post37">';
-							resHTML += '<div class="upload_btn m_text" data-name="comment">게시</div>';
-							resHTML += '</div></article>';
 
-			
-							
-					}
+						}
 					$("#searchList").html(resHTML);
 		
 				}
