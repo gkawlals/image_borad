@@ -46,20 +46,24 @@
             </div>
         </section>
     </header>
-		<div class="hidden_menu">
+    <% for (ImageDTO userId : rList) {%>
+		<div class="hidden_menu" id="hidden_menu">
+		<div style="display:none" name="user_no"><%=userId.getImage_no() %></div>
 		    <div class="scroll_inner">
 		    	<div class="user">
 		    		<div class="thumb_img">
-		    			<img src="../resourceImg/imgs/thumb.jpeg"/>
+		    			<img src="../resourceImg/imgs/thumb.jpeg"/> <!-- 프로필 사진 경로 -->
 		    		</div>
+		    		<%=userId.getReg_id() %>
 		    	</div>
 		    </div>
 		 </div>
+		 <% } %>
 	<section id="main_container">
-	<% for(ImageDTO userInfo : rList) { %>
 		<div class="inner">
+		<% for(ImageDTO userInfo : rList) { %>
             <div class="contents_box">
-                <article class="contents">
+                <article class="contents" id="contents">
                     <header class="top">
                         <div class="user_container">
                             <div class="profile_img">
@@ -89,7 +93,7 @@
                     <div class="bottom_icons">
                         <div class="left_icons">
                             <div class="heart_btn">
-                                <div class="sprite_heart_icon_outline" name="39" data-name="heartbeat"></div>
+                                <div class="sprite_heart_icon_outline" name="39" data-name="heartbeat" onclick="location.href='image/LikeCnt.do'"></div>
                             </div>                            
                         </div>
                     </div>
@@ -102,19 +106,19 @@
                         <div class="comment" id="comment-list-ajax-post37">
                             <div class="comment-detail">
                                 <div class="nick_name m_text" name="user_id" ></div>
-                                <div style="text-align : center;" ><h1><%=userInfo.getOne_title() %></h1></div>
+                                <div><h1><%=userInfo.getOne_title() %></h1></div>
                             </div>
                         </div>
                     </div>
                     <input type="hidden" id="page" value="1">
 				</article>
 			</div>
+					<%
+     }
+%>
 		</div>
 	</section>
 </section>
-<%
-     }
-%>
 </body>
 <script>
 		function search() {
@@ -129,82 +133,86 @@
 			console.log("img_no : " + img_no);
 		
 			$.ajax({
-				url : '/image/searchList.do',
+				url : '/image/searchList.do', // 내가 설정한 controller의 url로 이동함 
 				type : 'post',
 				data : {
-					"post_title" : post_title
+					"img_no" : img_no
 				},
 				success : function(data) {
 					console.log("test");
 					console.log(data);
-		
-					var resHTML = "";
-					resHTML += '<input type="text"/>';
-					resHTML += '<input type="text"/>';
-					resHTML += '<input type="text"/>';
-					resHTML += '<br/>';
-					resHTML += '<img  src=" "  />';
-					resHTML += '<br/>';
-					resHTML += '<input type="text"/>';
-					resHTML += '<br>';
+					
+					var userHTML = ""; // 게시판위의 나타내어 줄 userId, userProfile 정보 들고오기
+					userHTML = '<div style="display:none" name="user_no">'+data.getImage_no()+'</div>';
+					userHTML = '<div class="scroll_inner"><div class="user">';
+					userHTML = '<div class="thumb_img"> <img src="../resourceImg/imgs/thumb.jpeg"/></div>';
+					userHTML = data.getReg_id()+'</div> </div> </div>';
+					
+					
+					
+					var resHTML = ""; // 게시판 정보 들고오기
+					resHTML += '<div class="board_number" name="img_no" id="img_no" style="display:none">'+ data.getImage_no() + '</div>';
+					resHTML += '<div class="nick_name m_text" name="user_id">'+ data.getReg_id() + '</div>';
+					resHTML += '<div class="country s_text" name="LastEdit_DT">'+ data.getChg_dt() + '</div>';
+					resHTML += '<div><img src="../resourceImg/Image/' + data.getSave_folder_name() + '/' + data.getSave_file_name() +'" alt="visual01"></div>';
+					resHTML += '<div class="likes m_text"> 좋아요 <span id="like-count-39">' + userInfo.getLike_cnt() +'</span> <span id="bookmark-count-39"></span> 개 </div>';
+					resHTML += '<div class="comment_container"><div class="comment" id="comment-list-ajax-post37"><div class="comment-detail"><div class="nick_name m_text" name="user_id" ></div><div><h1>' +data.getOne_title()+'</h1></div></div></div></div>';
 		
 					if (data.length == 0) {
 		
-						resHTML += '<input type="text"/>';
-						resHTML += '<input type="text"/>';
-						resHTML += '<input type="text"/>';
-						resHTML += '<br/>';
-						resHTML += '<img  src="" width = 300px height= 300px name="imgfile" />';
-						resHTML += '<br/>';
-						resHTML += '<input type="text"/>';
-						resHTML += '<br>';
+						resHTML += '<div class="board_number" name="img_no" id="img_no" style="display:none"></div>';
+						resHTML += '<div class="nick_name m_text" name="user_id"></div>';
+						resHTML += '<div class="country s_text" name="LastEdit_DT"></div>';
+						resHTML += '<div><img src="../resourceImg/imgs/thumb.jepg" alt="visual01"></div>';
+						resHTML += '<div class="likes m_text"> 좋아요 <span id="like-count-39"></span> <span id="bookmark-count-39"></span> 개 </div>';
+						resHTML += '<div class="comment_container"><div class="comment" id="comment-list-ajax-post37"><div class="comment-detail"><div class="nick_name m_text" name="user_id" ></div><div><h1></h1></div></div></div></div>';
+						
+						userHTML = '<div style="display:none" name="user_no"></div>';
+						userHTML = '<div class="scroll_inner"><div class="user">';
+						userHTML = '<div class="thumb_img"> <img src="../resourceImg/imgs/thumb.jpeg"/></div>';
+						userHTML = '</div> </div> </div>';
+			
 		
 					} else {
 		
 						for (var i = 0; i < data.length; i++) {
 							
-							resHTML += '<input type="text" value="' + data.getImage_no() +'" />';
-							resHTML += '<input type="text" value="'+ data.getReg_id() +'"/>';
-							resHTML += '<input type="text" value="'+ data.getOne_title() +'"/>';
-							resHTML += '<br/>';
-							resHTML += '<img src="../resourceImg/Image/'+data.getSave_folder_name()+'/'+ data.getSave_file_name()'" width = 300px height= 300px name="imgfile"/>';
-							resHTML += '<br/>';
-							resHTML += '<input type="text" value ="'+ data.getChg_dt()+'"/>';
-							resHTML += '<br>';
+							resHTML += '<div class="board_number" name="img_no" id="img_no" style="display:none">'+ data.getImage_no() + '</div>';
+							resHTML += '<div class="nick_name m_text" name="user_id">'+ data.getReg_id() + '</div>';
+							resHTML += '<div class="country s_text" name="LastEdit_DT">'+ data.getChg_dt() + '</div>';
+							resHTML += '<div><img src="../resourceImg/Image/' + data.getSave_folder_name() + '/' + data.getSave_file_name() +'" alt="visual01"></div>';
+							resHTML += '<div class="likes m_text"> 좋아요 <span id="like-count-39">' + userInfo.getLike_cnt() +'</span> <span id="bookmark-count-39"></span> 개 </div>';
+							resHTML += '<div class="comment_container"><div class="comment" id="comment-list-ajax-post37"><div class="comment-detail"><div class="nick_name m_text" name="user_id" ></div><div><h1>' +data.getOne_title()+'</h1></div></div></div></div>';
+							
+							userHTML = '<div style="display:none" name="user_no">'+data.getImage_no()+'</div>';
+							userHTML = '<div class="scroll_inner"><div class="user">';
+							userHTML = '<div class="thumb_img"> <img src="../resourceImg/imgs/thumb.jpeg"/></div>';
+							userHTML = data.getReg_id()+'</div> </div> </div>';
+				
 							
 					}
-					$("#searchList").html(resHTML);
-		
+						// 게시판의 대한 정보 들고오기 
+					$("#contents").html(resHTML); // 설정된 div, span, selection 등의 contents id값 밑으로 html을 생성한다. 
+						// 간단 유저 정보 들고오기
+					$("#hidden_menu").html(userHTML); 
 				}
-			})
-		}
+			}
+		});
+	}
+		
 			
 		$(function(){
 				
-				var ListCount = <% rList.size(); %>;
+				var ListCount = ${rList.size()};
 			    var count=1;
 			    
 			    //$(window).scroll(function() { });
 			    
 			    //문서가 로드되면 20 row 생성 그리고 생성이 완료되면 scroll 이벤트 바인딩
-			    for(var i = 1; i < ListCount.length; i++) {
-			        count = i;
-			        
-			    	$.ajax({
-						url : '/image/searchList.do',
-						type : 'post',
-						data : {
-							"post_title" : post_title
-						},
-						success : function(data) {
-							console.log("test");
-							console.log(data);
-							
-							var resHTML = "";
-			        
-
+			    for(var i = 1; i <= ListCount; i++) {
+			      
 			        if(count == ListCount) {
-			            $(window).bind("scroll",infinityScrollFunction);
+			        	search();
 			        }
 			    }
 
@@ -231,7 +239,7 @@
 			                //count = count + 1;
 			                count++;
 			                //$("<h1> infinity scroll </h>").appendTo("body");
-			                $("<h1>"+count+" line scroll</h1>").appendTo("body");
+			                search();
 			            }
 			        }
 			    }//function infinityScrollFunction()

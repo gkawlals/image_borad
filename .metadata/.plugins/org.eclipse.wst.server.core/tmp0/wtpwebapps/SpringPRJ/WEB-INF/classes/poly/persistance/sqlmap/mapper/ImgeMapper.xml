@@ -48,8 +48,13 @@
 		)
 
 	</insert>
+			
+	<insert id="getInsertImageFile" parameterType="ImageDTO">
+	
+	</insert>
 	
 	<select id="searchList" parameterType="ImageDTO" resultType="ImageDTO">
+	<!-- ajax를 위한 쿼리문 -->
 	SELECT 
 			IMAGE_NO, 
 			SAVE_FOLDER_NAME, 
