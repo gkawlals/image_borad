@@ -87,7 +87,7 @@
                  </header>
                   <div class="img_section">
                     <div class="trans_inner">
-                            <div><img src="../resourceImg/Image/<%=userInfo.getSave_folder_name() %>/<%=userInfo.getSave_file_name() %>" alt="visual01"></div>
+                            <div><img src="../resourceImg/image/<%=userInfo.getSave_folder_name() %>/<%=userInfo.getSave_file_name() %>" alt="visual01"></div>
                         </div>
                     </div>
                     <div class="bottom_icons">
@@ -149,12 +149,11 @@
 					userHTML = data.getReg_id()+'</div> </div> </div>';
 					
 					
-					
 					var resHTML = ""; // 게시판 정보 들고오기
 					resHTML += '<div class="board_number" name="img_no" id="img_no" style="display:none">'+ data.getImage_no() + '</div>';
 					resHTML += '<div class="nick_name m_text" name="user_id">'+ data.getReg_id() + '</div>';
 					resHTML += '<div class="country s_text" name="LastEdit_DT">'+ data.getChg_dt() + '</div>';
-					resHTML += '<div><img src="../resourceImg/Image/' + data.getSave_folder_name() + '/' + data.getSave_file_name() +'" alt="visual01"></div>';
+					resHTML += '<div><img src="/../resourceImg/image/' + data.getSave_folder_name() + '/' + data.getSave_file_name() +'" alt="visual01"></div>';
 					resHTML += '<div class="likes m_text"> 좋아요 <span id="like-count-39">' + userInfo.getLike_cnt() +'</span> <span id="bookmark-count-39"></span> 개 </div>';
 					resHTML += '<div class="comment_container"><div class="comment" id="comment-list-ajax-post37"><div class="comment-detail"><div class="nick_name m_text" name="user_id" ></div><div><h1>' +data.getOne_title()+'</h1></div></div></div></div>';
 		
@@ -166,7 +165,6 @@
 						resHTML += '<div><img src="../resourceImg/imgs/thumb.jepg" alt="visual01"></div>';
 						resHTML += '<div class="likes m_text"> 좋아요 <span id="like-count-39"></span> <span id="bookmark-count-39"></span> 개 </div>';
 						resHTML += '<div class="comment_container"><div class="comment" id="comment-list-ajax-post37"><div class="comment-detail"><div class="nick_name m_text" name="user_id" ></div><div><h1></h1></div></div></div></div>';
-						
 						userHTML = '<div style="display:none" name="user_no"></div>';
 						userHTML = '<div class="scroll_inner"><div class="user">';
 						userHTML = '<div class="thumb_img"> <img src="../resourceImg/imgs/thumb.jpeg"/></div>';
@@ -180,10 +178,9 @@
 							resHTML += '<div class="board_number" name="img_no" id="img_no" style="display:none">'+ data.getImage_no() + '</div>';
 							resHTML += '<div class="nick_name m_text" name="user_id">'+ data.getReg_id() + '</div>';
 							resHTML += '<div class="country s_text" name="LastEdit_DT">'+ data.getChg_dt() + '</div>';
-							resHTML += '<div><img src="../resourceImg/Image/' + data.getSave_folder_name() + '/' + data.getSave_file_name() +'" alt="visual01"></div>';
+							resHTML += '<div><img src="/../resourceImg/image/' + data.getSave_folder_name() + '/' + data.getSave_file_name() +'" alt="visual01"></div>';
 							resHTML += '<div class="likes m_text"> 좋아요 <span id="like-count-39">' + userInfo.getLike_cnt() +'</span> <span id="bookmark-count-39"></span> 개 </div>';
 							resHTML += '<div class="comment_container"><div class="comment" id="comment-list-ajax-post37"><div class="comment-detail"><div class="nick_name m_text" name="user_id" ></div><div><h1>' +data.getOne_title()+'</h1></div></div></div></div>';
-							
 							userHTML = '<div style="display:none" name="user_no">'+data.getImage_no()+'</div>';
 							userHTML = '<div class="scroll_inner"><div class="user">';
 							userHTML = '<div class="thumb_img"> <img src="../resourceImg/imgs/thumb.jpeg"/></div>';
@@ -199,54 +196,6 @@
 			}
 		});
 	}
-		
-			
-		$(function(){
-				
-				var ListCount = ${rList.size()};
-			    var count=1;
-			    
-			    //$(window).scroll(function() { });
-			    
-			    //문서가 로드되면 20 row 생성 그리고 생성이 완료되면 scroll 이벤트 바인딩
-			    for(var i = 1; i <= ListCount; i++) {
-			      
-			        if(count == ListCount) {
-			        	search();
-			        }
-			    }
-
-			    function infinityScrollFunction() {
-
-			        //현재창의 높이를 구함.
-			        var documentHeight  = $(document).height();
-			        console.log("documentHeight : " + documentHeight);
-			        
-			        //scrollTop() 메서드는 선택된 요소의 세로 스크롤 위치를 설정하거나 반환    
-			        //스크롤바가 맨 위쪽에 있을때 , 위치는 0
-			        console.log("window의 scrollTop() : " + $(window).scrollTop()); 
-			        //height() 메서드는 브라우저 창의 높이를 설정하거나 반환
-			        console.log("window의 height() : " + $(window).height());
-			        
-			        //세로 스크롤위치 max값과 창의 높이를 더하면 현재문서의 높이를 구할수있음.
-			        //세로 스크롤위치 값이 max이면 문서의 끝에 도달했다는 의미
-			        var scrollHeight = $(window).scrollTop()+$(window).height();         
-			        console.log("scrollHeight : " + scrollHeight);
-			            
-			        if(scrollHeight == documentHeight) { //문서의 맨끝에 도달했을때 내용 추가 
-			            for(var i = 0; i<10; i++) {
-			            	// ajax를 추가 하는 곳
-			                //count = count + 1;
-			                count++;
-			                //$("<h1> infinity scroll </h>").appendTo("body");
-			                search();
-			            }
-			        }
-			    }//function infinityScrollFunction()
-
-
-			});
-
 </script>
 
 </html>

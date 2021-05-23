@@ -25,7 +25,28 @@
 	</repositories>
 
 	<dependencies>
-
+	
+		<dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk</artifactId>
+            <version>1.11.66</version>
+        </dependency>
+        
+    <dependency>
+	    <groupId>org.springframework.cloud</groupId>
+	    <artifactId>spring-cloud-starter-aws</artifactId>
+	    <version>2.0.1.RELEASE</version>
+		</dependency>
+	<dependency>
+	    <groupId>org.springframework.cloud</groupId>
+	    <artifactId>spring-cloud-aws-context</artifactId>
+	    <version>1.2.1.RELEASE</version>
+	</dependency>
+	<dependency>
+    	<groupId>org.springframework.cloud</groupId>
+    	<artifactId>spring-cloud-aws-autoconfigure</artifactId>
+    	<version>1.2.1.RELEASE</version>
+	</dependency>
 	<!-- commons-io가 있어야 업로드가 된다 -->
 		<dependency>
 		    <groupId>commons-io</groupId>

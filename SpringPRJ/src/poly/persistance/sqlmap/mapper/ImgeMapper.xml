@@ -10,23 +10,25 @@
 			SAVE_FILE_PATH, 
 			REG_ID, 
 			CHG_DT
-		FROM IMAGE_TABLE;
+		FROM circle.IMAGE_TABLE;
 	</select>
 	
 	<select id="imageListTest" resultType="ImageDTO">
-		SELECT 
-			IMAGE_NO, 
-			SAVE_FOLDER_NAME, 
-			SAVE_FILE_NAME,
-			ONE_TITLE,
-			LIKE_CNT,
-			REG_ID, 
-			CHG_DT
-		FROM IMAGE_TABLE;
+	SELECT
+	
+		IMAGE_NO, 
+		SAVE_FOLDER_NAME, 
+		SAVE_FILE_NAME, 
+		ONE_TITLE, 
+		REG_ID, 
+		REG_DT  
+		
+	FROM circle.IMAGE_TABLE;
 	</select>
 	
 	<insert id="getInsertImage" parameterType="ImageDTO">
 		INSERT INTO IMAGE_TABLE ( 
+		
 			SAVE_FILE_NAME,
 			SAVE_FILE_PATH,
 			ORG_FILE_NAME,
@@ -37,6 +39,7 @@
 			CHG_ID
 			
 		 )  VALUES (
+		 
 			#{save_file_name},
 			#{save_file_path},
 			#{org_file_name},

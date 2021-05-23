@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,20 +51,15 @@ public class ImageController {
 		
 		String org_file_name = mf.getOriginalFilename();
 		// test를 위한 파라미터로 불러오기
-	//	String filename = CmmUtil.nvl(request.getParameter("saveFileName"));
 		log.info(org_file_name);
 		String ext = org_file_name.substring(org_file_name.lastIndexOf(".") + 1, org_file_name.length()).toLowerCase();
 		// 저장되는 파일이 이미지 파일만 저장되게끔 설정해주기
 		if(ext.equals("jpeg") || ext.equals("jpg") || ext.equals("gif") || ext.equals("png")) {
 			
 			String save_file_name = DateUtil.getDateTime("24hhmmss") + "." + ext;
-			
 			String save_folder_name = DateUtil.getDateTime("24hhmmss");
-			
 			String save_file_path = FileUtil.mkdirForDate(FILE_UPLOAD_SAVE_PATH);
-			
 			String fullFileInfo = save_file_path + "/" + save_file_name;
-			
 			String one_title = CmmUtil.nvl(request.getParameter("one_title"));
 			
 			log.info("ext : " + ext);
@@ -80,30 +74,31 @@ public class ImageController {
 			ImageDTO pDTO = new ImageDTO();
 			
 			pDTO.setOne_title(one_title);
-			pDTO.setSave_file_name(save_file_name);
-			pDTO.setSave_file_path(save_file_path);
-			pDTO.setOrg_file_name(org_file_name);
+			pDTO.setSave_file_name(save_file_name.trim());
+			pDTO.setSave_file_path(save_file_path.trim());
+			pDTO.setOrg_file_name(org_file_name.trim());
 			pDTO.setExt(ext);
 			pDTO.setReg_id("admin");
-			pDTO.setSave_folder_name(save_folder_name);
+			pDTO.setSave_folder_name(save_folder_name.trim());
 			
 			int res = imageService.getInsertImage(pDTO);
 			
 			if (res < 1) {
 				// 실패
 				log.info(this.getClass().getName() + " insert Failed!");
+				return "/image/imagetest";
 			} else {
 				// 성공
 				log.info(this.getClass().getName() + " insert success!");
 			}
-
-
 			
-		}else 
-		
+		}else { 
+			return "/image/imagetest";
+		}
 		
 		log.info(this.getClass().getName() + " . imageUpload end !");
-		return "/image/imageUpload";
+		
+		return "/image/imagetest";
 	}
 	
 	@RequestMapping(value="image/scrolltest")
@@ -121,6 +116,7 @@ public class ImageController {
 		}
 		
 		log.info(" ImageList 불러오기");
+		
 		model.addAttribute("rList", rList);
 		
 		for(ImageDTO e : rList) {
@@ -139,8 +135,11 @@ public class ImageController {
 		log.info("searchList 시작");
 		//jsp에서 값을 받아오는 구문
 		String post_title = CmmUtil.nvl(request.getParameter("Image_no"));
+		
 		log.info(post_title);
+		
 		ImageDTO pDTO = new ImageDTO();
+		
 		pDTO.setImage_no(post_title);
 		
 		List<ImageDTO> rList = imageService.searchList(pDTO);
