@@ -199,3 +199,4 @@
 0:0:0:0:0:0:0:1 - - [23/May/2021:23:25:09 +0900] "GET /user/SignUp.do HTTP/1.1" 200 6113
 0:0:0:0:0:0:0:1 - - [23/May/2021:23:25:35 +0900] "POST /user/InsertUserInfo.do HTTP/1.1" 200 4666
 0:0:0:0:0:0:0:1 - - [23/May/2021:23:27:06 +0900] "POST /user/InsertUserInfo.do HTTP/1.1" 200 4666
+0:0:0:0:0:0:0:1 - - [23/May/2021:23:39:21 +0900] "POST /user/InsertUserInfo.do HTTP/1.1" 200 4666

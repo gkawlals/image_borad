@@ -27,7 +27,7 @@
 	</select>
 	
 	<insert id="getInsertImage" parameterType="ImageDTO">
-		INSERT INTO IMAGE_TABLE ( 
+		INSERT INTO circle.IMAGE_TABLE ( 
 		
 			SAVE_FILE_NAME,
 			SAVE_FILE_PATH,
@@ -51,10 +51,6 @@
 		)
 
 	</insert>
-			
-	<insert id="getInsertImageFile" parameterType="ImageDTO">
-	
-	</insert>
 	
 	<select id="searchList" parameterType="ImageDTO" resultType="ImageDTO">
 	<!-- ajax를 위한 쿼리문 -->
@@ -67,7 +63,7 @@
 			ONE_TITLE,
 			CHG_DT
 	FROM 
-		IMAGE_TABLE
+		circle.IMAGE_TABLE
 	WHERE 
 	 	IMAGE_NO LIKE '%' || #{image_no} || '%'
 	</select>

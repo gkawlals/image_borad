@@ -10,7 +10,7 @@ public class UserDTO {
 	private String user_id; // 아이디
 	private String user_pwd; // 비번
 	private String user_name; // 이름
-	private String user_email; // eamil 
+	private String user_mail; // eamil 
 	private String reg_dt; // 가입 일
 	private String update_dt; // 수정날
 	private String exists_yn; // 중복확인 이메일 유무 
@@ -34,11 +34,11 @@ public class UserDTO {
 	public void setUser_name(String user_name) {
 		this.user_name = user_name;
 	}
-	public String getUser_email() {
-		return user_email;
+	public String getUser_mail() {
+		return user_mail;
 	}
-	public void setUser_email(String user_email) {
-		this.user_email = user_email;
+	public void setUser_mail(String user_mail) {
+		this.user_mail = user_mail;
 	}
 	public String getExists_yn() {
 		return exists_yn;

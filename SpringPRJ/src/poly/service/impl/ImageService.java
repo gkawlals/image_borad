@@ -43,7 +43,6 @@ public class ImageService implements IImageService {
 		// TODO Auto-generated method stub
 		return imageMapper.imageListTest();
 	}
-	
-	
+
 
 }

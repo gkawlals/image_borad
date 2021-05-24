@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@page import="java.util.List"%>
+<%@page import="poly.dto.ImageDTO"%>
+<%@page import="poly.dto.UserDTO"%>
+<%@page import="poly.util.CmmUtil"%>
+<%
+	List<ImageDTO> rList = (List<ImageDTO>) request.getAttribute("rList");
+	String user_id = CmmUtil.nvl((String)session.getAttribute("user_id"));
+%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -27,11 +35,11 @@
 
 
     <title>instagram</title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/common.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/profile.css">
-    <link rel="shortcut icon" href="imgs/instagram.png">
+    <link rel="stylesheet" href="../resourceImg/css/reset.css">
+    <link rel="stylesheet" href="../resourceImg/css/common.css">
+    <link rel="stylesheet" href="../resourceImg/css/style.css">
+    <link rel="stylesheet" href="../resourceImg/css/profile.css">
+    <link rel="shortcut icon" href="../resourceImg/imgs/instagram.png">
 
 
 </head>
@@ -39,7 +47,6 @@
 
 
 <section id="container">
-
     <header id="header">
         <section class="h_inner">
 
@@ -77,7 +84,7 @@
             <div class="hori_cont">
                 <div class="profile_wrap">
                     <div class="profile_img">
-                        <img src="imgs/thumb.jpeg" alt="착한호랑이">
+                        <img src="../resourceImg/imgs/thumb.jpeg" alt="착한호랑이">
                     </div>
                 </div>
 
@@ -99,27 +106,27 @@
                     </p>
 
                 </div>
+                
             </div>
 
             <div class="mylist_contents contents_container active">
-             <!-- selete * from notice where user_id = {user_id} -->
+             <!-- selete IMAGE_NO, IMAGE_FORDER_NAME, IMAGE_FILE_NAME  from IMAGE_TABLE where REG_ID = #{reg_id} -->
+             <% for(ImageDTO e : rList) {%>
+            	<div class="pic" name="image_no" style="display:none" value="<%=e.getSave_file_name()%>">
+            		<a onclick="location.href='../image/imageDetail'">
+            			<img src="../resourceImg/Image/<%=e.getSave_folder_name()%>/<%=e.getSave_file_name()%>" name="">
+            		</a>
+            	</div>
+            <%} %>
             </div>
 
 
             <div class="bookmark_contents contents_container">
 			<!-- 북마커 기준 게시글들 불러오기  -->
             </div>
-
-
-
-
-        </section>
+       </section>
     </div>
-
-
 </section>
-
-
 <!--<script src="js/insta.js"></script>-->
 <script src="js/profile.js"></script>
 <script>

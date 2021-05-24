@@ -1,5 +1,8 @@
 package poly.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import poly.dto.ImageDTO;
 import poly.dto.UserDTO;
 import poly.service.IUserService;
 import poly.util.CmmUtil;
@@ -49,9 +53,25 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="user/MyPage")
-	public String MyPage() {
+	public String getMyImageList(ModelMap model,HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		
-		log.info(this.getClass().getName() + " .user/MyPage start !");
+		List<ImageDTO> rList = userService.getMyImageList();
+		
+		if(rList == null ) {
+			rList = new ArrayList<>();
+		}
+		
+		log.info(" ImageList 불러오기");
+		
+		model.addAttribute("rList", rList);
+		
+		for(ImageDTO e : rList) {
+			
+			log.info("ImageList " + e.getImage_no() + "번 불러오기");
+		}
+		
+		rList = null;
+				
 		return "user/MyPage";
 	}
 	
@@ -96,10 +116,9 @@ public class UserController {
 			model.addAttribute("res",String.valueOf(res));
 			
 			pDTO = null;
-			
 		}
 		
-		return "user/LoginResult";
+		return "../image/imageListTest.do";
 	}
 	
 	@RequestMapping(value="user/InsertUserInfo")
@@ -128,12 +147,13 @@ public class UserController {
 			pDTO.setUser_id(user_id);
 			pDTO.setUser_pwd(user_pwd);
 			pDTO.setUser_name(user_name);
-			pDTO.setUser_email(user_email);
-			
+			pDTO.setUser_mail(user_email);
+		
 			int res = userService.InsertUserInfo(pDTO);
 			
 			if(res==1) {
 				msg = "회원가입되었습니다. ";
+				
 			}else if(res == 2) {
 				msg = "이미 가입된 회원입니다.";
 			}else {

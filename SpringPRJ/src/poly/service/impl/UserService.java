@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.crypto.BadPaddingException;
@@ -13,6 +14,7 @@ import javax.crypto.NoSuchPaddingException;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
+import poly.dto.ImageDTO;
 import poly.dto.UserDTO;
 import poly.persistance.mapper.IUserMapper;
 import poly.service.IUserService;
@@ -87,5 +89,17 @@ public class UserService implements IUserService{
 		 
 		 return res;
 	 }
+
+	@Override
+	public List<ImageDTO> getUserList() {
+		// TODO Auto-generated method stub
+		return userMapper.UserList();
+	}
+
+	@Override
+	public List<ImageDTO> getMyImageList() {
+		// TODO Auto-generated method stub
+		return userMapper.getMyImageList();
+	}
 
 }

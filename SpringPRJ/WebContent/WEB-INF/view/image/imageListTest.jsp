@@ -3,9 +3,11 @@
 <!DOCTYPE html>
 <%@page import="java.util.List"%>
 <%@page import="poly.dto.ImageDTO"%>
+<%@page import="poly.dto.UserDTO"%>
 <%@page import="poly.util.CmmUtil"%>
 <%
 	List<ImageDTO> rList = (List<ImageDTO>) request.getAttribute("rList");
+	List<UserDTO> uList = (List<UserDTO>) request.getAttribute("rList");
 %>
 <html>
 <head>
@@ -40,9 +42,11 @@
                 </div>
             </div>
             <div class="right_icons">
-                <a href="login.html"><div class="sprite_compass_icon"></div></a>
+                <a href="login.html"><div class="sprite_compass_icon"></div></a><!-- 카카오 지도 api연결 -->
                 <a href="follow.html"><div class="sprite_heart_icon_outline"></div></a>
-                <a href="profile.html"><div class="sprite_user_icon_outline"></div></a>
+                
+                <a onclick="location.href='../user/MyPage.do'" ><div class="sprite_user_icon_outline" name="user_id" value=""></div></a>
+                
             </div>
         </section>
     </header>

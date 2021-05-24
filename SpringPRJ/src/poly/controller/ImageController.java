@@ -8,6 +8,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import poly.dto.ImageDTO;
 import poly.service.IImageService;
+import poly.service.IUserService;
 import poly.util.CmmUtil;
 import poly.util.DateUtil;
 import poly.util.FileUtil;
@@ -34,6 +36,9 @@ public class ImageController {
 	@Resource(name = "ImageService")
 	private IImageService imageService;
 	
+	@Resource(name = "UserService")
+	private IUserService userService;
+	
 	@RequestMapping(value="image/imagetest")
 	public String imagetest() {
 		return "image/imagetest";
@@ -45,7 +50,7 @@ public class ImageController {
 	}
 
 	@RequestMapping(value="/image/imageUpload")
-	public String imageUpload( HttpServletRequest request, HttpServletResponse response, 
+	public String imageUpload( HttpServletRequest request, HttpServletResponse response, HttpSession session,
 			ModelMap model, @RequestParam(value="fileUpload")MultipartFile mf) throws IOException{
 		log.info(this.getClass().getName() + " . imageUpload start !");
 		
@@ -111,19 +116,27 @@ public class ImageController {
 		
 		List<ImageDTO> rList = imageService.imageListTest();
 		
+		List<ImageDTO> uList = userService.getUserList();
+		
 		if(rList == null ) {
 			rList = new ArrayList<>();
+		}
+		
+		if(uList == null ) {
+			uList = new ArrayList<>();
 		}
 		
 		log.info(" ImageList 불러오기");
 		
 		model.addAttribute("rList", rList);
+		model.addAttribute("uList", uList);
 		
 		for(ImageDTO e : rList) {
 			
 			log.info("ImageList " + e.getImage_no() + "번 불러오기");
 		}
 		
+		uList = null;
 		rList = null;
 		
 		return "image/imageListTest";
@@ -150,4 +163,5 @@ public class ImageController {
 		
 		return rList;
 	}
+	
 }

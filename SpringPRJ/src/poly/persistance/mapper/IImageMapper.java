@@ -18,4 +18,7 @@ public interface IImageMapper {
 
 	List<ImageDTO> imageListTest();
 
+
+	List<ImageDTO> getMyImageList();
+
 }

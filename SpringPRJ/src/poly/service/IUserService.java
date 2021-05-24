@@ -4,11 +4,13 @@ import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
+import poly.dto.ImageDTO;
 import poly.dto.UserDTO;
 
 public interface IUserService {
@@ -19,5 +21,9 @@ public interface IUserService {
 
 	int InsertUserInfo(UserDTO pDTO) throws InvalidKeyException, UnsupportedEncodingException, NoSuchAlgorithmException,
 			NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException;
+
+	List<ImageDTO> getUserList();
+
+	List<ImageDTO> getMyImageList();
 
 }
