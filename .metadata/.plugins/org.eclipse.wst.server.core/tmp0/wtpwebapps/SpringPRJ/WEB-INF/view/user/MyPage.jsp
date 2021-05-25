@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@page import="java.util.List"%>
+<%@page import="poly.dto.ImageDTO"%>
+<%@page import="poly.dto.UserDTO"%>
+<%@page import="poly.util.CmmUtil"%>
+<%
+	List<ImageDTO> rList = (List<ImageDTO>) request.getAttribute("rList");
+	String user_id = CmmUtil.nvl((String)session.getAttribute("user_id"));
+%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -36,6 +44,8 @@
 
 </head>
 <body>
+
+
 <section id="container">
     <header id="header">
         <section class="h_inner">
@@ -96,10 +106,18 @@
                     </p>
 
                 </div>
+                
             </div>
 
             <div class="mylist_contents contents_container active">
-             <!-- selete * from notice where user_id = {user_id} -->
+             <!-- selete IMAGE_NO, IMAGE_FORDER_NAME, IMAGE_FILE_NAME  from IMAGE_TABLE where REG_ID = #{reg_id} -->
+             <% for(ImageDTO e : rList) {%>
+            	<div class="pic" name="image_no" style="display:none" value="<%=e.getSave_file_name()%>">
+            		<a onclick="location.href='../image/imageDetail'">
+            			<img src="../resourceImg/Image/<%=e.getSave_folder_name()%>/<%=e.getSave_file_name()%>" name="">
+            		</a>
+            	</div>
+            <%} %>
             </div>
 
 

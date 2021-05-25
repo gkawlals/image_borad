@@ -16,5 +16,11 @@ public class MainController {
 		
 		return "/index";
 	}
+	
+	@RequestMapping(value="map/circle")
+	public String circle() {
+		log.info(this.getClass().getName() + " circle.jsp start !");
+		return "map/circle";
+	}
 			
 }

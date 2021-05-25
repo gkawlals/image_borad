@@ -1,0 +1,38 @@
+package poly.util;
+
+import java.io.File;
+
+import com.amazonaws.ClientConfiguration;
+import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.services.s3.AmazonS3;
+
+public class FileUtil {
+	
+	private String accessKey = "AKIA2UNIAKDMR7V4K2OD";
+	private String secretKey = "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";
+	
+	private AmazonS3 conn;
+	
+	public S3Util() {
+		AWSCredentials credentials = new BasicAWSCredentials(accessKey, secretKey);
+		
+		ClientConfiguration clientConfig = new ClientConfiguration();
+	}
+	
+	public static String mkdirForDate ( String uploadDir) {
+		
+		String path = uploadDir + DateUtil.getDateTime("/yyyy/MM/dd");
+		
+		File Folder = new File(path);
+		
+		//파일이 존재 하지 않으면 폴더 생성
+		if( !Folder.exists()) {
+			
+			Folder.mkdirs();// 폴더 생성
+		}
+		
+		return path;
+	}
+	
+}

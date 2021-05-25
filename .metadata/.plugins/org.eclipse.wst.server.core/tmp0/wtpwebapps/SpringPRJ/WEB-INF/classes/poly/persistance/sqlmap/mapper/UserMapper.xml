@@ -60,5 +60,16 @@
 	<!-- 여기서 관건인건 session으로 user_id를 받아와야한다. -->
 	</select>
 	
+	<select id="userList" parameterType="UserDTO" resultType="UserDTO">
+		SELECT 
+			USER_NO,
+			USER_ID,
+			USER_FORDER_NAME,
+			USER_PROFILE_NAME
+		FROM circle.USER_TALBE
+			WHERE USER_ID = #{user_id} 
+			
+	</select>
+	
 
 </mapper>

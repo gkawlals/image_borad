@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import poly.dto.ImageDTO;
+import poly.dto.UserDTO;
 import poly.service.IImageService;
 import poly.service.IUserService;
 import poly.util.CmmUtil;
@@ -162,6 +163,28 @@ public class ImageController {
 		log.info("searchList 끝");
 		
 		return rList;
+	}
+	
+	@RequestMapping(value="image/userList")
+	public @ResponseBody List<UserDTO> userList(HttpServletRequest request){
+		
+		log.info("searchList 시작");
+		//jsp에서 값을 받아오는 구문
+		String user_no = CmmUtil.nvl(request.getParameter("user_no"));
+		
+		log.info(user_no);
+		
+		UserDTO pDTO = new UserDTO();
+		
+		pDTO.setUser_no(user_no);
+		
+		List<UserDTO> uList = imageService.userList(pDTO);
+
+		log.info("userList 불러오기 : " + uList.size());
+
+		log.info("userList 끝");
+		
+		return uList;
 	}
 	
 }

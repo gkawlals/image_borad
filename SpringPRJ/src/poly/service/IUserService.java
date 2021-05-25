@@ -26,4 +26,6 @@ public interface IUserService {
 
 	List<ImageDTO> getMyImageList();
 
+	void uploadImg(UserDTO vo);
+
 }

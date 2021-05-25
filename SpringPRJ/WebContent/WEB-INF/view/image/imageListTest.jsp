@@ -6,8 +6,9 @@
 <%@page import="poly.dto.UserDTO"%>
 <%@page import="poly.util.CmmUtil"%>
 <%
+	String SS_USER_ID = CmmUtil.nvl((String)session.getAttribute("SS_USER_ID"));
 	List<ImageDTO> rList = (List<ImageDTO>) request.getAttribute("rList");
-	List<UserDTO> uList = (List<UserDTO>) request.getAttribute("rList");
+	List<UserDTO> uList = (List<UserDTO>) request.getAttribute("uList");
 %>
 <html>
 <head>
@@ -42,7 +43,7 @@
                 </div>
             </div>
             <div class="right_icons">
-                <a href="login.html"><div class="sprite_compass_icon"></div></a><!-- 카카오 지도 api연결 -->
+                <a onclick="location.href='../map/MyPage.do'"><div class="sprite_compass_icon"></div></a><!-- 카카오 지도 api연결 -->
                 <a href="follow.html"><div class="sprite_heart_icon_outline"></div></a>
                 
                 <a onclick="location.href='../user/MyPage.do'" ><div class="sprite_user_icon_outline" name="user_id" value=""></div></a>
@@ -50,18 +51,18 @@
             </div>
         </section>
     </header>
-    <% for (ImageDTO userId : rList) {%>
+    <% for (UserDTO userId : uList) {%>
 		<div class="hidden_menu" id="hidden_menu">
-		<div style="display:none" name="user_no"><%=userId.getImage_no() %></div>
-		    <div class="scroll_inner">
-		    	<div class="user">
-		    		<div class="thumb_img">
-		    			<img src="../resourceImg/imgs/thumb.jpeg"/> <!-- 프로필 사진 경로 -->
-		    		</div>
-		    		<%=userId.getReg_id() %>
-		    	</div>
-		    </div>
-		 </div>
+			<div style="display:none" name="user_no"><%=userId.getUser_no() %></div>
+			    <div class="scroll_inner">
+			    	<div class="user">
+			    		<div class="thumb_img">
+			    			<img src="../resourceImg/<%=userId.getUser_forder_name()%>/<%=userId.getUser_profile_name()%>"/> <!-- 프로필 사진 경로 -->
+			    		</div>
+			    		<%=userId.getUser_id()%>
+			    	</div>
+			    </div>
+			 </div>
 		 <% } %>
 	<section id="main_container">
 		<div class="inner">
@@ -125,6 +126,49 @@
 </section>
 </body>
 <script>
+		function userList(){
+			var user_no = $('#user_no').val();
+			
+			if($('#user_no').val() == ""){
+				$('#user_no').focus();
+			}
+			
+			console.log("user_no : " + user_no);
+			
+			$.ajax({
+				url : '/image/userList.do',
+				type = 'post',
+				data : {
+					"user_no" : user_no
+				}
+				success : function(data) { 
+					console.log("test");
+					console.log(data);
+					
+					
+					var userHTML = ""; // 게시판위의 나타내어 줄 userId, userProfile 정보 들고오기
+					userHTML = '<div style="display:none" name="user_no">'+data.getImage_no()+'</div>';
+					userHTML = '<div class="scroll_inner"><div class="user">';
+					userHTML = '<div class="thumb_img"> <img src="../resourceImg//'+data.getUse_forder_name()+'/'+data.getUser_profile_name()'"/></div>';
+					userHTML = data.getReg_id()+'</div> </div> </div>';	
+					
+					if(data.length == 0){
+						userHTML = '<div style="display:none" name="user_no"></div>';
+						userHTML = '<div class="scroll_inner"><div class="user">';
+						userHTML = '<div class="thumb_img"> <img src="../resourceImg/imgs/thumb.jpeg"/></div>';
+						userHTML = '</div> </div> </div>'
+					}else{
+						for(var i = 0;  i < data.lenth(); i++){
+							userHTML = '<div style="display:none" name="user_no">'+data.getImage_no()+'</div>';
+							userHTML = '<div class="scroll_inner"><div class="user">';
+							userHTML = '<div class="thumb_img"> <img src="../resourceImg//'+data.getUse_forder_name()+'/'+data.getUser_profile_name()'"/></div>';
+							userHTML = data.getReg_id()+'</div> </div> </div>';	
+						}
+						$("#hidden_menu").html(userHTML);
+					}
+				}
+			});
+		}
 		function search() {
 			//alert("test");
 			var img_no = $('#img_no').val();
@@ -135,7 +179,7 @@
 			}
 		
 			console.log("img_no : " + img_no);
-		
+	
 			$.ajax({
 				url : '/image/searchList.do', // 내가 설정한 controller의 url로 이동함 
 				type : 'post',
@@ -146,15 +190,8 @@
 					console.log("test");
 					console.log(data);
 					
-					var userHTML = ""; // 게시판위의 나타내어 줄 userId, userProfile 정보 들고오기
-					userHTML = '<div style="display:none" name="user_no">'+data.getImage_no()+'</div>';
-					userHTML = '<div class="scroll_inner"><div class="user">';
-					userHTML = '<div class="thumb_img"> <img src="../resourceImg/imgs/thumb.jpeg"/></div>';
-					userHTML = data.getReg_id()+'</div> </div> </div>';
-					
-					
 					var resHTML = ""; // 게시판 정보 들고오기
-					resHTML += '<div class="board_number" name="img_no" id="img_no" style="display:none">'+ data.getImage_no() + '</div>';
+					resHTML += '<div class="board_number" name="img_no" id="img_no" style="display:none">'+ data.getUser_no() + '</div>';
 					resHTML += '<div class="nick_name m_text" name="user_id">'+ data.getReg_id() + '</div>';
 					resHTML += '<div class="country s_text" name="LastEdit_DT">'+ data.getChg_dt() + '</div>';
 					resHTML += '<div><img src="/../resourceImg/image/' + data.getSave_folder_name() + '/' + data.getSave_file_name() +'" alt="visual01"></div>';
@@ -194,12 +231,11 @@
 					}
 						// 게시판의 대한 정보 들고오기 
 					$("#contents").html(resHTML); // 설정된 div, span, selection 등의 contents id값 밑으로 html을 생성한다. 
-						// 간단 유저 정보 들고오기
-					$("#hidden_menu").html(userHTML); 
 				}
 			}
 		});
 	}
+		
 </script>
 
 </html>

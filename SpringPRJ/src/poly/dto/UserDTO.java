@@ -11,11 +11,51 @@ public class UserDTO {
 	private String user_pwd; // 비번
 	private String user_name; // 이름
 	private String user_mail; // eamil 
+	private String reg_id; // 가입한 아이디
 	private String reg_dt; // 가입 일
-	private String update_dt; // 수정날
+	private String chg_id; // 변경 아이디
+	private String chg_dt; // 변경일
 	private String exists_yn; // 중복확인 이메일 유무 
+	private String user_profile_name; // 프로필 사진 이름
+	private String user_forder_name; // 프로필 사진 폴더 이름
+	private String user_profile_path; // 프로필 사진 경로
 	
-	
+	public String getUser_profile_path() {
+		return user_profile_path;
+	}
+	public void setUser_profile_path(String user_profile_path) {
+		this.user_profile_path = user_profile_path;
+	}
+	public String getReg_id() {
+		return reg_id;
+	}
+	public void setReg_id(String reg_id) {
+		this.reg_id = reg_id;
+	}
+	public String getChg_id() {
+		return chg_id;
+	}
+	public void setChg_id(String chg_id) {
+		this.chg_id = chg_id;
+	}
+	public String getChg_dt() {
+		return chg_dt;
+	}
+	public void setChg_dt(String chg_dt) {
+		this.chg_dt = chg_dt;
+	}
+	public String getUser_profile_name() {
+		return user_profile_name;
+	}
+	public void setUser_profile_name(String user_profile_name) {
+		this.user_profile_name = user_profile_name;
+	}
+	public String getUser_forder_name() {
+		return user_forder_name;
+	}
+	public void setUser_forder_name(String user_forder_name) {
+		this.user_forder_name = user_forder_name;
+	}
 	public String getUser_id() {
 		return user_id;
 	}
@@ -59,11 +99,4 @@ public class UserDTO {
 		this.reg_dt = reg_dt;
 	}
 
-	public String getUpdate_dt() {
-		return update_dt;
-	}
-	public void setUpdate_dt(String reg_dt) {
-		this.update_dt = reg_dt;
-	}
-	
 }
