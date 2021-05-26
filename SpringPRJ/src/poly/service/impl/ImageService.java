@@ -55,4 +55,11 @@ public class ImageService implements IImageService {
 	}
 
 
+	@Override
+	public void deleteImage(String fileName) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 }

@@ -20,12 +20,5 @@
 <input type="button" name="imageList" onclick="location.href='image/imageList'" value="게시판으로 가기"/>
  <br>
  <br>
-<form enctype="multipart/form-data" action="/uploadAjaxCert.do" method="post">
-	이미지 업로드<input type="file" name="fileUpload">
-	<br>한 줄평
-	<input type="text" name="one_title">
-	<br>
-	<input type="submit" value="send it">
-</form>
 </body>
 </html>

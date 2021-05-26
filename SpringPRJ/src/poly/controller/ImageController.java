@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,6 +28,7 @@ import poly.service.IUserService;
 import poly.util.CmmUtil;
 import poly.util.DateUtil;
 import poly.util.FileUtil;
+import poly.util.S3Upload;
 
 @Controller
 public class ImageController {
@@ -48,6 +51,23 @@ public class ImageController {
 	@RequestMapping(value="image/imageList")
 	public String imageList() {
 		return "image/imageList";
+	}
+	
+	private S3Upload s3Uploader; 
+	
+	@GetMapping("image/test") 
+	public String index() {
+		
+		return "image/test"; 
+		
+	} 
+	
+	@PostMapping("/upload") 
+	@ResponseBody 
+	public String upload(@RequestParam("data") MultipartFile multipartFile) throws IOException { 
+		
+		return s3Uploader.upload(multipartFile, "static"); 
+		
 	}
 
 	@RequestMapping(value="/image/imageUpload")

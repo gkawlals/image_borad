@@ -102,4 +102,10 @@ public class UserService implements IUserService{
 		return userMapper.getMyImageList();
 	}
 
+	@Override
+	public void uploadImg(UserDTO vo) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

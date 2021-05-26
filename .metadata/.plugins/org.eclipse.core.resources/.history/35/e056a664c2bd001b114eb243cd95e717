@@ -1,0 +1,40 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+var options = { 
+				enableHighAccuracy : true,
+				timeout : 5000,
+				maximumAge : 0
+				
+		}
+		function success(pos){
+			
+			var crd = pos.coords;
+			console.log('위도 : ' + crd.latitude);
+			console.log('경도 : ' + crd.latitude);
+			lat = crd.latitude;
+			lot = crd.longitude
+			
+		}
+		
+		function error (err) {
+			
+			console.log('Error (' + err.code + ')' + err.message);
+		}
+		
+		#('#btnTest').click(function({
+			navigator.geolocation.getCurrentPosition(success, errorm options);	
+		})
+		
+		
+		$ajax({
+			url : ""
+		})
+</body>
+</html>

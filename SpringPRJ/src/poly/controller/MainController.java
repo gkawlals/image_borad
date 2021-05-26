@@ -22,5 +22,11 @@ public class MainController {
 		log.info(this.getClass().getName() + " circle.jsp start !");
 		return "map/circle";
 	}
+	
+	@RequestMapping(value="map/PrePosition")
+	public String position() {
+		log.info(this.getClass().getName() + " test start !");
+		return "map/PrePosition";
+	}
 			
 }
