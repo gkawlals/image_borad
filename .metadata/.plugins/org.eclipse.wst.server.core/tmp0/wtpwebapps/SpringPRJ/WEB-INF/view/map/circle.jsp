@@ -32,7 +32,8 @@
 		
 		var lat; 
 		var lon;
-		
+		// 현재위치를 가져오는데 시간이 오래걸린다. ajax로 가져오게 되면 빨라질까? 
+		// 실험해 보자
 		function setCenter(){
 			if (navigator.geolocation) {
 		    
@@ -41,6 +42,7 @@
 		    	
 		    	lat = position.coords.latitude; // 위도
 				lon = position.coords.longitude; // 경도
+				console.log(lat, lon);
 
 						// 지도에 마커를 생성하고 표시한다
 			    		var marker = new kakao.maps.Marker({
@@ -68,6 +70,7 @@
 		
 		
 		function searchKm(){
+			var ellipse ;
 			
 			var Km = document.getElementById("Km").value;
 			Km = (Km / 2) * 1000;
@@ -94,18 +97,24 @@
 		
 		
 		function Rpoint(){
+			
+			Km = document.getElementById("Km").value;
+			Km = (Km / 2) * 1000;
+			// km == 1500 =  0.00655
 			// 랜덤 좌표 찍어주기
 			var centerPosition = map.getCenter(); // 원의 중심좌표 입니다.
-			// 지도에 마커를 생성하고 표시한다
-			
-			var Rlat = (Math.random() * ((lat + 0.0048) - (lat - 0.0048)) + (lat - 0.0048));
-			var Rlon = (Math.random() * ((lon + 0.006) - (lon - 0.006)) + (lon - 0.006));
+			// 랜덤 범위를 잡아주는 기준 구하기
+			var RlatTest = ( Km / 229007.633587786259542);
+			var RlonTest = ( Km / 90909.090909090909091 );
+			console.log(RlatTest , RlonTest);
+			// 랜덤 좌표를 만들어주는 식, 범위를 잡아준다.
+			var Rlat = (Math.random() * ((lat + RlatTest) - (lat - RlatTest)) + ( lat - RlatTest));
+			var Rlon = (Math.random() * ((lon + RlonTest) - (lon - RlonTest)) + (lon - RlonTest));
 			
     		var marker1 = new kakao.maps.Marker({
     		    position: new kakao.maps.LatLng(Rlat, Rlon),// 마커의 좌표
     		    map : map
     		});
-			
 			console.log(Rlat, Rlon);
 			
 		}
