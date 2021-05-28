@@ -136,21 +136,13 @@ public class UserController {
 				
 				log.info(" 로그인에 성공했습니다.");
 				
-				if( rList == null) {
-					rList = new ArrayList<>();
-				}
-				
 				if( uList == null)
 				{
 					uList = new ArrayList<>();
 				}
 				
-				model.addAttribute("rList",rList);
 				model.addAttribute("uList",uList);
 				
-				for( ImageDTO e : rList) {
-					log.info("imageList : " + e.getImage_no());
-				}
 				
 				for( UserDTO e : uList) {
 					log.info("userList : " + e.getUser_no());

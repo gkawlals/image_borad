@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import poly.dto.ImageDTO;
 import poly.dto.UserDTO;
-import poly.service.IImageService;
 import poly.service.IUserService;
 import poly.util.CmmUtil;
 
@@ -27,9 +26,6 @@ public class UserController {
 	
 	@Resource(name="UserService")
 	private IUserService userService;
-	
-	@Resource(name="ImageService")
-	private IImageService imageService;
 	
 	@RequestMapping(value="user/loginPage")
 	public String loginPage() {
@@ -132,31 +128,19 @@ public class UserController {
 				
 				List<UserDTO> uList = userService.getUserList();
 				
-				List<ImageDTO> rList = imageService.imageListTest();
-				
 				log.info(" 로그인에 성공했습니다.");
-				
-				if( rList == null) {
-					rList = new ArrayList<>();
-				}
 				
 				if( uList == null)
 				{
 					uList = new ArrayList<>();
 				}
 				
-				model.addAttribute("rList",rList);
 				model.addAttribute("uList",uList);
 				
-				for( ImageDTO e : rList) {
-					log.info("imageList : " + e.getImage_no());
-				}
 				
 				for( UserDTO e : uList) {
 					log.info("userList : " + e.getUser_no());
 				}
-				
-				uList = null;
 				
 				return"image/imageListTest";
 			}

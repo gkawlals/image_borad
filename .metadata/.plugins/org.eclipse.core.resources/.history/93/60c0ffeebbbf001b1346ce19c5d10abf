@@ -145,7 +145,6 @@ public class UserController {
 					uList = new ArrayList<>();
 				}
 				
-				model.addAttribute("rList",rList);
 				model.addAttribute("uList",uList);
 				
 				for( ImageDTO e : rList) {
