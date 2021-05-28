@@ -16,10 +16,11 @@ public interface IUserMapper {
 
 	int InsertUserInfo(UserDTO pDTO);
 
-	List<ImageDTO> UserList();
 
 	List<ImageDTO> getMyImageList();
 
-	List<UserDTO> userList();
+	List<UserDTO> getUserList();
+
+	List<UserDTO> userListAll();
 
 }

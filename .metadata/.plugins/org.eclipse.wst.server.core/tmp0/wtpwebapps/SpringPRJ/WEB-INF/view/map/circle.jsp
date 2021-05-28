@@ -70,7 +70,6 @@
 		
 		
 		function searchKm(){
-			var ellipse ;
 			
 			var Km = document.getElementById("Km").value;
 			Km = (Km / 2) * 1000;
@@ -109,7 +108,7 @@
 			console.log(RlatTest , RlonTest);
 			// 랜덤 좌표를 만들어주는 식, 범위를 잡아준다.
 			var Rlat = (Math.random() * ((lat + RlatTest) - (lat - RlatTest)) + ( lat - RlatTest));
-			var Rlon = (Math.random() * ((lon + RlonTest) - (lon - RlonTest)) + (lon - RlonTest));
+			var Rlon = (Math.random() * ((lon + RlonTest) - (lon - RlonTest)) + ( lon - RlonTest));
 			
     		var marker1 = new kakao.maps.Marker({
     		    position: new kakao.maps.LatLng(Rlat, Rlon),// 마커의 좌표

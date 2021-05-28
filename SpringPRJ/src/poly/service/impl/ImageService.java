@@ -49,9 +49,9 @@ public class ImageService implements IImageService {
 
 
 	@Override
-	public List<UserDTO> userList(UserDTO pDTO) {
+	public List<UserDTO> userListAll(UserDTO pDTO) {
 		// TODO Auto-generated method stub
-		return userMapper.userList();
+		return userMapper.userListAll();
 	}
 
 

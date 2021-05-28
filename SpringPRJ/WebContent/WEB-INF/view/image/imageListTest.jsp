@@ -7,8 +7,10 @@
 <%@page import="poly.util.CmmUtil"%>
 <%
 	String SS_USER_ID = CmmUtil.nvl((String)session.getAttribute("SS_USER_ID"));
-	List<ImageDTO> rList = (List<ImageDTO>) request.getAttribute("rList");
-	List<UserDTO> uList = (List<UserDTO>) request.getAttribute("uList");
+
+	List<ImageDTO> rList = (List<ImageDTO>)request.getAttribute("rList");
+	
+	List<UserDTO> uList = (List<UserDTO>)request.getAttribute("uList");
 %>
 <html>
 <head>
@@ -136,7 +138,7 @@
 			console.log("user_no : " + user_no);
 			
 			$.ajax({
-				url : '/image/userList.do',
+				url : '/image/userListAll.do',
 				type = 'post',
 				data : {
 					"user_no" : user_no

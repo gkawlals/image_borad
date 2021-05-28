@@ -29,16 +29,16 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<div class="login100-pic js-tilt" data-tilt>
-					<img src="../resourceLogin/images/img-01.png" alt="IMG" onclick="location.href='loginPage.do'">
+					<img src="../resourceLogin/images/img-01.png" alt="IMG" onclick="location.href='loginPage.do'" method="POST">
 				</div>
 
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" action="../user/getUserLoginCheck.do" >
 					<span class="login100-form-title">
-						Circle Find
+						Circle 
 					</span>
-															<!-- data-validate = 공백일때 경고문구를 보여주기  -->
+										<!-- data-validate = 공백일때 경고문구를 보여주기  -->
 					<div class="wrap-input100 validate-input" data-validate = "Valid ID is required">
-						<input class="input100" type="text" name="user_id" placeholder="ID">
+						<input class="input100" type="text" name="user_id" placeholder="ID" id="user_id">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
@@ -46,7 +46,7 @@
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<input class="input100" type="password" name="user_pwd" placeholder="password">
+						<input class="input100" type="password" name="user_pwd" placeholder="password" id="user_pwd">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
@@ -54,16 +54,14 @@
 					</div>
 					
 					<div class="container-login100-form-btn validate-input">
-						<button class="login100-form-btn" onclick="location.href='user/getUserLoginCheck.do'">
-							Login
-						</button>
+						<input type="submit" class="login100-form-btn" value="Login"/>
 					</div>
 
 					<div class="text-center p-t-12" >
 						<span class="txt1">
 							Forgot
 						</span>
-						<button class="txt2" onclick="location.href='/user/FindPass.do'">
+						<button class="txt2" onclick="location.href='../user/FindPass.do'">
 							Username / Password?
 						</button>
 					</div>
@@ -71,7 +69,7 @@
 					<div class="text-center p-t-136">
 						<a class="txt2" href="/user/SignUp.do">
 							Create your Account
-							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true" onclick="location.href='../user/SignUp.do'"></i>
 						</a>
 					</div>
 				</form>

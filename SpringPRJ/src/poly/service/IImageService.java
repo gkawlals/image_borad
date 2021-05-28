@@ -10,17 +10,13 @@ public interface IImageService {
 
 	int getInsertImage(ImageDTO pDTO);
 
-
 	List<ImageDTO> searchList(ImageDTO pDTO);
 
-
 	List<ImageDTO> imageListTest();
-
-
-	List<UserDTO> userList(UserDTO pDTO);
-
-
+	
 	void deleteImage(String fileName);
+
+	List<UserDTO> userListAll(UserDTO pDTO);
 
 
 

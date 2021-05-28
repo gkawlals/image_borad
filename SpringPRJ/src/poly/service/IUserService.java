@@ -22,7 +22,7 @@ public interface IUserService {
 	int InsertUserInfo(UserDTO pDTO) throws InvalidKeyException, UnsupportedEncodingException, NoSuchAlgorithmException,
 			NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException;
 
-	List<ImageDTO> getUserList();
+	List<UserDTO> getUserList();
 
 	List<ImageDTO> getMyImageList();
 

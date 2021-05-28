@@ -67,5 +67,13 @@
 	WHERE 
 	 	IMAGE_NO LIKE '%' || #{image_no} || '%'
 	</select>
+	<update id="updateImage" parameterType="ImageDTO" >
+	<!-- MyPage에서 사용하는 update -->
 	
+	</update>
+	
+	<delete id="delImage" parameterType="ImageDTO">
+	<!-- MyPage에서 사용하는 delete -->
+	
+	</delete>
 </mapper>

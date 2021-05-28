@@ -91,9 +91,9 @@ public class UserService implements IUserService{
 	 }
 
 	@Override
-	public List<ImageDTO> getUserList() {
+	public List<UserDTO> getUserList() {
 		// TODO Auto-generated method stub
-		return userMapper.UserList();
+		return userMapper.getUserList();
 	}
 
 	@Override

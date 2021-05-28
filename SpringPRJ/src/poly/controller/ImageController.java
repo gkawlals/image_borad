@@ -133,31 +133,40 @@ public class ImageController {
 	}
 	
 	@RequestMapping(value="image/imageListTest", method=RequestMethod.GET)
-	public String BoardList(ModelMap model) {
+	public String BoardList(ModelMap model, HttpSession session) {
+		log.info(this.getClass().getName() + " Main page Start ! ");
 		
 		List<ImageDTO> rList = imageService.imageListTest();
 		
-		List<ImageDTO> uList = userService.getUserList();
+		List<UserDTO> uList = userService.getUserList();
 		
 		if(rList == null ) {
+			log.info("List for ImageList load Failed !");
 			rList = new ArrayList<>();
 		}
 		
+		
 		if(uList == null ) {
+			log.info("List for UserList load Failed !");
 			uList = new ArrayList<>();
 		}
-		
+
 		log.info(" ImageList 불러오기");
 		
 		model.addAttribute("rList", rList);
+		
 		model.addAttribute("uList", uList);
 		
-		for(ImageDTO e : rList) {
-			
-			log.info("ImageList " + e.getImage_no() + "번 불러오기");
+		for( ImageDTO e : rList) {
+			log.info("Board no : " + e.getImage_no());
 		}
 		
+		for( UserDTO e : uList) {
+			log.info("User no : " + e.getUser_no());
+		}
+
 		uList = null;
+		
 		rList = null;
 		
 		return "image/imageListTest";
@@ -185,8 +194,8 @@ public class ImageController {
 		return rList;
 	}
 	
-	@RequestMapping(value="image/userList")
-	public @ResponseBody List<UserDTO> userList(HttpServletRequest request){
+	@RequestMapping(value="image/userListAll")
+	public @ResponseBody List<UserDTO> userListAll(HttpServletRequest request){
 		
 		log.info("searchList 시작");
 		//jsp에서 값을 받아오는 구문
@@ -198,7 +207,7 @@ public class ImageController {
 		
 		pDTO.setUser_no(user_no);
 		
-		List<UserDTO> uList = imageService.userList(pDTO);
+		List<UserDTO> uList = imageService.userListAll(pDTO);
 
 		log.info("userList 불러오기 : " + uList.size());
 
