@@ -6,8 +6,11 @@
 <%@page import="poly.dto.UserDTO"%>
 <%@page import="poly.util.CmmUtil"%>
 <%
-	List<ImageDTO> rList = (List<ImageDTO>) request.getAttribute("rList");
-	String user_id = CmmUtil.nvl((String)session.getAttribute("user_id"));
+	List<ImageDTO> rList = (List<ImageDTO>)request.getAttribute("rList");
+	
+	String ss_user_id = CmmUtil.nvl((String)session.getAttribute("ss_user_id"));
+	
+	int imageCnt = 0;
 %>
 <html lang="en">
 <head>
@@ -98,7 +101,9 @@
                     <ul class="middle">
                         <li>
                             <span>게시물</span>
-                            3
+                            <% for(ImageDTO e : rList ){ %>
+                            <% imageCnt += 1;%>
+                            <% } %>
                         </li>
                     </ul>
                     <p class="about">
@@ -110,11 +115,10 @@
             </div>
 
             <div class="mylist_contents contents_container active">
-             <!-- selete IMAGE_NO, IMAGE_FORDER_NAME, IMAGE_FILE_NAME  from IMAGE_TABLE where REG_ID = #{reg_id} -->
              <% for(ImageDTO e : rList) {%>
             	<div class="pic" name="image_no" style="display:none" value="<%=e.getSave_file_name()%>">
             		<a onclick="location.href='../image/imageDetail'">
-            			<img src="../resourceImg/Image/<%=e.getSave_folder_name()%>/<%=e.getSave_file_name()%>" name="">
+            			<img src="../resourceImg/Image/<%=e.getSave_folder_name()%>/<%=e.getSave_file_name()%>" name="user_profile">
             		</a>
             	</div>
             <%} %>
@@ -130,9 +134,49 @@
 <!--<script src="js/insta.js"></script>-->
 <script src="js/profile.js"></script>
 <script>
-
-
-
+	function loadUserImg(){
+		var img_no = ${'#img_no'}.val();
+		var pagePath = '../image/imageDetail';
+		if($('#img_no').val() == ""){
+			$('#img_no').focus();
+			return false;
+		}
+		
+		console.log("img_no : " + img_no);
+		
+		$.ajax({
+			usl : '/image/loadUserImg.do',
+			type : 'post',
+			data : {
+				"img_no" : img_no
+			},
+			success : function(data) {
+				console.log("test");
+				console.log(data);
+				
+				var resHTML = '';
+				resHTML += '<div class="pic" name="image_no" style="display:none" value="' + data.getSave_file_name() + '">';
+				resHTML += '<a onclick="location.href=' + pagePath + '">';
+				resHTML += '<img src="../resourceImg/Image/'+data.getSave_folder_name()+'/'+ data.getSave_file_name() + '" name="user_profile">';
+				
+				if( data.length == 0){
+					resHTML += '<div class="pic" name="image_no" style="display:none" value="">';
+					resHTML += '<a onclick="location.href=' + pagePath + '">';
+					resHTML += '<img src="../resourceImg/Imgs/thumb.jpeg'" name="">';
+					
+				} else {
+					for(var i = 0; i < data.length; i++){
+						
+						resHTML += '<div class="pic" name="image_no" style="display:none" value="' + data.getSave_file_name() + '">';
+						resHTML += '<a onclick="location.href=' + pagePath + '">';
+						resHTML += '<img src="../resourceImg/Image/'+data.getSave_folder_name()+'/'+ data.getSave_file_name() + '" name="user_profile">';
+						
+					}
+				}
+				
+			}
+		})
+	}
 </script>
 </body>
 </html>

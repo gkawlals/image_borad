@@ -81,6 +81,16 @@ public class UserController {
 	
 	@RequestMapping(value="user/MyPage")
 	public String getMyImageList(ModelMap model,HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		// session으로 user_id 받아오기 
+		String ss_user_id = (String) session.getAttribute("SS_USER_ID");
+		
+		log.info("session get user_id : " + ss_user_id );
+		
+		// ID를 기준으로 List를 불러와야하니 user_id를 지정해준다.
+		ImageDTO rDTO = new ImageDTO();
+				
+		rDTO.setReg_id(ss_user_id);
+				
 		
 		List<ImageDTO> rList = userService.getMyImageList();
 		
@@ -93,7 +103,6 @@ public class UserController {
 		model.addAttribute("rList", rList);
 		
 		for(ImageDTO e : rList) {
-			
 			log.info("ImageList " + e.getImage_no() + "번 불러오기");
 		}
 		

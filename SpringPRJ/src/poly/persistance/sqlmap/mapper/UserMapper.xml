@@ -72,17 +72,11 @@
 	<select id="getMyImageList" parameterType="ImageDTO" resultType="ImageDTO"> 
 	
 		SELECT
-	
 			IMAGE_NO, 
 			SAVE_FOLDER_NAME, 
-			SAVE_FILE_NAME, 
-			ONE_TITLE, 
-			REG_ID, 
-			REG_DT  
-			
+			SAVE_FILE_NAME
 		FROM circle.IMAGE_TABLE
-		
-			WHERE REG_ID = #{user_id}
+			WHERE REG_ID =  #{ss_user_id};
 		
 	<!-- 여기서 관건인건 session으로 user_id를 받아와야한다. -->
 	</select>

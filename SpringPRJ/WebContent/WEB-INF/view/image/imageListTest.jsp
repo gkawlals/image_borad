@@ -48,7 +48,7 @@
                 <a onclick="location.href='../map/MyPage.do'"><div class="sprite_compass_icon"></div></a><!-- 카카오 지도 api연결 -->
                 <a href="follow.html"><div class="sprite_heart_icon_outline"></div></a>
                 
-                <a onclick="location.href='../user/MyPage.do'" ><div class="sprite_user_icon_outline" name="user_id" value=""></div></a>
+                <a onclick="location.href='../user/MyPage.do'" ><div class="sprite_user_icon_outline" name="SS_USER_ID" value="<%=SS_USER_ID%>"></div></a>
                 
             </div>
         </section>

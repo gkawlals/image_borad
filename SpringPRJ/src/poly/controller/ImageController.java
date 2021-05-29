@@ -75,19 +75,26 @@ public class ImageController {
 			ModelMap model, @RequestParam(value="fileUpload")MultipartFile mf) throws IOException{
 		log.info(this.getClass().getName() + " . imageUpload start !");
 		
+		// image file을 MultiPart을 사용하여 File로 받아온다.  
 		String org_file_name = mf.getOriginalFilename();
+		
 		// test를 위한 파라미터로 불러오기
 		log.info(org_file_name);
+		
+		// image file에 속성을 받아오는 작업
 		String ext = org_file_name.substring(org_file_name.lastIndexOf(".") + 1, org_file_name.length()).toLowerCase();
+		
 		// 저장되는 파일이 이미지 파일만 저장되게끔 설정해주기
 		if(ext.equals("jpeg") || ext.equals("jpg") || ext.equals("gif") || ext.equals("png")) {
 			
+			// image file을 받아오면 inseert되는 file에대한 정보 저장를 변수에 저장
 			String save_file_name = DateUtil.getDateTime("24hhmmss") + "." + ext;
 			String save_folder_name = DateUtil.getDateTime("24hhmmss");
 			String save_file_path = FileUtil.mkdirForDate(FILE_UPLOAD_SAVE_PATH);
 			String fullFileInfo = save_file_path + "/" + save_file_name;
 			String one_title = CmmUtil.nvl(request.getParameter("one_title"));
 			
+			// 잘 받아오는지 확인하기
 			log.info("ext : " + ext);
 			log.info("saveFilename : " + CmmUtil.nvl(save_file_name));
 			log.info("save_file_path : " + CmmUtil.nvl(save_file_path));
@@ -95,8 +102,10 @@ public class ImageController {
 			log.info("save_folder_name : " + CmmUtil.nvl(save_folder_name));
 			log.info("one title : " + CmmUtil.nvl(one_title));
 			
+			// file의 정보를 multipart file 넣어준다.
 			mf.transferTo(new File(fullFileInfo));
 			log.info(" mf.transfer Success ");
+			// DTO를 불러와 data set해주기
 			ImageDTO pDTO = new ImageDTO();
 			
 			pDTO.setOne_title(one_title);
@@ -107,14 +116,15 @@ public class ImageController {
 			pDTO.setReg_id("admin");
 			pDTO.setSave_folder_name(save_folder_name.trim());
 			
+			// data set 완료하면 service ~ mapper.xml까지 진행
 			int res = imageService.getInsertImage(pDTO);
 			
 			if (res < 1) {
-				// 실패
+				// insert가 실패 할때
 				log.info(this.getClass().getName() + " insert Failed!");
 				return "/image/imagetest";
 			} else {
-				// 성공
+				// insert가 성공 할때 
 				log.info(this.getClass().getName() + " insert success!");
 			}
 			
@@ -174,9 +184,9 @@ public class ImageController {
 	
 	@RequestMapping(value="image/seachList")
 	public @ResponseBody List<ImageDTO> searchList(HttpServletRequest request){
-		
+		// ajax와 통신하는 구문
 		log.info("searchList 시작");
-		//jsp에서 값을 받아오는 구문
+		//jsp에서 값을 받아온다.
 		String post_title = CmmUtil.nvl(request.getParameter("Image_no"));
 		
 		log.info(post_title);

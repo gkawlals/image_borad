@@ -424,3 +424,14 @@
 0:0:0:0:0:0:0:1 - - [28/May/2021:22:53:02 +0900] "GET /user/getUserLoginCheck.do?user_id=wkaks&user_pwd=wkaks12 HTTP/1.1" 200 12950
 0:0:0:0:0:0:0:1 - - [28/May/2021:22:53:02 +0900] "GET /resourceImg/thumb.jpeg/imgs HTTP/1.1" 404 842
 0:0:0:0:0:0:0:1 - - [28/May/2021:22:53:02 +0900] "GET /resourceImg/image/21.%205.%2023.%20%EC%98%A4%ED%9B%84%207:08/21.%205.%2023.%20%EC%98%A4%ED%9B%84%207:08.png HTTP/1.1" 404 926
+0:0:0:0:0:0:0:1 - - [28/May/2021:23:33:03 +0900] "GET /user/getUserLoginCheck.do?user_id=wkaks&user_pwd=wkaks12 HTTP/1.1" 200 12958
+0:0:0:0:0:0:0:1 - - [28/May/2021:23:33:03 +0900] "GET /resourceImg/image/21.%205.%2023.%20%EC%98%A4%ED%9B%84%207:08/21.%205.%2023.%20%EC%98%A4%ED%9B%84%207:08.png HTTP/1.1" 404 926
+0:0:0:0:0:0:0:1 - - [28/May/2021:23:33:03 +0900] "GET /resourceImg/thumb.jpeg/imgs HTTP/1.1" 404 842
+0:0:0:0:0:0:0:1 - - [28/May/2021:23:52:20 +0900] "GET /user/getUserLoginCheck.do?user_id=wkaks&user_pwd=wkaks12 HTTP/1.1" 200 12958
+0:0:0:0:0:0:0:1 - - [28/May/2021:23:52:20 +0900] "GET /resourceImg/thumb.jpeg/imgs HTTP/1.1" 404 842
+0:0:0:0:0:0:0:1 - - [28/May/2021:23:52:20 +0900] "GET /resourceImg/image/21.%205.%2023.%20%EC%98%A4%ED%9B%84%207:08/21.%205.%2023.%20%EC%98%A4%ED%9B%84%207:08.png HTTP/1.1" 404 926
+127.0.0.1 - - [28/May/2021:23:52:39 +0900] "GET / HTTP/1.1" 200 545
+0:0:0:0:0:0:0:1 - - [28/May/2021:23:52:43 +0900] "GET /user/getUserLoginCheck.do?user_id=wkaks&user_pwd=wkaks12 HTTP/1.1" 200 12958
+0:0:0:0:0:0:0:1 - - [28/May/2021:23:52:43 +0900] "GET /resourceImg/image/21.%205.%2023.%20%EC%98%A4%ED%9B%84%207:08/21.%205.%2023.%20%EC%98%A4%ED%9B%84%207:08.png HTTP/1.1" 404 926
+0:0:0:0:0:0:0:1 - - [28/May/2021:23:52:43 +0900] "GET /resourceImg/thumb.jpeg/imgs HTTP/1.1" 404 842
+0:0:0:0:0:0:0:1 - - [28/May/2021:23:52:50 +0900] "GET /user/MyPage.do HTTP/1.1" 500 3954

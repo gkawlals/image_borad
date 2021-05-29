@@ -18,16 +18,16 @@ public class MainController {
 		return "/index";
 	}
 	
-	@RequestMapping(value="map/circle", method=RequestMethod.POST)
+	@RequestMapping(value="map/circle", method=RequestMethod.GET)
 	public String circle() {
 		log.info(this.getClass().getName() + " circle.jsp start !");
 		return "map/circle";
 	}
 	
-	@RequestMapping(value="map/PrePosition")
+	@RequestMapping(value="map/mpatest")
 	public String position() {
 		log.info(this.getClass().getName() + " test start !");
-		return "map/PrePosition";
+		return "map/mpatest";
 	}
 			
 }
