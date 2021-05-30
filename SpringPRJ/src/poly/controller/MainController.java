@@ -24,10 +24,10 @@ public class MainController {
 		return "map/circle";
 	}
 	
-	@RequestMapping(value="map/mpatest")
+	@RequestMapping(value="map/maptest", method=RequestMethod.GET)
 	public String position() {
 		log.info(this.getClass().getName() + " test start !");
-		return "map/mpatest";
+		return "map/maptest";
 	}
 			
 }

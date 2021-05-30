@@ -14,10 +14,12 @@ public interface IImageService {
 
 	List<ImageDTO> imageListTest();
 	
-	void deleteImage(String fileName);
-
 	List<UserDTO> userListAll(UserDTO pDTO);
 
+	List<ImageDTO> getMyBoard();
 
+	int delImage();
+
+	int updateImage();
 
 }

@@ -3,17 +3,8 @@
 <!-- JAVA와 연결할 Mapper 파일 설정 -->
 <mapper namespace="poly.persistance.mapper.IImageMapper">
 
-	<!-- 게시판 리스트 쿼리 -->
-	<select id="getImageList" resultType="ImageDTO">
-		SELECT 
-			IMAGE_NO, 
-			SAVE_FILE_PATH, 
-			REG_ID, 
-			CHG_DT
-		FROM circle.IMAGE_TABLE;
-	</select>
-	
 	<select id="imageListTest" resultType="ImageDTO">
+	<!-- 게시판 리스트 조회 -->
 	SELECT
 	
 		IMAGE_NO, 
@@ -27,6 +18,7 @@
 	</select>
 	
 	<insert id="getInsertImage" parameterType="ImageDTO">
+	<!-- 게시판 삽입 -->
 		INSERT INTO circle.IMAGE_TABLE ( 
 		
 			SAVE_FILE_NAME,
@@ -69,7 +61,22 @@
 	</select>
 	
 	<select id="getDetailImge" parameterType="ImageDTO" resultType="ImageDTO">
-	SELECT 	
+	SELECT 
+		IMAGE_NO, 
+		SAVE_FOLDER_NAME, 
+		SAVE_FILE_NAME,
+		ONE_TITLE
+	FROM circle.IMAGE_TABLE
+		WHERE IMAGE_NO = #{image_no}  
+	</select>
+	
+	<select id="getMyBoard" parameterType="ImageDTO" resultType="ImageDTO">
+	SELECT 
+		IMAGE_NO, 
+		SAVE_FOLDER_NAME,
+		SAVE_FILE_NAME
+	FROM circle.IMAGE_TABLE 
+		WHERE IMAGE_TABLE.REG_ID = #{user_id}
 	</select>
 	
 	<update id="updateImage" parameterType="ImageDTO" >

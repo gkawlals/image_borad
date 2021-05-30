@@ -102,7 +102,9 @@
                         <li>
                             <span>게시물</span>
                             <% for(ImageDTO e : rList ){ %>
-                            <% imageCnt += 1;%>
+                            
+                           		<% imageCnt += 1;%>
+                            
                             <% } %>
                         </li>
                     </ul>
@@ -116,7 +118,7 @@
 
             <div class="mylist_contents contents_container active">
              <% for(ImageDTO e : rList) {%>
-            	<div class="pic" name="image_no" style="display:none" value="<%=e.getSave_file_name()%>">
+            	<div class="pic" name="image_no" style="display:none" value="<%=e.getImage_no()%>">
             		<a onclick="location.href='../image/imageDetail'">
             			<img src="../resourceImg/Image/<%=e.getSave_folder_name()%>/<%=e.getSave_file_name()%>" name="user_profile">
             		</a>

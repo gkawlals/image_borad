@@ -17,8 +17,8 @@ public class UserDTO {
 	private String chg_dt; // 변경일
 	private String exists_yn; // 중복확인 이메일 유무 
 	private String user_profile_name; // 프로필 사진 이름
-	private String user_forder_name; // 프로필 사진 폴더 이름
-	private String user_profile_path; // 프로필 사진 경로
+	private String user_folder_name; // 프로필 사진 폴더 이름
+	private String user_profile_path; // 프로필 사진 전체경로
 	
 	public String getUser_profile_path() {
 		return user_profile_path;
@@ -50,11 +50,11 @@ public class UserDTO {
 	public void setUser_profile_name(String user_profile_name) {
 		this.user_profile_name = user_profile_name;
 	}
-	public String getUser_forder_name() {
-		return user_forder_name;
+	public String getUser_folder_name() {
+		return user_folder_name;
 	}
-	public void setUser_forder_name(String user_forder_name) {
-		this.user_forder_name = user_forder_name;
+	public void setUser_folder_name(String user_folder_name) {
+		this.user_folder_name = user_folder_name;
 	}
 	public String getUser_id() {
 		return user_id;

@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="right_icons">
-                <a onclick="location.href='../map/MyPage.do'"><div class="sprite_compass_icon"></div></a><!-- 카카오 지도 api연결 -->
+                <a onclick="location.href='../map/circle.do'"><div class="sprite_compass_icon"></div></a><!-- 카카오 지도 api연결 -->
                 <a href="follow.html"><div class="sprite_heart_icon_outline"></div></a>
                 
                 <a onclick="location.href='../user/MyPage.do'" ><div class="sprite_user_icon_outline" name="SS_USER_ID" value="<%=SS_USER_ID%>"></div></a>
@@ -53,13 +53,13 @@
             </div>
         </section>
     </header>
-    <% for (UserDTO userId : uList) {%>
 		<div class="hidden_menu" id="hidden_menu">
-			<div style="display:none" name="user_no"><%=userId.getUser_no() %></div>
 			    <div class="scroll_inner">
+			    <% for (UserDTO userId : uList) {%>
+			    <div style="display:none" name="user_no"><%=userId.getUser_no() %></div>
 			    	<div class="user">
 			    		<div class="thumb_img">
-			    			<img src="../resourceImg/<%=userId.getUser_forder_name()%>/<%=userId.getUser_profile_name()%>"/> <!-- 프로필 사진 경로 -->
+			    			<img src="../resourceImg/<%=userId.getUser_folder_name()%>/<%=userId.getUser_profile_name()%>"/> <!-- 프로필 사진 경로 -->
 			    		</div>
 			    		<%=userId.getUser_id()%>
 			    	</div>
@@ -87,14 +87,14 @@
                         <div class="sprite_more_icon" data-name="more">
                             <ul class="toggle_box">
                                <li><input type="submit" class="follow" value="팔로우" data-name="follow"></li>
-                                <li>수정</li>
-                                <li>삭제</li>
+                               <li>수정</li>
+                               <li>삭제</li>
                             </ul>
                         </div>
                  </header>
                   <div class="img_section">
                     <div class="trans_inner">
-                            <div><img src="../resourceImg/image/<%=userInfo.getSave_folder_name() %>/<%=userInfo.getSave_file_name() %>" alt="visual01"></div>
+                            <div><img src="../resourceImg/Image/<%=userInfo.getSave_folder_name() %>/<%=userInfo.getSave_file_name() %>" alt="visual01"></div>
                         </div>
                     </div>
                     <div class="bottom_icons">
@@ -145,28 +145,26 @@
 				}
 				success : function(data) { 
 					console.log("test");
-					console.log(data);
-					
 					
 					var userHTML = ""; // 게시판위의 나타내어 줄 userId, userProfile 정보 들고오기
-					userHTML = '<div style="display:none" name="user_no">'+data.getImage_no()+'</div>';
-					userHTML = '<div class="scroll_inner"><div class="user">';
-					userHTML = '<div class="thumb_img"> <img src="../resourceImg//'+data.getUse_forder_name()+'/'+data.getUser_profile_name()'"/></div>';
+					userHTML = '<div style="display:none" name="user_no">'+data.getUser_no()+'</div>';
+					userHTML = 'div class="user">';
+					userHTML = '<div class="thumb_img"> <img src="../resourceImg/'+data.getUser_folder_name()+'/'+data.getUser_profile_name()'"/></div>';
 					userHTML = data.getReg_id()+'</div> </div> </div>';	
 					
 					if(data.length == 0){
 						userHTML = '<div style="display:none" name="user_no"></div>';
-						userHTML = '<div class="scroll_inner"><div class="user">';
+						userHTML = 'div class="user">';
 						userHTML = '<div class="thumb_img"> <img src="../resourceImg/imgs/thumb.jpeg"/></div>';
 						userHTML = '</div> </div> </div>'
 					}else{
 						for(var i = 0;  i < data.lenth(); i++){
-							userHTML = '<div style="display:none" name="user_no">'+data.getImage_no()+'</div>';
-							userHTML = '<div class="scroll_inner"><div class="user">';
-							userHTML = '<div class="thumb_img"> <img src="../resourceImg//'+data.getUse_forder_name()+'/'+data.getUser_profile_name()'"/></div>';
+							userHTML = '<div style="display:none" name="user_no">'+data.getUser_no()+'</div>';
+							userHTML = 'div class="user">';
+							userHTML = '<div class="thumb_img"> <img src="../resourceImg/'+data.getUser_folder_name()+'/'+data.getUser_profile_name()'"/></div>';
 							userHTML = data.getReg_id()+'</div> </div> </div>';	
 						}
-						$("#hidden_menu").html(userHTML);
+						$("#scroll_inner").html(userHTML);
 					}
 				}
 			});
@@ -193,10 +191,10 @@
 					console.log(data);
 					
 					var resHTML = ""; // 게시판 정보 들고오기
-					resHTML += '<div class="board_number" name="img_no" id="img_no" style="display:none">'+ data.getUser_no() + '</div>';
+					resHTML += '<div class="board_number" name="img_no" id="img_no" style="display:none">'+ data.getImage_no() + '</div>';
 					resHTML += '<div class="nick_name m_text" name="user_id">'+ data.getReg_id() + '</div>';
 					resHTML += '<div class="country s_text" name="LastEdit_DT">'+ data.getChg_dt() + '</div>';
-					resHTML += '<div><img src="/../resourceImg/image/' + data.getSave_folder_name() + '/' + data.getSave_file_name() +'" alt="visual01"></div>';
+					resHTML += '<div><img src="/../resourceImg/Image/' + data.getSave_folder_name() + '/' + data.getSave_file_name() +'" alt="visual01"></div>';
 					resHTML += '<div class="likes m_text"> 좋아요 <span id="like-count-39">' + userInfo.getLike_cnt() +'</span> <span id="bookmark-count-39"></span> 개 </div>';
 					resHTML += '<div class="comment_container"><div class="comment" id="comment-list-ajax-post37"><div class="comment-detail"><div class="nick_name m_text" name="user_id" ></div><div><h1>' +data.getOne_title()+'</h1></div></div></div></div>';
 		
@@ -209,7 +207,6 @@
 						resHTML += '<div class="likes m_text"> 좋아요 <span id="like-count-39"></span> <span id="bookmark-count-39"></span> 개 </div>';
 						resHTML += '<div class="comment_container"><div class="comment" id="comment-list-ajax-post37"><div class="comment-detail"><div class="nick_name m_text" name="user_id" ></div><div><h1></h1></div></div></div></div>';
 						userHTML = '<div style="display:none" name="user_no"></div>';
-						userHTML = '<div class="scroll_inner"><div class="user">';
 						userHTML = '<div class="thumb_img"> <img src="../resourceImg/imgs/thumb.jpeg"/></div>';
 						userHTML = '</div> </div> </div>';
 			
@@ -221,10 +218,9 @@
 							resHTML += '<div class="board_number" name="img_no" id="img_no" style="display:none">'+ data.getImage_no() + '</div>';
 							resHTML += '<div class="nick_name m_text" name="user_id">'+ data.getReg_id() + '</div>';
 							resHTML += '<div class="country s_text" name="LastEdit_DT">'+ data.getChg_dt() + '</div>';
-							resHTML += '<div><img src="/../resourceImg/image/' + data.getSave_folder_name() + '/' + data.getSave_file_name() +'" alt="visual01"></div>';
+							resHTML += '<div><img src="/../resourceImg/Image/' + data.getSave_folder_name() + '/' + data.getSave_file_name() +'" alt="visual01"></div>';
 							resHTML += '<div class="likes m_text"> 좋아요 <span id="like-count-39">' + userInfo.getLike_cnt() +'</span> <span id="bookmark-count-39"></span> 개 </div>';
 							resHTML += '<div class="comment_container"><div class="comment" id="comment-list-ajax-post37"><div class="comment-detail"><div class="nick_name m_text" name="user_id" ></div><div><h1>' +data.getOne_title()+'</h1></div></div></div></div>';
-							userHTML = '<div style="display:none" name="user_no">'+data.getImage_no()+'</div>';
 							userHTML = '<div class="scroll_inner"><div class="user">';
 							userHTML = '<div class="thumb_img"> <img src="../resourceImg/imgs/thumb.jpeg"/></div>';
 							userHTML = data.getReg_id()+'</div> </div> </div>';

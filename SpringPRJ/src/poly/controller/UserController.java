@@ -82,23 +82,24 @@ public class UserController {
 	@RequestMapping(value="user/MyPage")
 	public String getMyImageList(ModelMap model,HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		// session으로 user_id 받아오기 
-		String ss_user_id = (String) session.getAttribute("SS_USER_ID");
+		String user_id = (String) session.getAttribute("SS_USER_ID");
 		
-		log.info("session get user_id : " + ss_user_id );
+		log.info("session get user_id : " + user_id );
 		
 		// ID를 기준으로 List를 불러와야하니 user_id를 지정해준다.
 		ImageDTO rDTO = new ImageDTO();
 				
-		rDTO.setReg_id(ss_user_id);
+		rDTO.setReg_id(user_id);
 				
 		
-		List<ImageDTO> rList = userService.getMyImageList();
+		List<ImageDTO> rList = imageService.getMyBoard();   
 		
 		if(rList == null ) {
+			log.info("이미지 게시판을 불러올 수 없습니다.");
 			rList = new ArrayList<>();
 		}
 		
-		log.info(" ImageList 불러오기");
+		log.info(" MyImageList 불러오기");
 		
 		model.addAttribute("rList", rList);
 		

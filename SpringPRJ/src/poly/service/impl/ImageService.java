@@ -54,11 +54,24 @@ public class ImageService implements IImageService {
 		return userMapper.userListAll();
 	}
 
+	@Override
+	public List<ImageDTO> getMyBoard() {
+		// TODO Auto-generated method stub
+		return imageMapper.getMyBoard();
+	}
+
 
 	@Override
-	public void deleteImage(String fileName) {
+	public int delImage() {
 		// TODO Auto-generated method stub
-		
+		return imageMapper.delImage();
+	}
+
+
+	@Override
+	public int updateImage() {
+		// TODO Auto-generated method stub
+		return imageMapper.updateImage();
 	}
 
 

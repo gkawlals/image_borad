@@ -21,4 +21,13 @@ public interface IImageMapper {
 
 	List<ImageDTO> getMyImageList();
 
+
+	int delImage();
+
+
+	List<ImageDTO> getMyBoard();
+
+
+	int updateImage();
+
 }

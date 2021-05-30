@@ -48,7 +48,7 @@
 		
 			USER_NO,
 			USER_ID,
-			USER_FORDER_NAME,
+			USER_FOLDER_NAME,
 			USER_PROFILE_NAME
 			
 		FROM circle.USR_TABLE;
@@ -62,24 +62,12 @@
 		
 			USER_NO,
 			USER_ID,
-			USER_FORDER_NAME,
+			USER_FOLDER_NAME,
 			USER_PROFILE_NAME
 			
 		FROM circle.USR_TABLE;
 		
 	</select>
-	
-	<select id="getMyImageList" parameterType="ImageDTO" resultType="ImageDTO"> 
-	
-		SELECT
-			IMAGE_NO, 
-			SAVE_FOLDER_NAME, 
-			SAVE_FILE_NAME
-		FROM circle.IMAGE_TABLE
-			WHERE REG_ID =  #{ss_user_id};
-		
-	<!-- 여기서 관건인건 session으로 user_id를 받아와야한다. -->
-	</select>
-	
+
 
 </mapper>

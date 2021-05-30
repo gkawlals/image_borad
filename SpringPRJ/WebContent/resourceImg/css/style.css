@@ -457,6 +457,7 @@ body{
 }
 
 .hidden_menu .scroll_inner .user .id{
+	display: flex;
     font-size: 12px;
     color:#262626;
 }
