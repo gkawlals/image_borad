@@ -18,27 +18,28 @@
 			USER_ID, 
 			USER_NAME, 
 			USER_PWD,
-			USER_EMAIL,
+			USER_MAIL,
 			REG_ID,
 			CHG_ID
+			
 			
 		) VALUES ( 
 		
 			#{user_id},	
 			#{user_name},
 			#{user_pwd},
-			#{user_email},
+			#{user_mail},
 			#{user_id},
-			#{user_id}	
+			#{user_id}	 
 			
 			)
-	</insert>
+	</insert>	
 
 	<select id="getUserExists" parameterType="UserDTO" resultType="UserDTO">
 		<!-- 이메일을 기준으로 중복체크   -->
 		SELECT IF(COUNT(1), 'N','Y') AS EXISTS_YN
 			FROM circle.USR_TABLE
-		WHERE USR_TABLE.USER_EMAIL = #{user_email}
+		WHERE USR_TABLE.USER_MAIL = #{user_mail}
 
 	</select>
 	

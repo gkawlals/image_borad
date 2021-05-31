@@ -71,12 +71,17 @@
 	</select>
 	
 	<select id="getMyBoard" parameterType="ImageDTO" resultType="ImageDTO">
+	
 	SELECT 
+	
 		IMAGE_NO, 
 		SAVE_FOLDER_NAME,
 		SAVE_FILE_NAME
+		
 	FROM circle.IMAGE_TABLE 
-		WHERE IMAGE_TABLE.REG_ID = #{user_id}
+	
+		WHERE REG_ID = #{reg_id}
+		
 	</select>
 	
 	<update id="updateImage" parameterType="ImageDTO" >
@@ -98,5 +103,15 @@
 	WHERE IMAGE_NO = #{image_no}
 	
 	</delete>
+	
+	<select id="loadUserImg" parameterType="ImageDTO" resultType="ImageDTO">
+	SELECT 
+		IMAGE_NO, 
+		SAVE_FOLDER_NAME,
+		SAVE_FILE_NAME
+	FROM circle.IMAGE_TABLE 
+		WHERE REG_ID = #{reg_id}
+		
+	</select>
 	
 </mapper>

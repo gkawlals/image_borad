@@ -81,34 +81,30 @@ public class UserController {
 	
 	@RequestMapping(value="user/MyPage")
 	public String getMyImageList(ModelMap model,HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		// session으로 user_id 받아오기 
-		String user_id = (String) session.getAttribute("SS_USER_ID");
 		
-		log.info("session get user_id : " + user_id );
+		// session으로 user_id 받아오기 
+		String ss_user_id = CmmUtil.nvl((String) session.getAttribute("SS_USER_ID"));
+		
+		log.info("session get user_id : " + ss_user_id );
 		
 		// ID를 기준으로 List를 불러와야하니 user_id를 지정해준다.
-		ImageDTO rDTO = new ImageDTO();
-				
-		rDTO.setReg_id(user_id);
-				
+		ImageDTO pDTO = new ImageDTO();
+
+		pDTO.setReg_id(ss_user_id);
 		
-		List<ImageDTO> rList = imageService.getMyBoard();   
+		List<ImageDTO> rList = imageService.getMyBoard(pDTO);
 		
-		if(rList == null ) {
-			log.info("이미지 게시판을 불러올 수 없습니다.");
-			rList = new ArrayList<>();
+		for(ImageDTO e : rList) {
+			
+			log.info("image_no : "+e.getImage_no());
 		}
+		
+		
 		
 		log.info(" MyImageList 불러오기");
 		
 		model.addAttribute("rList", rList);
 		
-		for(ImageDTO e : rList) {
-			log.info("ImageList " + e.getImage_no() + "번 불러오기");
-		}
-		
-		rList = null;
-				
 		return "user/MyPage";
 	}
 	
@@ -204,19 +200,19 @@ public class UserController {
 			String user_id = CmmUtil.nvl(request.getParameter("user_id"));
 			String user_pwd = CmmUtil.nvl(request.getParameter("user_pwd"));
 			String user_name = CmmUtil.nvl(request.getParameter("user_name"));
-			String user_email = CmmUtil.nvl(request.getParameter("user_email"));
+			String user_mail = CmmUtil.nvl(request.getParameter("user_mail"));
 			
 			log.info("user_id : " + user_id);
 			log.info("user_pwd : " + user_pwd);
 			log.info("user_name : " + user_name);
-			log.info("user_email : " + user_email);
+			log.info("user_mail : " + user_mail);
 			
 			pDTO = new UserDTO();
 			
 			pDTO.setUser_id(user_id);
 			pDTO.setUser_pwd(user_pwd);
 			pDTO.setUser_name(user_name);
-			pDTO.setUser_mail(user_email);
+			pDTO.setUser_mail(user_mail);
 		
 			int res = userService.InsertUserInfo(pDTO);
 			

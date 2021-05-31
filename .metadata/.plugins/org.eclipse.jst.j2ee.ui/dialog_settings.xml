@@ -3,6 +3,7 @@
 	<item key="J2EE_EXPORT_OVERWRITE" value="false"/>
 	<item key="J2EE_EXPORT_SOURCE" value="true"/>
 	<list key="J2EE_EXPORT_JST_WEB">
+		<item value="/Users/hamjimin/Desktop/ROOT.war"/>
 		<item value="/Users/hamjimin/Desktop/SpringPRJ.war"/>
 	</list>
 </section>

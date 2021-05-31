@@ -1,30 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="Marker"/>
+		<item key="selection" value="comment_fie"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="marker"/>
-			<item value="bucket"/>
-			<item value="UserDTO"/>
-			<item value="search"/>
-			<item value="searchbox"/>
-			<item value="circle"/>
-			<item value="circke"/>
-			<item value="user_id"/>
-			<item value="session"/>
-			<item value="dis"/>
-			<item value="MyPage"/>
-			<item value="MyPafe"/>
-			<item value="userController"/>
-			<item value="profile"/>
-			<item value="return &quot;image/imageListTest.do&quot;;"/>
+			<item value="comment_fie"/>
+			<item value="comment_fil"/>
+			<item value="com"/>
+			<item value=".user"/>
+			<item value="scroll_inner"/>
+			<item value="forder"/>
+			<item value="수정"/>
+			<item value="mabObj"/>
+			<item value="callMapObjApiAJAX"/>
+			<item value="path"/>
+			<item value="naver"/>
+			<item value="USER_TABLE"/>
+			<item value="FORDER"/>
+			<item value="delete"/>
+			<item value="resultJsonData"/>
 		</list>
 		<list key="replacehistory">
+			<item value="folder"/>
+			<item value="kakao"/>
+			<item value="USR_TABLE"/>
+			<item value="FOLDER"/>
 			<item value="save_file_name"/>
 			<item value="org_file_name"/>
 			<item value="save_file_path"/>
@@ -36,13 +40,11 @@
 			<item value="image_url"/>
 			<item value="../resourceImg/imgs"/>
 			<item value="../resource/imgs/"/>
-			<item value=""/>
-			<item value=" "/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1199"/>
-		<item key="DIALOG_Y_ORIGIN" value="152"/>
+		<item key="DIALOG_X_ORIGIN" value="1146"/>
+		<item key="DIALOG_Y_ORIGIN" value="159"/>
 		<item key="DIALOG_WIDTH" value="294"/>
 		<item key="DIALOG_HEIGHT" value="408"/>
 		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>

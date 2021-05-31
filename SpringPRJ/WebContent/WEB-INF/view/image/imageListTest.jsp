@@ -45,27 +45,26 @@
                 </div>
             </div>
             <div class="right_icons">
+            	<a onclick="location.href='/image/imagetest.do'"><div class="sprite_camera_icon"></div></a>
                 <a onclick="location.href='../map/circle.do'"><div class="sprite_compass_icon"></div></a><!-- 카카오 지도 api연결 -->
                 <a href="follow.html"><div class="sprite_heart_icon_outline"></div></a>
-                
                 <a onclick="location.href='../user/MyPage.do'" ><div class="sprite_user_icon_outline" name="SS_USER_ID" value="<%=SS_USER_ID%>"></div></a>
-                
             </div>
         </section>
     </header>
 		<div class="hidden_menu" id="hidden_menu">
 			    <div class="scroll_inner">
 			    <% for (UserDTO userId : uList) {%>
-			    <div style="display:none" name="user_no"><%=userId.getUser_no() %></div>
 			    	<div class="user">
+			    	<div style="display:none" name="user_no"><%=userId.getUser_no() %></div>
 			    		<div class="thumb_img">
 			    			<img src="../resourceImg/<%=userId.getUser_folder_name()%>/<%=userId.getUser_profile_name()%>"/> <!-- 프로필 사진 경로 -->
 			    		</div>
 			    		<%=userId.getUser_id()%>
 			    	</div>
+			    	 <% } %>
 			    </div>
 			 </div>
-		 <% } %>
 	<section id="main_container">
 		<div class="inner">
 		<% for(ImageDTO userInfo : rList) { %>
@@ -147,22 +146,22 @@
 					console.log("test");
 					
 					var userHTML = ""; // 게시판위의 나타내어 줄 userId, userProfile 정보 들고오기
-					userHTML = '<div style="display:none" name="user_no">'+data.getUser_no()+'</div>';
 					userHTML = 'div class="user">';
+					userHTML = '<div style="display:none" name="user_no">'+data.getUser_no()+'</div>';
 					userHTML = '<div class="thumb_img"> <img src="../resourceImg/'+data.getUser_folder_name()+'/'+data.getUser_profile_name()'"/></div>';
-					userHTML = data.getReg_id()+'</div> </div> </div>';	
+					userHTML = data.getReg_id()+'</div> ';	
 					
 					if(data.length == 0){
-						userHTML = '<div style="display:none" name="user_no"></div>';
 						userHTML = 'div class="user">';
+						userHTML = '<div style="display:none" name="user_no"></div>';
 						userHTML = '<div class="thumb_img"> <img src="../resourceImg/imgs/thumb.jpeg"/></div>';
-						userHTML = '</div> </div> </div>'
+						userHTML = '</div> '
 					}else{
 						for(var i = 0;  i < data.lenth(); i++){
-							userHTML = '<div style="display:none" name="user_no">'+data.getUser_no()+'</div>';
 							userHTML = 'div class="user">';
+							userHTML = '<div style="display:none" name="user_no">'+data.getUser_no()+'</div>';
 							userHTML = '<div class="thumb_img"> <img src="../resourceImg/'+data.getUser_folder_name()+'/'+data.getUser_profile_name()'"/></div>';
-							userHTML = data.getReg_id()+'</div> </div> </div>';	
+							userHTML = data.getReg_id()+'</div>';	
 						}
 						$("#scroll_inner").html(userHTML);
 					}

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import poly.dto.ImageDTO;
@@ -16,7 +17,7 @@ import poly.service.IImageService;
 @Service("ImageService")
 public class ImageService implements IImageService {
 	
-	//private Logger log = Logger.getLogger(this.getClass());
+	private Logger log = Logger.getLogger(this.getClass());
 	
 	@Resource(name="ImageMapper")
 	private IImageMapper imageMapper;
@@ -28,7 +29,6 @@ public class ImageService implements IImageService {
 	@Override
 	public int getInsertImage(ImageDTO pDTO) {
 
-	//	log.info(this.getClass().getName() + " service end");
 		
 		return imageMapper.getInsertImage(pDTO);
 	}
@@ -55,13 +55,6 @@ public class ImageService implements IImageService {
 	}
 
 	@Override
-	public List<ImageDTO> getMyBoard() {
-		// TODO Auto-generated method stub
-		return imageMapper.getMyBoard();
-	}
-
-
-	@Override
 	public int delImage() {
 		// TODO Auto-generated method stub
 		return imageMapper.delImage();
@@ -72,6 +65,20 @@ public class ImageService implements IImageService {
 	public int updateImage() {
 		// TODO Auto-generated method stub
 		return imageMapper.updateImage();
+	}
+
+
+	@Override
+	public List<ImageDTO> loadUserImg(ImageDTO pDTO) {
+		// TODO Auto-generated method stub
+		return imageMapper.loadUserImg();
+	}
+
+
+	@Override
+	public List<ImageDTO> getMyBoard(ImageDTO pDTO) {
+		
+		return imageMapper.getMyBoard(pDTO);
 	}
 
 

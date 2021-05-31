@@ -1,0 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<%@page import="poly.util.CmmUtil" %>
+<%@page import="java.util.List"%>
+<%@page import="poly.dto.ImageDTO"%>
+<%@page import="poly.dto.UserDTO"%>
+<%
+	String user_id = CmmUtil.nvl((String)session.getAttribute("user_id"));
+%>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>

@@ -2,11 +2,16 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="poly.dto.ImageDTO"%>
 <%@page import="poly.dto.UserDTO"%>
 <%@page import="poly.util.CmmUtil"%>
 <%
 	List<ImageDTO> rList = (List<ImageDTO>)request.getAttribute("rList");
+
+	if( rList == null){
+		rList = new ArrayList<ImageDTO>();
+	}
 	
 	String ss_user_id = CmmUtil.nvl((String)session.getAttribute("ss_user_id"));
 	
@@ -35,20 +40,14 @@
     <meta itemprop="name" content="instagram">
     <meta itemprop="description" content="instagram clone">
     <meta itemprop="image" content="http://kindtiger.dothome.co.kr/insta/imgs/instagram.jpeg">
-
-
     <title>instagram</title>
     <link rel="stylesheet" href="../resourceImg/css/reset.css">
     <link rel="stylesheet" href="../resourceImg/css/common.css">
     <link rel="stylesheet" href="../resourceImg/css/style.css">
     <link rel="stylesheet" href="../resourceImg/css/profile.css">
     <link rel="shortcut icon" href="../resourceImg/imgs/instagram.png">
-
-
 </head>
 <body>
-
-
 <section id="container">
     <header id="header">
         <section class="h_inner">
@@ -117,26 +116,25 @@
             </div>
 
             <div class="mylist_contents contents_container active">
-             <% for(ImageDTO e : rList) {%>
-            	<div class="pic" name="image_no" style="display:none" value="<%=e.getImage_no()%>">
+                <%
+			        for (ImageDTO myList : rList){
+    			%>
+            	<div class="pic" name="image_no" style="display:none" value="<%=myList.getImage_no()%>">
             		<a onclick="location.href='../image/imageDetail'">
-            			<img src="../resourceImg/Image/<%=e.getSave_folder_name()%>/<%=e.getSave_file_name()%>" name="user_profile">
+            			<img src="../resourceImg/Image/<%=myList.getSave_folder_name()%>/<%=myList.getSave_file_name()%>" name="user_profile">
             		</a>
             	</div>
-            <%} %>
+            	<%} %>
             </div>
-
-
             <div class="bookmark_contents contents_container">
 			<!-- 북마커 기준 게시글들 불러오기  -->
             </div>
        </section>
     </div>
 </section>
-<!--<script src="js/insta.js"></script>-->
-<script src="js/profile.js"></script>
 <script>
 	function loadUserImg(){
+		
 		var img_no = ${'#img_no'}.val();
 		var pagePath = '../image/imageDetail';
 		if($('#img_no').val() == ""){
@@ -157,8 +155,8 @@
 				console.log(data);
 				
 				var resHTML = '';
-				resHTML += '<div class="pic" name="image_no" style="display:none" value="' + data.getSave_file_name() + '">';
-				resHTML += '<a onclick="location.href=' + pagePath + '">';
+				resHTML += '<div class="pic" name="image_no" style="display:none" value="' + data.getImage_no() + '">';
+				resHTML += '<a onclick="location.href=' + pagePath +'">';
 				resHTML += '<img src="../resourceImg/Image/'+data.getSave_folder_name()+'/'+ data.getSave_file_name() + '" name="user_profile">';
 				
 				if( data.length == 0){
@@ -169,7 +167,7 @@
 				} else {
 					for(var i = 0; i < data.length; i++){
 						
-						resHTML += '<div class="pic" name="image_no" style="display:none" value="' + data.getSave_file_name() + '">';
+						resHTML += '<div class="pic" name="image_no" style="display:none" value="' + data.getImage_no() +'">';
 						resHTML += '<a onclick="location.href=' + pagePath + '">';
 						resHTML += '<img src="../resourceImg/Image/'+data.getSave_folder_name()+'/'+ data.getSave_file_name() + '" name="user_profile">';
 						
