@@ -56,7 +56,7 @@
 			    <div class="scroll_inner">
 			    <% for (UserDTO userId : uList) {%>
 			    	<div class="user">
-			    	<div style="display:none" name="user_no"><%=userId.getUser_no() %></div>
+			    	<input type="text" style="display:none" name="user_no" value="<%=userId.getUser_no() %>"/>
 			    		<div class="thumb_img">
 			    			<img src="../resourceImg/<%=userId.getUser_folder_name()%>/<%=userId.getUser_profile_name()%>"/> <!-- 프로필 사진 경로 -->
 			    		</div>
@@ -65,6 +65,49 @@
 			    	 <% } %>
 			    </div>
 			 </div>
+	<script>
+		function userList(){
+			var user_no = $('#user_no').val();
+			
+			if($('#user_no').val() == ""){
+				$('#user_no').focus();
+			}
+			
+			console.log("user_no : " + user_no);
+			
+			$.ajax({
+				url : '/image/userListAll.do',
+				type : 'post',
+				data : {
+					"user_no" : user_no
+				},
+				success : function(data) { 
+					console.log("test");
+					
+					var userHTML = ""; // 게시판위의 나타내어 줄 userId, userProfile 정보 들고오기
+					userHTML = 'div class="user">';
+					userHTML = '<div style="display:none" name="user_no">'+data.getUser_no()+'</div>';
+					userHTML = '<div class="thumb_img"> <img src="../resourceImg/'+data.getUser_folder_name()+'/'+data.getUser_profile_name()+'"/></div>';
+					userHTML = data.getReg_id()+'</div> ';	
+					
+					if(data.length == 0){
+						userHTML = 'div class="user">';
+						userHTML = '<div style="display:none" name="user_no"></div>';
+						userHTML = '<div class="thumb_img"> <img src="../resourceImg/imgs/thumb.jpeg"/></div>';
+						userHTML = '</div> '
+					}else{
+						for(var i = 0;  i < data.lenth(); i++){
+							userHTML = 'div class="user">';
+							userHTML = '<div style="display:none" name="user_no">'+data.getUser_no()+'</div>';
+							userHTML = '<div class="thumb_img"> <img src="../resourceImg/'+data.getUser_folder_name()+'/'+data.getUser_profile_name()+'"/></div>';
+							userHTML = data.getReg_id()+'</div>';	
+						}
+						$("#scroll_inner").html(userHTML);
+					}
+				}
+			});
+		}
+	</script>
 	<section id="main_container">
 		<div class="inner">
 		<% for(ImageDTO userInfo : rList) { %>
@@ -127,47 +170,6 @@
 </section>
 </body>
 <script>
-		function userList(){
-			var user_no = $('#user_no').val();
-			
-			if($('#user_no').val() == ""){
-				$('#user_no').focus();
-			}
-			
-			console.log("user_no : " + user_no);
-			
-			$.ajax({
-				url : '/image/userListAll.do',
-				type = 'post',
-				data : {
-					"user_no" : user_no
-				}
-				success : function(data) { 
-					console.log("test");
-					
-					var userHTML = ""; // 게시판위의 나타내어 줄 userId, userProfile 정보 들고오기
-					userHTML = 'div class="user">';
-					userHTML = '<div style="display:none" name="user_no">'+data.getUser_no()+'</div>';
-					userHTML = '<div class="thumb_img"> <img src="../resourceImg/'+data.getUser_folder_name()+'/'+data.getUser_profile_name()'"/></div>';
-					userHTML = data.getReg_id()+'</div> ';	
-					
-					if(data.length == 0){
-						userHTML = 'div class="user">';
-						userHTML = '<div style="display:none" name="user_no"></div>';
-						userHTML = '<div class="thumb_img"> <img src="../resourceImg/imgs/thumb.jpeg"/></div>';
-						userHTML = '</div> '
-					}else{
-						for(var i = 0;  i < data.lenth(); i++){
-							userHTML = 'div class="user">';
-							userHTML = '<div style="display:none" name="user_no">'+data.getUser_no()+'</div>';
-							userHTML = '<div class="thumb_img"> <img src="../resourceImg/'+data.getUser_folder_name()+'/'+data.getUser_profile_name()'"/></div>';
-							userHTML = data.getReg_id()+'</div>';	
-						}
-						$("#scroll_inner").html(userHTML);
-					}
-				}
-			});
-		}
 		function search() {
 			//alert("test");
 			var img_no = $('#img_no').val();

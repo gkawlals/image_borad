@@ -83,26 +83,25 @@ public class UserController {
 	public String getMyImageList(ModelMap model,HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		
 		// session으로 user_id 받아오기 
-		String ss_user_id = CmmUtil.nvl((String) session.getAttribute("SS_USER_ID"));
+		String SS_USER_ID = CmmUtil.nvl((String) session.getAttribute("SS_USER_ID"));
 		
-		log.info("session get user_id : " + ss_user_id );
+		log.info("session get user_id : " + SS_USER_ID );
 		
 		// ID를 기준으로 List를 불러와야하니 user_id를 지정해준다.
 		ImageDTO pDTO = new ImageDTO();
 
-		pDTO.setReg_id(ss_user_id);
+		pDTO.setReg_id(SS_USER_ID);
 		
 		List<ImageDTO> rList = imageService.getMyBoard(pDTO);
 		
 		for(ImageDTO e : rList) {
 			
-			log.info("image_no : "+e.getImage_no());
+			log.info("image_no : "+ e.getImage_no());
 		}
-		
-		
 		
 		log.info(" MyImageList 불러오기");
 		
+		model.addAttribute("SS_USER_ID", SS_USER_ID);
 		model.addAttribute("rList", rList);
 		
 		return "user/MyPage";

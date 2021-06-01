@@ -70,6 +70,10 @@ public class ImageController {
 		// test를 위한 파라미터로 불러오기
 		log.info(org_file_name);
 		
+		List<UserDTO> uList = userService.getUserList();
+		
+		List<ImageDTO> rList = imageService.imageListTest();
+		
 		// image file에 속성을 받아오는 작업
 		String ext = org_file_name.substring(org_file_name.lastIndexOf(".") + 1, org_file_name.length()).toLowerCase();
 		
@@ -112,7 +116,9 @@ public class ImageController {
 			if (res < 1) {
 				// insert가 실패 할때
 				log.info(this.getClass().getName() + " insert Failed!");
+				
 				return "/image/imagetest";
+				
 			} else {
 				// insert가 성공 할때 
 				log.info(this.getClass().getName() + " insert success!");
@@ -121,6 +127,10 @@ public class ImageController {
 		}else { 
 			return "/image/imageListTest";
 		}
+		
+		model.addAttribute("rList", rList);
+		
+		model.addAttribute("uList", uList);
 		
 		log.info(this.getClass().getName() + " . imageUpload end !");
 		
@@ -215,6 +225,29 @@ public class ImageController {
 		log.info("userList 끝");
 		
 		return uList;
+	}
+	
+	// 이미지 선택하여 정보확인하기
+	@RequestMapping(value="image/imageDetail")
+	public String imageDetail ( HttpServletRequest request, ModelMap model) {
+		
+		String image_no = request.getParameter("image_no");
+		
+		ImageDTO pDTO = new ImageDTO();
+		
+		pDTO.setImage_no(image_no);
+		
+		ImageDTO rDTO = imageService.imageDetail(pDTO);
+		
+		model.addAttribute("rDTO",rDTO);
+		
+		if( rDTO == null) {
+			rDTO = new ImageDTO();
+		}
+		
+		log.info(" image_no : " + image_no);
+		
+		return "image/MyPage";
 	}
 	
 	// 이미지 선택 후 삭제하기

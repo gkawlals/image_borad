@@ -22,6 +22,8 @@ public interface IImageMapper {
 
 	int updateImage(); // 이미지 업데이트하기
 
-	List<ImageDTO> loadUserImg(); // 
+	List<ImageDTO> loadUserImg(ImageDTO pDTO); // 
+
+	ImageDTO imageDetail(ImageDTO pDTO);// 이미지 선택하면 창띄우기
 
 }

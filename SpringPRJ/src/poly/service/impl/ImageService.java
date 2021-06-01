@@ -71,7 +71,7 @@ public class ImageService implements IImageService {
 	@Override
 	public List<ImageDTO> loadUserImg(ImageDTO pDTO) {
 		// TODO Auto-generated method stub
-		return imageMapper.loadUserImg();
+		return imageMapper.loadUserImg(pDTO);
 	}
 
 
@@ -79,6 +79,13 @@ public class ImageService implements IImageService {
 	public List<ImageDTO> getMyBoard(ImageDTO pDTO) {
 		
 		return imageMapper.getMyBoard(pDTO);
+	}
+
+
+	@Override
+	public ImageDTO imageDetail(ImageDTO pDTO) {
+		// TODO Auto-generated method stub
+		return imageMapper.imageDetail(pDTO);
 	}
 
 

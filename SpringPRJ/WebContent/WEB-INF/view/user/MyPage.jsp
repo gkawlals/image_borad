@@ -7,13 +7,13 @@
 <%@page import="poly.dto.UserDTO"%>
 <%@page import="poly.util.CmmUtil"%>
 <%
-	List<ImageDTO> rList = (List<ImageDTO>)request.getAttribute("rList");
+	List<ImageDTO> rList = (List<ImageDTO>) request.getAttribute("rList");
 
 	if( rList == null){
 		rList = new ArrayList<ImageDTO>();
 	}
 	
-	String ss_user_id = CmmUtil.nvl((String)session.getAttribute("ss_user_id"));
+	String SS_USER_ID = CmmUtil.nvl((String)session.getAttribute("SS_USER_ID"));
 	
 	int imageCnt = 0;
 %>
@@ -92,7 +92,7 @@
 
                 <div class="detail">
                     <div class="top">
-                        <div class="user_name">KindTiger</div>
+                        <div class="user_name"><%=SS_USER_ID %></div>
                         <a href="profile_edit.html" class="profile_edit">프로필편집</a>
                         <a href="#" class="logout">로그아웃</a>
                     </div>
@@ -100,11 +100,12 @@
                     <ul class="middle">
                         <li>
                             <span>게시물</span>
-                            <% for(ImageDTO e : rList ){ %>
+                            <% for(int i = 1; i <= rList.size(); i++){ 
+                            	
+                            	imageCnt += 1; 
                             
-                           		<% imageCnt += 1;%>
-                            
-                            <% } %>
+                            } %>
+                            <%=imageCnt %>
                         </li>
                     </ul>
                     <p class="about">
@@ -119,27 +120,25 @@
                 <%
 			        for (ImageDTO myList : rList){
     			%>
-            	<div class="pic" name="image_no" style="display:none" value="<%=myList.getImage_no()%>">
-            		<a onclick="location.href='../image/imageDetail'">
+            	<div class="pic"> 
+            		<input type="text" value="<%=myList.getImage_no()%>"  name="image_no" style="display:none"/>
+            		<a onclick="location.href='../image/imageDetail'" class="">
             			<img src="../resourceImg/Image/<%=myList.getSave_folder_name()%>/<%=myList.getSave_file_name()%>" name="user_profile">
             		</a>
             	</div>
             	<%} %>
-            </div>
-            <div class="bookmark_contents contents_container">
-			<!-- 북마커 기준 게시글들 불러오기  -->
             </div>
        </section>
     </div>
 </section>
 <script>
 	function loadUserImg(){
+		var img_no = $('#img_no').val();
 		
-		var img_no = ${'#img_no'}.val();
 		var pagePath = '../image/imageDetail';
+		
 		if($('#img_no').val() == ""){
 			$('#img_no').focus();
-			return false;
 		}
 		
 		console.log("img_no : " + img_no);
@@ -155,23 +154,30 @@
 				console.log(data);
 				
 				var resHTML = '';
-				resHTML += '<div class="pic" name="image_no" style="display:none" value="' + data.getImage_no() + '">';
+				resHTML += '<div class="pic" >';
+				resHTML += '<input type="text" value="' + data.getImage_no() +'"  name="image_no" style="display:none"/>';
 				resHTML += '<a onclick="location.href=' + pagePath +'">';
-				resHTML += '<img src="../resourceImg/Image/'+data.getSave_folder_name()+'/'+ data.getSave_file_name() + '" name="user_profile">';
+				resHTML += '<img src="../resourceImg/Image/'+data.getSave_folder_name()+'/'+ data.getSave_file_name() + '" name="user_profile"/>';
+				resHTML += '</a></div>';
 				
 				if( data.length == 0){
-					resHTML += '<div class="pic" name="image_no" style="display:none" value="">';
+					resHTML += '<div  class="pic">';
+					resHTML += '<input type="text" name="image_no" style="display:none"/>';
 					resHTML += '<a onclick="location.href=' + pagePath + '">';
-					resHTML += '<img src="../resourceImg/Imgs/thumb.jpeg'" name="">';
+					resHTML += '<img src="../resourceImg/Imgs/thumb.jpeg" name=""/>';
+					resHTML += '</a></div>';
 					
 				} else {
 					for(var i = 0; i < data.length; i++){
 						
-						resHTML += '<div class="pic" name="image_no" style="display:none" value="' + data.getImage_no() +'">';
+						resHTML += '<div  class="pic">';
+						resHTML += '<input type="text" value="' + data.getImage_no() +'"  name="image_no" style="display:none"/>';
 						resHTML += '<a onclick="location.href=' + pagePath + '">';
-						resHTML += '<img src="../resourceImg/Image/'+data.getSave_folder_name()+'/'+ data.getSave_file_name() + '" name="user_profile">';
+						resHTML += '<img src="../resourceImg/Image/'+data.getSave_folder_name()+'/'+ data.getSave_file_name() + '" name="user_profile" />';
+						resHTML += '</a></div>';
 						
 					}
+					
 				}
 				
 			}

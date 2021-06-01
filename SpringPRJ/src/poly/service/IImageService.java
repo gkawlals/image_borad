@@ -24,4 +24,6 @@ public interface IImageService {
 
 	List<ImageDTO> loadUserImg(ImageDTO pDTO);
 
+	ImageDTO imageDetail(ImageDTO pDTO);
+
 }
