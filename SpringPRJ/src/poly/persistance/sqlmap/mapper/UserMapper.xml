@@ -5,13 +5,15 @@
 	<!-- 아이디 비밀번호를 기준으로 로그인  -->
 	<select id="getUserLoginCheck" resultType="UserDTO">
 		SELECT 
-			USER_ID
+		
+			USER_ID,
+			USER_PWD
 			
 		FROM circle.USR_TABLE
 			
-			WHERE USR_TABLE.USER_ID=#{user_id} AND USR_TABLE.USER_PWD=#{user_pwd}
+			WHERE USR_TABLE.USER_ID = #{user_id} AND USR_TABLE.USER_PWD = #{user_pwd}
 	</select>
-
+	
 	<insert id="InsertUserInfo" parameterType="UserDTO" >
 		INSERT INTO circle.USR_TABLE ( 
 		
@@ -66,9 +68,8 @@
 			USER_FOLDER_NAME,
 			USER_PROFILE_NAME
 			
-		FROM circle.USR_TABLE;
+		FROM circle.USR_TABLE WHERE USR_TABLE.USER_ID = #{user_id};
 		
 	</select>
-
-
+	
 </mapper>

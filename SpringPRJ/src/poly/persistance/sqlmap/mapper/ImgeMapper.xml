@@ -60,14 +60,17 @@
 	 	IMAGE_NO LIKE '%' || #{image_no} || '%'
 	</select>
 	
-	<select id="getDetailImge" parameterType="ImageDTO" resultType="ImageDTO">
+	<!-- 게시글 삭제및 수정 전 띄우는 창에 대한 쿼리문 -->
+	<select id="imageDetail" parameterType="ImageDTO" resultType="ImageDTO">
 	SELECT 
 		IMAGE_NO, 
 		SAVE_FOLDER_NAME, 
 		SAVE_FILE_NAME,
+		REG_ID,
+		CHG_DT,
 		ONE_TITLE
 	FROM circle.IMAGE_TABLE
-		WHERE IMAGE_NO = #{image_no}  
+		WHERE IMAGE_NO = #{image_no};
 	</select>
 	
 	<select id="getMyBoard" parameterType="ImageDTO" resultType="ImageDTO">

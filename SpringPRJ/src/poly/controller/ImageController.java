@@ -229,25 +229,29 @@ public class ImageController {
 	
 	// 이미지 선택하여 정보확인하기
 	@RequestMapping(value="image/imageDetail")
-	public String imageDetail ( HttpServletRequest request, ModelMap model) {
+	public String imageDetail ( HttpServletRequest request, ModelMap model, HttpSession session) {
 		
 		String image_no = request.getParameter("image_no");
+		String SS_USER_ID = (String)session.getAttribute("SS_USER_ID");
+		log.info("image_no : " + image_no);
 		
+		UserDTO uDTO = new UserDTO();
 		ImageDTO pDTO = new ImageDTO();
 		
+		uDTO.setUser_id(SS_USER_ID);
 		pDTO.setImage_no(image_no);
 		
+		UserDTO urDTO = userService.userListAll(uDTO);
 		ImageDTO rDTO = imageService.imageDetail(pDTO);
 		
+		model.addAttribute("urDTO",urDTO);
 		model.addAttribute("rDTO",rDTO);
 		
 		if( rDTO == null) {
 			rDTO = new ImageDTO();
 		}
 		
-		log.info(" image_no : " + image_no);
-		
-		return "image/MyPage";
+		return "image/imageDetail";
 	}
 	
 	// 이미지 선택 후 삭제하기

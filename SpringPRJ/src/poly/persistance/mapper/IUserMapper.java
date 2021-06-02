@@ -12,15 +12,15 @@ public interface IUserMapper {
 	//로그인을위해 아이디와 비밀번호 일치하는지 확인하기
 	UserDTO getUserLoginCheck(UserDTO pDTO) throws Exception;
 
-	UserDTO getUserExists(UserDTO pDTO);
+	UserDTO getUserExists(UserDTO pDTO); // 중복확인
 
-	int InsertUserInfo(UserDTO pDTO);
+	int InsertUserInfo(UserDTO pDTO); //회원가입 
 
 
-	List<ImageDTO> getMyImageList();
+	List<ImageDTO> getMyImageList(); // 유저 개인의 ImageList 불러오기
 
-	List<UserDTO> getUserList();
+	List<UserDTO> getUserList(); // Image Board에서 사용되는 userList
 
-	List<UserDTO> userListAll();
+	UserDTO userListAll(UserDTO uDTO);
 
 }

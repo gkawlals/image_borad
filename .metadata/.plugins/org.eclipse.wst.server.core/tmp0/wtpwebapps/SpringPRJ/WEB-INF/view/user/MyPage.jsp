@@ -49,36 +49,8 @@
 </head>
 <body>
 <section id="container">
-    <header id="header">
-        <section class="h_inner">
-
-            <h1 class="logo">
-                <a href="index.html">
-                    <div class="sprite_insta_icon"></div>
-                    <div>
-                        <div class="sprite_write_logo"></div>
-                    </div>
-                </a>
-            </h1>
-
-            <div class="search_field">
-                <input type="text" placeholder="검색" tabindex="0">
-
-                <div class="fake_field">
-                    <span class=sprite_small_search_icon></span>
-                    <span>검색</span>
-                </div>
-            </div>
-
-            <div class="right_icons">
-                <a href="login.html"><div class="sprite_compass_icon"></div></a>
-                <a href="profile.html"><div class="sprite_user_icon_outline"></div></a>
-            </div>
-            
-        </section>
-    </header>
-
-
+  	 <%@ include file="/WEB-INF/view/user/top.jsp" %>
+  	 
     <div id="main_container">
 
         <section class="b_inner">
@@ -115,19 +87,20 @@
                 </div>
                 
             </div>
-
-            <div class="mylist_contents contents_container active">
-                <%
-			        for (ImageDTO myList : rList){
-    			%>
-            	<div class="pic"> 
-            		<input type="text" value="<%=myList.getImage_no()%>"  name="image_no" style="display:none"/>
-            		<a onclick="location.href='../image/imageDetail'" class="">
-            			<img src="../resourceImg/Image/<%=myList.getSave_folder_name()%>/<%=myList.getSave_file_name()%>" name="user_profile">
-            		</a>
-            	</div>
-            	<%} %>
-            </div>
+            <form action="../image/imageDetail.do">
+	            <div class="mylist_contents contents_container active">
+	                <%
+				        for (ImageDTO myList : rList){
+	    			%>
+		            <div class="pic"> 
+		            		<input type="text" value="<%=myList.getImage_no()%>" id="image_no" name="image_no" style="display:none" />
+		            	<button type="submit" onclick="location.href='../image/imageDetail.do'">
+		            		<img src="../resourceImg/Image/<%=myList.getSave_folder_name()%>/<%=myList.getSave_file_name()%>" name="user_profile">
+		            	</button>
+		            </div>
+	            	<%} %>
+	            </div>
+            </form>
        </section>
     </div>
 </section>
@@ -135,7 +108,7 @@
 	function loadUserImg(){
 		var img_no = $('#img_no').val();
 		
-		var pagePath = '../image/imageDetail';
+		var pagePath = '../image/imageDetail.do';
 		
 		if($('#img_no').val() == ""){
 			$('#img_no').focus();
@@ -156,25 +129,25 @@
 				var resHTML = '';
 				resHTML += '<div class="pic" >';
 				resHTML += '<input type="text" value="' + data.getImage_no() +'"  name="image_no" style="display:none"/>';
-				resHTML += '<a onclick="location.href=' + pagePath +'">';
+				resHTML += '<button type="submit">';
 				resHTML += '<img src="../resourceImg/Image/'+data.getSave_folder_name()+'/'+ data.getSave_file_name() + '" name="user_profile"/>';
-				resHTML += '</a></div>';
+				resHTML += '</button></div>';
 				
 				if( data.length == 0){
 					resHTML += '<div  class="pic">';
 					resHTML += '<input type="text" name="image_no" style="display:none"/>';
-					resHTML += '<a onclick="location.href=' + pagePath + '">';
+					resHTML += '<button type="submit">';
 					resHTML += '<img src="../resourceImg/Imgs/thumb.jpeg" name=""/>';
-					resHTML += '</a></div>';
+					resHTML += '</button></div>';
 					
 				} else {
 					for(var i = 0; i < data.length; i++){
 						
 						resHTML += '<div  class="pic">';
 						resHTML += '<input type="text" value="' + data.getImage_no() +'"  name="image_no" style="display:none"/>';
-						resHTML += '<a onclick="location.href=' + pagePath + '">';
+						resHTML += '<button type="submit">';
 						resHTML += '<img src="../resourceImg/Image/'+data.getSave_folder_name()+'/'+ data.getSave_file_name() + '" name="user_profile" />';
-						resHTML += '</a></div>';
+						resHTML += '</button></div>';
 						
 					}
 					

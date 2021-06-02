@@ -108,4 +108,10 @@ public class UserService implements IUserService{
 		
 	}
 
+	@Override
+	public UserDTO userListAll(UserDTO uDTO) {
+		// TODO Auto-generated method stub
+		return userMapper.userListAll(uDTO);
+	}
+
 }

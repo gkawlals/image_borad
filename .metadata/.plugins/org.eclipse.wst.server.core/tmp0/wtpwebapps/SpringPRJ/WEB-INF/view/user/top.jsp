@@ -6,9 +6,7 @@
 <%@page import="poly.dto.ImageDTO"%>
 <%@page import="poly.dto.UserDTO"%>
 <%
-	String user_id = CmmUtil.nvl((String)session.getAttribute("user_id"));
-
-	List<UserDTO> uList = (List<UserDTO>)request.getAttribute("uList");
+	String user_id = CmmUtil.nvl((String)session.getAttribute("SS_USER_ID"));
 %>
 <html>
 <head>
@@ -33,9 +31,8 @@
                 </div>
             </div>
             <div class="right_icons">
+                <a onclick="location.href='../image/imagetest.do'"><div class="sprite_camera_icon"></div></a><!-- 카카오 지도 api연결 -->
                 <a onclick="location.href='../map/circle.do'"><div class="sprite_compass_icon"></div></a><!-- 카카오 지도 api연결 -->
-                <a href="follow.html"><div class="sprite_heart_icon_outline"></div></a>
-                
                 <a onclick="location.href='../user/MyPage.do'" ><div class="sprite_user_icon_outline" name="SS_USER_ID" value="<%=user_id%>"></div></a>
                 
             </div>

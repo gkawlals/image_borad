@@ -8,8 +8,10 @@
 <%
 	String SS_USER_ID = CmmUtil.nvl((String)session.getAttribute("SS_USER_ID"));
 
-	List<ImageDTO> rList = (List<ImageDTO>)request.getAttribute("rList");
-	
+	ImageDTO rDTO = (ImageDTO)request.getAttribute("rDTO");
+
+	UserDTO urDTO = (UserDTO)request.getAttribute("urDTO");
+
 %>
 <html>
 <head>
@@ -59,45 +61,47 @@
     <%@ include file="/WEB-INF/view/user/top.jsp" %>
     
     <div id="main_container">
+
         <section class="b_inner">
+
             <div class="contents_box">
+
                 <article class="contents cont01">
+
                     <div class="img_section">
                         <div class="trans_inner">
-                            <div><img src="imgs/img_section/img03.jpg" alt=""></div>
+                            <div><img src="../resourceImg/Image/<%=rDTO.getSave_folder_name() %>/<%=rDTO.getSave_file_name() %>" alt=""></div>
                         </div>
                     </div>
+
+
                     <div class="detail--right_box">
+
                         <header class="top">
                             <div class="user_container">
                                 <div class="profile_img">
-                                    <img src="imgs/thumb.jpeg" alt="">
+                                    <img src="../resourceImg/<%=urDTO.getUser_folder_name() %>/<%=urDTO.getUser_profile_name() %>" alt="">
                                 </div>
                                 <div class="user_name">
-                                    <div class="nick_name">KindTiger</div>
-                                    <div class="country">Seoul, South Korea</div>
+                                    <div class="nick_name"><%=rDTO.getReg_id() %></div>
+                                    <!-- 입력한 date-->
+                                    <div class="chg_dt"><%=rDTO.getChg_dt() %></div>
                                 </div>
-                            </div>
-                            <div class="sprite_more_icon" data-name="more">
-                                <ul class="more_detail">
-                                    <li>팔로우</li>
-                                    <li>수정</li>
-                                    <li>삭제</li>
-                                </ul>
                             </div>
                         </header>
+
                         <section class="scroll_section">
                             <div class="admin_container">
-                                <div class="admin"><img src="imgs/thumb.jpeg" alt="user"></div>
                                 <div class="comment">
-                                    <span class="user_id">Kindtiger</span>
-                                    <div type="text" name="one_title"> 강아지가 많이 힘들어 보이네요 ㅠㅠ 힘내!</div>                         
-                                </div>
-                            </div>
-                        </section>
+                                    <span class="user_id"></span>
+                                    <input type="text" name="one_title"> <%=rDTO.getOne_title() %></div>                         
+                             </div>
+					</section>
                         <div class="bottom_icons">
                             <div class="left_icons">
+
                             </div>
+
                             <div class="right_icon">
                             </div>
                         </div>
@@ -107,21 +111,16 @@
                             </div>
                             <div class="count_likes">
                                 좋아요
-                                <span class="count">2,351</span>
-                                개
+                                <span class="like_cnt"> </span>
                             </div>
                         </div>
+                        <input type="button" value="수정" onclick="/image/updateImage">
+                        <input type="button" value="삭제" onclick="/image/delImage">
                     </div>
                 </article>
             </div>
         </section>
     </div>
-    <div class="del_pop">
-        <div class="btn_box">
-            <div class="del">삭제</div>
-            <div class="cancel">취소</div>
-        </div>
-   </div>
 </section>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

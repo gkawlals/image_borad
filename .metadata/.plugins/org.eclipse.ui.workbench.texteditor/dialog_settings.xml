@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="comment_fie"/>
+		<item key="selection" value=""/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="comment_fie"/>
-			<item value="comment_fil"/>
-			<item value="com"/>
-			<item value=".user"/>
-			<item value="scroll_inner"/>
-			<item value="forder"/>
-			<item value="수정"/>
-			<item value="mabObj"/>
-			<item value="callMapObjApiAJAX"/>
-			<item value="path"/>
-			<item value="naver"/>
-			<item value="USER_TABLE"/>
-			<item value="FORDER"/>
-			<item value="delete"/>
-			<item value="resultJsonData"/>
+			<item value="getUserList"/>
+			<item value="userListAll"/>
+			<item value="none"/>
+			<item value="image_no"/>
+			<item value="select_type"/>
+			<item value="get"/>
+			<item value="class=&quot;user&quot;"/>
+			<item value="class="/>
+			<item value="class=user"/>
+			<item value="user_email"/>
+			<item value="user_"/>
+			<item value="user_email\"/>
+			<item value="mai"/>
+			<item value="mail"/>
+			<item value="email"/>
 		</list>
 		<list key="replacehistory">
+			<item value="select"/>
+			<item value="user_mail"/>
 			<item value="folder"/>
 			<item value="kakao"/>
 			<item value="USR_TABLE"/>
@@ -38,13 +40,11 @@
 			<item value="orcfilename"/>
 			<item value="image_name"/>
 			<item value="image_url"/>
-			<item value="../resourceImg/imgs"/>
-			<item value="../resource/imgs/"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1146"/>
-		<item key="DIALOG_Y_ORIGIN" value="159"/>
+		<item key="DIALOG_X_ORIGIN" value="950"/>
+		<item key="DIALOG_Y_ORIGIN" value="434"/>
 		<item key="DIALOG_WIDTH" value="294"/>
 		<item key="DIALOG_HEIGHT" value="408"/>
 		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
