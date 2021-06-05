@@ -31,6 +31,7 @@
 		<script> 
 			$('#btn-save').on('click', uploadImage);
 			function uploadImage() { 
+				alert(" Instert start ? ")
 				var file = $('#img')[0].files[0]; 
 				var formData = new FormData(); 
 				formData.append('data', file); 
@@ -45,7 +46,7 @@
 							}).fail(function (error) { 
 								alert(error); 
 								}) 
-						} 
+			} 
 		</script> 
 	</body> 
 </html>

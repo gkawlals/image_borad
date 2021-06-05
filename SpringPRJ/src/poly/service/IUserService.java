@@ -28,6 +28,6 @@ public interface IUserService {
 
 	void uploadImg(UserDTO vo);
 
-	UserDTO userListAll(UserDTO uDTO);
+	UserDTO userListAll(UserDTO urDTO);
 
 }

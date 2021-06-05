@@ -5,13 +5,12 @@ import java.util.Date;
 
 public class DateUtil {
 
-	public static String getDateTime (String fm) {
+public static String getDateTime (String fm) {
 		
 		Date toDay = new Date();
 		System.out.println(toDay);
 		
-		SimpleDateFormat date = new SimpleDateFormat("HH:mm:ss");
-		
+		SimpleDateFormat date = new SimpleDateFormat(fm);
 		
 		return date.format(toDay);
 	}
@@ -19,7 +18,22 @@ public class DateUtil {
 	public static String getDateTime() {
 	
 		
-		return getDateTime("yyyy/MM/dd");
+		return getDateTime("yyyy.MM.dd");
+	}
+	
+public static String getTime (String fm) {
+		
+		Date toDay = new Date();
+		System.out.println(toDay);
+		
+		SimpleDateFormat date = new SimpleDateFormat(fm);
+		
+		return date.format(toDay);
+	}
+	
+	public static String getTime() {
+	
+		return getDateTime("24hhmmss");
 	}
 	
 }

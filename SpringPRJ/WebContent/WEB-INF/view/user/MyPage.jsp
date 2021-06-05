@@ -64,7 +64,7 @@
 
                 <div class="detail">
                     <div class="top">
-                        <div class="user_name"><%=SS_USER_ID %></div>
+                        <div class="user_name" id="SS_USER_ID"><%=SS_USER_ID %></div>
                         <a href="profile_edit.html" class="profile_edit">프로필편집</a>
                         <a href="#" class="logout">로그아웃</a>
                     </div>
@@ -87,28 +87,30 @@
                 </div>
                 
             </div>
-            <form action="../image/imageDetail.do">
-	            <div class="mylist_contents contents_container active">
-	                <%
-				        for (ImageDTO myList : rList){
-	    			%>
+          	<%
+				for (ImageDTO myList : rList){
+	    	%>
+	        <div class="mylist_contents contents_container active">
 		            <div class="pic"> 
+            	<form action="../image/imageDetail.do">
 		            		<input type="text" value="<%=myList.getImage_no()%>" id="image_no" name="image_no" style="display:none" />
-		            	<button type="submit" onclick="location.href='../image/imageDetail.do'">
+		            	<button type="submit" onclick="javascript:update_page()">
 		            		<img src="../resourceImg/Image/<%=myList.getSave_folder_name()%>/<%=myList.getSave_file_name()%>" name="user_profile">
 		            	</button>
+         		  </form>
 		            </div>
-	            	<%} %>
-	            </div>
-            </form>
+	           </div>
+            <%} %>
        </section>
-    </div>
+    </div> 
 </section>
 <script>
+	function update_page(){
+		var update_page = confirm("수정하러 기?")
+	}
 	function loadUserImg(){
 		var img_no = $('#img_no').val();
 		
-		var pagePath = '../image/imageDetail.do';
 		
 		if($('#img_no').val() == ""){
 			$('#img_no').focus();
@@ -127,30 +129,26 @@
 				console.log(data);
 				
 				var resHTML = '';
-				resHTML += '<div class="pic" >';
 				resHTML += '<input type="text" value="' + data.getImage_no() +'"  name="image_no" style="display:none"/>';
 				resHTML += '<button type="submit">';
 				resHTML += '<img src="../resourceImg/Image/'+data.getSave_folder_name()+'/'+ data.getSave_file_name() + '" name="user_profile"/>';
-				resHTML += '</button></div>';
+				resHTML += '</button>';
 				
 				if( data.length == 0){
-					resHTML += '<div  class="pic">';
+					resHTML += '<form action="../image/imageDetail.do">';
 					resHTML += '<input type="text" name="image_no" style="display:none"/>';
 					resHTML += '<button type="submit">';
 					resHTML += '<img src="../resourceImg/Imgs/thumb.jpeg" name=""/>';
-					resHTML += '</button></div>';
+					resHTML += '</button>';
 					
 				} else {
 					for(var i = 0; i < data.length; i++){
-						
-						resHTML += '<div  class="pic">';
 						resHTML += '<input type="text" value="' + data.getImage_no() +'"  name="image_no" style="display:none"/>';
 						resHTML += '<button type="submit">';
 						resHTML += '<img src="../resourceImg/Image/'+data.getSave_folder_name()+'/'+ data.getSave_file_name() + '" name="user_profile" />';
-						resHTML += '</button></div>';
+						resHTML += '</button>';
 						
 					}
-					
 				}
 				
 			}

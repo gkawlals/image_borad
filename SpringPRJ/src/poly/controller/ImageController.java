@@ -82,8 +82,8 @@ public class ImageController {
 			
 			// image file을 받아오면 inseert되는 file에대한 정보 저장를 변수에 저장
 			String ss_user_id = CmmUtil.nvl((String)session.getAttribute("SS_USER_ID"));
-			String save_file_name = DateUtil.getDateTime("yyyy/MM/dd") + "." + ext;
-			String save_folder_name = DateUtil.getDateTime("yyyy/MM/dd");
+			String save_file_name = DateUtil.getDateTime("HH:mm:ss") + "." + ext;
+			String save_folder_name = DateUtil.getDateTime("yyyy.MM.dd");
 			String save_file_path = FileUtil.mkdirForDate(FILE_UPLOAD_SAVE_PATH);
 			String fullFileInfo = save_file_path + "/" + save_file_name;
 			String one_title = CmmUtil.nvl(request.getParameter("one_title"));
@@ -141,6 +141,7 @@ public class ImageController {
 	public String Scroll() {
 		return "image/scrolltest";
 	}
+	
 	// Image board List loading 
 	@RequestMapping(value="image/imageListTest", method=RequestMethod.GET)
 	public String BoardList(ModelMap model, HttpSession session) {
@@ -181,6 +182,7 @@ public class ImageController {
 		
 		return "image/imageListTest";
 	}
+	
 	// image board lit in Ajax 
 	@RequestMapping(value="image/seachList")
 	public @ResponseBody List<ImageDTO> searchList(HttpServletRequest request){
@@ -204,55 +206,53 @@ public class ImageController {
 		return rList;
 	}
 	
-	// image board in user list Tag hidden menu
-	@RequestMapping(value="image/userListAll")
-	public @ResponseBody List<UserDTO> userListAll(HttpServletRequest request){
-		
-		log.info("searchList 시작");
-		//jsp에서 값을 받아오는 구문
-		String user_no = CmmUtil.nvl(request.getParameter("user_no"));
-		
-		log.info(user_no);
-		
-		UserDTO pDTO = new UserDTO();
-		
-		pDTO.setUser_no(user_no);
-		
-		List<UserDTO> uList = imageService.userListAll(pDTO);
-
-		log.info("userList 불러오기 : " + uList.size());
-
-		log.info("userList 끝");
-		
-		return uList;
-	}
-	
 	// 이미지 선택하여 정보확인하기
-	@RequestMapping(value="image/imageDetail")
-	public String imageDetail ( HttpServletRequest request, ModelMap model, HttpSession session) {
-		
-		String image_no = request.getParameter("image_no");
-		String SS_USER_ID = (String)session.getAttribute("SS_USER_ID");
-		log.info("image_no : " + image_no);
-		
-		UserDTO uDTO = new UserDTO();
-		ImageDTO pDTO = new ImageDTO();
-		
-		uDTO.setUser_id(SS_USER_ID);
-		pDTO.setImage_no(image_no);
-		
-		UserDTO urDTO = userService.userListAll(uDTO);
-		ImageDTO rDTO = imageService.imageDetail(pDTO);
-		
-		model.addAttribute("urDTO",urDTO);
-		model.addAttribute("rDTO",rDTO);
-		
-		if( rDTO == null) {
-			rDTO = new ImageDTO();
+		@RequestMapping(value="image/imageDetail")
+		public String imageDetail ( HttpServletRequest request, ModelMap model, HttpSession session) {
+			
+			String image_no = request.getParameter("image_no");
+			
+			String SS_USER_ID = (String)session.getAttribute("SS_USER_ID");
+			
+			log.info(" user_id : " + SS_USER_ID);
+			log.info("image_no : " + image_no);
+			
+			UserDTO uDTO = new UserDTO();
+			ImageDTO pDTO = new ImageDTO();
+			
+			uDTO.setUser_id(SS_USER_ID);
+			pDTO.setImage_no(image_no);
+			
+			// 유저의 프로필 사진을 들고오기 
+			UserDTO urDTO = userService.userListAll(uDTO);
+			// 유저가 적은 게시판 상세정보 들고오기
+			ImageDTO rDTO = imageService.imageDetail(pDTO);
+			
+			// jsp에서 import 하여 사용할 변수 이름을 설정해 ADD해준다.
+			model.addAttribute("urDTO",urDTO);
+			
+			model.addAttribute("rDTO",rDTO);
+			
+			if( rDTO == null) {
+				rDTO = new ImageDTO();
+			}
+			
+			// 사용자가 선택한 게시물을 불러오는지 체크하기
+			log.info(" ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ   " );
+			log.info(" get image_no : " +  rDTO.getImage_no() );
+			log.info(" get save_folder_name : " +  rDTO.getSave_folder_name() );
+			log.info(" get save_file_name : " +  rDTO.getSave_file_name() );
+			log.info(" get Reg_id : " +  rDTO.getReg_id() );
+			log.info(" get Chg_dt : " +  rDTO.getChg_dt() );
+			log.info(" get ont_title  : " +  rDTO.getOne_title() );
+			log.info(" ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ   " );
+			// 선택한 사용자의 프로필사진경로를 잘 들고오는지 확인하기
+			log.info("get user_id : " + urDTO.getUser_id());
+			log.info(" get user_folder_name : " + urDTO.getUser_folder_name());
+			log.info(" get User_profile_name : " + urDTO.getUser_profile_name());
+			
+			return "image/imageDetail";
 		}
-		
-		return "image/imageDetail";
-	}
 	
 	// 이미지 선택 후 삭제하기
 	@RequestMapping(value="image/delImage")
@@ -307,13 +307,13 @@ public class ImageController {
 		// ajax와 통신하는 구문
 		log.info("searchList 시작");
 		//jsp에서 값을 받아온다.
-		String post_title = CmmUtil.nvl(request.getParameter("Image_no"));
+		String image_no = CmmUtil.nvl(request.getParameter("Image_no"));
 				
-		log.info(post_title);
+		log.info(image_no);
 				
 		ImageDTO pDTO = new ImageDTO();
 				
-		pDTO.setImage_no(post_title);
+		pDTO.setImage_no(image_no);
 				
 		List<ImageDTO> rList = imageService.loadUserImg(pDTO);
 		

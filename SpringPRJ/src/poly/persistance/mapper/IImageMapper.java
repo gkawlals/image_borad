@@ -9,7 +9,6 @@ import poly.dto.ImageDTO;
 @Mapper("ImageMapper")
 public interface IImageMapper {
 	
-
 	int getInsertImage(ImageDTO pDTO); // 이미지 저장
 
 	List<ImageDTO> getsearchList(); // ajax 이미지 리스트 불러오기 

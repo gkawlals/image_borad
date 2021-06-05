@@ -14,8 +14,6 @@ public interface IImageService {
 
 	List<ImageDTO> imageListTest();
 	
-	List<UserDTO> userListAll(UserDTO pDTO);
-
 	List<ImageDTO> getMyBoard(ImageDTO pDTO);
 
 	int delImage();

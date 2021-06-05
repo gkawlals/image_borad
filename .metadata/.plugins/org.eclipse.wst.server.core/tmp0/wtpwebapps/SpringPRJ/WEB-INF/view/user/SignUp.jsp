@@ -78,7 +78,7 @@
 								}
 							})
 						}
-					
+						
 					</script>
 					
 					<div class="wrap-input100 validate-input" data-validate = "name is required">
@@ -114,6 +114,34 @@
 			</div>
 		</div>
 	</div>
+	
+	<script>
+	
+		function TextNull() {
+			var user_id = document.getElementById('user_id').value;
+			var user_pwd = document.getElementById('user_pwd').value;
+			var user_name = document.getElementById('user_name').value;
+			var user_mail = document.getElementById('user_mail').value;
+			var AL;
+			
+			if( user_id == "" || user_id == null){
+				AL = alert("아이디를 정해주세요");
+			}
+			
+			if( user_pwd == "" || user_pwd == null){
+				AL = alert("비밀번호를 입력해주세요");
+			}
+			
+			if( user_name == "" ||user_name == null){
+				AL = alert("이름을 입력해주세요");
+			}
+			
+			if( user_mail == "" || user_mail == null){
+				AL = alert("매일을 입력해주세요");
+			}
+		}
+		
+	</script>
 
 <!--===============================================================================================-->	
 	<script src="../resourceLogin/vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -131,6 +159,5 @@
 	</script>
 <!--===============================================================================================-->
 	<script src="../resourceLogin/js/main.js"></script>
-
 </body>
 </html>

@@ -10,7 +10,7 @@
 
 	ImageDTO rDTO = (ImageDTO)request.getAttribute("rDTO");
 
-	UserDTO urDTO = (UserDTO)request.getAttribute("urDTO");
+	UserDTO uDTO = (UserDTO)request.getAttribute("urDTO");
 
 %>
 <html>
@@ -59,7 +59,7 @@
 <section id="container">
 
     <%@ include file="/WEB-INF/view/user/top.jsp" %>
-    
+    <form >
     <div id="main_container">
 
         <section class="b_inner">
@@ -70,17 +70,17 @@
 
                     <div class="img_section">
                         <div class="trans_inner">
-                            <div><img src="../resourceImg/Image/<%=rDTO.getSave_folder_name() %>/<%=rDTO.getSave_file_name() %>" alt=""></div>
+                            <div><img src="../resourceImg/Image/<%=rDTO.getSave_folder_name() %>/<%=rDTO.getSave_file_name()%>" alt=""></div>
                         </div>
                     </div>
 
 
                     <div class="detail--right_box">
-
+						
                         <header class="top">
                             <div class="user_container">
                                 <div class="profile_img">
-                                    <img src="../resourceImg/<%=urDTO.getUser_folder_name() %>/<%=urDTO.getUser_profile_name() %>" alt="">
+                                    <img src="../resourceImg/<%=uDTO.getUser_folder_name() %>/<%=uDTO.getUser_profile_name() %>" alt="">
                                 </div>
                                 <div class="user_name">
                                     <div class="nick_name"><%=rDTO.getReg_id() %></div>
@@ -94,7 +94,7 @@
                             <div class="admin_container">
                                 <div class="comment">
                                     <span class="user_id"></span>
-                                    <input type="text" name="one_title"> <%=rDTO.getOne_title() %></div>                         
+                                    <input type="text" name="one_title" value="<%=rDTO.getOne_title() %>" />                         
                              </div>
 					</section>
                         <div class="bottom_icons">
@@ -121,6 +121,7 @@
             </div>
         </section>
     </div>
+   </form>
 </section>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

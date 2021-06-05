@@ -1,0 +1,36 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<select>
+    <%@ include file="/WEB-INF/view/user/top.jsp" %>
+	<form enctype="multipart/form-data"  method="post"> <!-- action="/image/imageUpload.do" -->
+		이미지 업로드<input type="file" name="fileUpload">
+		<br>한 줄평
+		<input type="text" name="one_title">
+		<br>
+		<input type="submit" value="send it" id="Btn">
+	</form>
+	
+</select>
+</body>
+		<script>
+		$(document).ready(function(){ 
+			$('#Btn').click(function() {
+				var UpLoad = confirm("이미지를 저장 하시겠습니까?");
+				
+				if(UpLoad){
+					location.replace("/image/imageUpload.do");
+				}else {
+					
+				}
+				
+			}
+		}
+		</script>
+</html>
