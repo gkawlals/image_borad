@@ -127,16 +127,13 @@
 			if( user_id == "" || user_id == null){
 				AL = alert("아이디를 정해주세요");
 			}
-			
-			if( user_pwd == "" || user_pwd == null){
+			else if( user_pwd == "" || user_pwd == null){
 				AL = alert("비밀번호를 입력해주세요");
 			}
-			
-			if( user_name == "" ||user_name == null){
+			else if( user_name == "" ||user_name == null){
 				AL = alert("이름을 입력해주세요");
 			}
-			
-			if( user_mail == "" || user_mail == null){
+			else if( user_mail == "" || user_mail == null){
 				AL = alert("매일을 입력해주세요");
 			}
 		}

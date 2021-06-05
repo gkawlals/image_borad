@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="right_icons">
-                <a onclick="location.href='../image/imagetest.do'"><div class="sprite_camera_icon"></div></a><!-- 카카오 지도 api연결 -->
+                <a onclick="location.href='../image/imagetest.do'"><div class="sprite_camera_icon"></div></a><!-- 이미지 파일 저장 -->
                 <a onclick="location.href='../map/circle.do'"><div class="sprite_compass_icon"></div></a><!-- 카카오 지도 api연결 -->
                 <a onclick="location.href='../user/MyPage.do'" ><div class="sprite_user_icon_outline" name="SS_USER_ID" value="<%=user_id%>"></div></a>
                 

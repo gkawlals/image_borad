@@ -114,8 +114,7 @@
                                 <span class="like_cnt"> </span>
                             </div>
                         </div>
-                        <input type="button" value="수정" onclick="/image/updateImage">
-                        <input type="button" value="삭제" onclick="/image/delImage">
+                        <input type="button" value="수정" onclick="/image/updateImage.do">
                     </div>
                 </article>
             </div>

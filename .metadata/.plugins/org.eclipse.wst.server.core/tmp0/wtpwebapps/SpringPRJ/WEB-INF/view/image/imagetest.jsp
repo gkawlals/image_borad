@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<select>
+<select id="container">
     <%@ include file="/WEB-INF/view/user/top.jsp" %>
 	<form enctype="multipart/form-data" action="/image/imageUpload.do" method="post">
 		이미지 업로드<input type="file" name="fileUpload">

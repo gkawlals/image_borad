@@ -96,6 +96,17 @@
 	</script>
 <!--===============================================================================================-->
 	<script src="../resourceLogin/js/main.js"></script>
-
+	<script>
+		function page_null() {
+			var user_id = docuemnt.getElementById('user_id').value;
+			var user_pwd = docuemnt.getElementById('user_pwd').value;
+			if( user_id == "" || user_id == null){
+				var PageNull = alert(" 아이디를 입력해주세요");
+			}
+			else if( user_pwd == "" || user_pwd == null ){
+				var PageNull = alert(" 비밀번호를 입력해주세요");
+			}			
+		}
+	</script>
 </body>
 </html>

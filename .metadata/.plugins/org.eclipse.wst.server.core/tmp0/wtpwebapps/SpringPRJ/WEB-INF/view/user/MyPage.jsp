@@ -106,7 +106,17 @@
 </section>
 <script>
 	function update_page(){
-		var update_page = confirm("수정하러 기?")
+		var update_page = confirm("수정 및 삭제를 원하시나요? (확인 : 수정 , 취소 : 삭제 )");
+		if( update_page == true ){
+			location.replace("../image/imageDetail.do");
+		}else {
+			var del_evt = confirm(" 정말 삭제 하시겠습니까? ( 확인 : 삭제, 취소 : 돌아기기)")
+			if(del_evt == true ){
+				location.replace("../image/delImage.do");
+			}else{
+				location.replace("../image/MyPage.do");
+			}
+		}
 	}
 	function loadUserImg(){
 		var img_no = $('#img_no').val();
