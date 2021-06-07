@@ -28,29 +28,7 @@
 </head>
 <body>
 <section id="container">
-	<header id="header">
-        <section class="inner">
-            <h1 class="logo">
-                <a href="index.html">
-                    <div class="sprite_insta_icon"></div>
-                    <div class="sprite_write_logo"></div>
-                </a>
-            </h1>
-            <div class="search_box">
-                <input type="text" placeholder="검색" id="search-field">
-
-                <div class="fake_field">
-                    <span class="sprite_small_search_icon"></span>
-                    <span>검색</span>
-                </div>
-            </div>
-            <div class="right_icons">
-            	<a onclick="location.href='/image/imagetest.do'"><div class="sprite_camera_icon"></div></a>
-                <a onclick="location.href='../map/circle.do'"><div class="sprite_compass_icon"></div></a><!-- 카카오 지도 api연결 -->
-                <a onclick="location.href='../user/MyPage.do'" ><div class="sprite_user_icon_outline" name="SS_USER_ID" value="<%=SS_USER_ID%>"></div></a>
-            </div>
-        </section>
-    </header>
+ 	 <%@ include file="/WEB-INF/view/user/top.jsp" %>
     
     
 		<div class="hidden_menu" id="hidden_menu">

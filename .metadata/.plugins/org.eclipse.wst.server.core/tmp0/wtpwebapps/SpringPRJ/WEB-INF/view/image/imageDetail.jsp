@@ -115,6 +115,7 @@
                             </div>
                         </div>
                         <input type="button" value="수정" onclick="/image/updateImage.do">
+                        <input type="button" value="삭제" onclick="delImage()">
                     </div>
                 </article>
             </div>
@@ -124,6 +125,19 @@
 </section>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+<script >
+function delImage() {
+    // 본인이라면(2), 삭제 확인을 물어본 후(confirm) 삭제
+    		console.log("게시글 번호 : " + <%=rDTO.getImage_no()%>);
+    
+           if(confirm("게시글을 삭제하시겠습니까?")) {
+               location.href="/img/delImage.do?no=<%=rDTO.getImage_no()%>";
+           } 
+        } 
+}
+
+</script>
 <!--<script src="js/detail.js"></script>-->
 </body>
 </html>

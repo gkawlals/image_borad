@@ -14,7 +14,6 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,7 +27,6 @@ import poly.service.IUserService;
 import poly.util.CmmUtil;
 import poly.util.DateUtil;
 import poly.util.FileUtil;
-import poly.util.S3Upload;
 
 @Controller
 public class ImageController {
@@ -94,7 +92,7 @@ public class ImageController {
 			log.info("save_file_path : " + CmmUtil.nvl(save_file_path));
 			log.info("fullFileInfo : " + CmmUtil.nvl(fullFileInfo));
 			log.info("save_folder_name : " + CmmUtil.nvl(save_folder_name));
-			log.info("one title : " + CmmUtil.nvl(one_title));
+			log.info(" one title : " + CmmUtil.nvl(one_title));
 			log.info(" session Id : " + CmmUtil.nvl(ss_user_id));
 			// file의 정보를 multipart file 넣어준다.
 			mf.transferTo(new File(fullFileInfo));

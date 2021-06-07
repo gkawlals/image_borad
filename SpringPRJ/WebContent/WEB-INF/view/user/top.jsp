@@ -31,7 +31,31 @@
                 </div>
             </div>
             <div class="right_icons">
-                <a onclick="location.href='../image/imagetest.do'"><div class="sprite_camera_icon"></div></a><!-- 이미지 파일 저장 -->
+            <form enctype="multipart/form-data" action="/image/imageUpload.do" method="post">
+               <input type="file" name="fileUpload" style="display:none" onchange="fileSelect()">
+                <div class="sprite_camera_icon" onclick='document.all.fileUpload.click();' ></div>
+                <input type="text" id="one_title" name="one_title" style="display:none"/>
+               	<input type="submit" name="fileInsert" style="display:none"/>
+           	 </form> <!-- prompt를 이용해 제목 값을 불러오기 -->
+           	    <script>
+	           		
+	           		function fileSelect(){
+	           			
+	           			var ppt = prompt("15자 이내의 간단한 제목을 정해주세요!","");
+	           			
+	           			if (ppt.length > 0){
+	           				
+	           				$('input[name=one_title]').attr('value', ppt);
+	           				
+	           				console.log(one_title.value);
+	           				
+		           			document.all.fileInsert.click();
+	           			}else {
+	           				alert(" 제목을 지어 주셔야 합니다 !");
+	           			}
+	           		}
+	           		
+	           </script>
                 <a onclick="location.href='../map/circle.do'"><div class="sprite_compass_icon"></div></a><!-- 카카오 지도 api연결 -->
                 <a onclick="location.href='../user/MyPage.do'" ><div class="sprite_user_icon_outline" name="SS_USER_ID" value="<%=user_id%>"></div></a>
                 
