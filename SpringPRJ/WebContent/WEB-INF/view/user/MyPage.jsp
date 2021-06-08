@@ -94,7 +94,7 @@
 		            <div class="pic"> 
             	<form action="../image/imageDetail.do">
 		            		<input type="text" value="<%=myList.getImage_no()%>" id="image_no" name="image_no" style="display:none" />
-		            	<button type="submit" onclick="javascript:update_page()">
+		            	<button type="submit" >
 		            		<img src="../resourceImg/Image/<%=myList.getSave_folder_name()%>/<%=myList.getSave_file_name()%>" name="user_profile">
 		            	</button>
          		  </form>
@@ -105,7 +105,7 @@
     </div> 
 </section>
 <script>
-	function update_page(){
+/* 	function update_page(){
 		var update_page = confirm("수정 및 삭제를 원하시나요? (확인 : 수정 , 취소 : 삭제 )");
 		if( update_page == true ){
 			location.replace("../image/imageDetail.do");
@@ -117,7 +117,8 @@
 				location.replace("../image/MyPage.do");
 			}
 		}
-	}
+	} */
+	
 	function loadUserImg(){
 		var img_no = $('#img_no').val();
 		

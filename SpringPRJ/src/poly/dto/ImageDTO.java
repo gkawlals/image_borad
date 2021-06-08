@@ -1,7 +1,5 @@
 package poly.dto;
 
-import java.util.List;
-
 public class ImageDTO {
 	
 	private String image_no;
@@ -18,15 +16,6 @@ public class ImageDTO {
 	private String save_folder_name;
 	private String one_title;
 	
-	private List<String> select;
-	
-	public List<String> getselect() {
-		return select;
-	}
-	public void setselect(List<String> select) {
-		
-		this.select = select;
-	}
 	public String getOne_title() {
 		return one_title;
 	}
@@ -63,14 +52,12 @@ public class ImageDTO {
 	public void setOrg_file_name(String org_file_name) {
 		this.org_file_name = org_file_name;
 	}
-	
 	public String getExt() {
 		return ext;
 	}
 	public void setExt(String ext) {
 		this.ext = ext;
 	}
-	
 	public String getImage_no() {
 		return image_no;
 	}

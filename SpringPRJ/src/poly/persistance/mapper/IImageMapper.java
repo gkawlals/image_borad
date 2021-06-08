@@ -15,11 +15,11 @@ public interface IImageMapper {
 
 	List<ImageDTO> imageListTest(); // 이미지 리스트 페이지 불러오기
 
-	int delImage(); // 이미지 삭제하기
+	int delImage(ImageDTO pDTO); // 이미지 삭제하기
 
 	List<ImageDTO> getMyBoard(ImageDTO pDTO);// user_id를 기준으로 개인 List 불러오기
 
-	int updateImage(); // 이미지 업데이트하기
+	int updateImage(ImageDTO pDTO); // 이미지 업데이트하기
 
 	List<ImageDTO> loadUserImg(ImageDTO pDTO); // 
 

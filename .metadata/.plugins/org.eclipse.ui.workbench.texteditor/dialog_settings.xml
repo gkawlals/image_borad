@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value=".sprite_camera_icon"/>
+		<item key="selection" value="chg_dt"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="return &quot;../user/MyPage&quot;;"/>
+			<item value="\"/>
+			<item value="chg_dt"/>
+			<item value="int"/>
+			<item value="delIm"/>
+			<item value="del"/>
+			<item value="camera"/>
+			<item value="file"/>
 			<item value=".sprite_camera_icon"/>
 			<item value="logi"/>
-			<item value="del"/>
 			<item value="uDTO"/>
 			<item value="getMy"/>
 			<item value="my"/>
 			<item value="getUserList"/>
 			<item value="getUserLisrt"/>
-			<item value="getUser"/>
-			<item value="getUserLoginCheck"/>
-			<item value="userListAll"/>
-			<item value="none"/>
-			<item value="image_no"/>
-			<item value="select_type"/>
-			<item value="get"/>
 		</list>
 		<list key="replacehistory">
 			<item value="select"/>

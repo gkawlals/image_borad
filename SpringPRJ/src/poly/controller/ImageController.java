@@ -259,22 +259,27 @@ public class ImageController {
 		
 		String image_no = request.getParameter("image_no");
 		
+		log.info(image_no);
+		
 		ImageDTO pDTO = new ImageDTO (); 
 		
 		pDTO.setImage_no(image_no);
 		
-		int res = imageService.delImage();
+		log.info("DTO image_no : " + pDTO.getImage_no());
+		
+		int res = imageService.delImage(pDTO);
 
 		
 		if(res < 1) {
 			log.info("이지미 삭제 실패");
 		}else { 
 			log.info("이미지 삭제 성공");
+			return "../user/MyPage";
 		}
 		
 		log.info("Image Delete End !");
 		
-		return "/image/imageListTest";
+		return "../user/MyPage";
 	}
 	
 	// 이미지 선택 후 수정하기 
@@ -286,16 +291,31 @@ public class ImageController {
 		String image_no = request.getParameter("image_no");
 		String one_title = request.getParameter("one_title");
 		
+		log.info("load for JSP  image_no : " + image_no);
+		log.info("load for JSP  one_title : " + one_title);
+		
 		ImageDTO pDTO = new ImageDTO(); 
 		
 		pDTO.setImage_no(image_no);
 		pDTO.setOne_title(one_title);
 		
-		int res = imageService.updateImage();
+		log.info("load for ImageDTO  image_no : " + image_no);
+		log.info("load for ImageDTO  one_title : " + one_title);
+		
+		int res = imageService.updateImage(pDTO);
+		
+		if(res < 1) {
+			log.info("이지미 수정 실패");
+			
+		}else { 
+			log.info("이미지 수정 성공");
+			return "../user/MyPage";
+		}
+		
 		
 		log.info(" image update end ! ");
 		
-		return "/image/imageListTest";
+		return "../user/MyPage";
 	}
 	
 	// MyBoard loading for Ajax 

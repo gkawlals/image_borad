@@ -9,10 +9,11 @@
 	
 		IMAGE_NO, 
 		SAVE_FOLDER_NAME, 
-		SAVE_FILE_NAME, 
-		ONE_TITLE, 
-		REG_ID, 
-		REG_DT  
+		SAVE_FILE_NAME,
+		REG_ID,
+		CHG_DT,
+        LIKE_CNT,
+		ONE_TITLE  
 		
 	FROM circle.IMAGE_TABLE;
 	</select>
@@ -47,13 +48,13 @@
 	<select id="searchList" parameterType="ImageDTO" resultType="ImageDTO">
 	<!-- ajax를 위한 쿼리문 -->
 	SELECT 
-			IMAGE_NO, 
-			SAVE_FOLDER_NAME, 
-			SAVE_FILE_NAME,
-			REG_ID, 
-			LIKE_CNT,
-			ONE_TITLE,
-			CHG_DT
+		IMAGE_NO, 
+		SAVE_FOLDER_NAME, 
+		SAVE_FILE_NAME,
+		REG_ID,
+		CHG_DT,
+        LIKE_CNT,
+		ONE_TITLE 
 	FROM 
 		circle.IMAGE_TABLE
 	WHERE 
@@ -68,7 +69,8 @@
 		SAVE_FILE_NAME,
 		REG_ID,
 		CHG_DT,
-		ONE_TITLE
+        LIKE_CNT,
+		ONE_TITLE 
 	FROM circle.IMAGE_TABLE
 		WHERE IMAGE_NO = #{image_no};
 	</select>

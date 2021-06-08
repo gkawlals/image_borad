@@ -141,9 +141,9 @@
                     <input type="hidden" id="page" value="1">
 				</article>
 			</div>
-					<%
-     }
-%>
+			<%
+		     	}
+			%>
 		</div>
 	</section>
 </section>

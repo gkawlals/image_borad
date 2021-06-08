@@ -48,16 +48,16 @@ public class ImageService implements IImageService {
 	}
 
 
-	public int delImage() {
+	public int delImage(ImageDTO pDTO) {
 		// TODO Auto-generated method stub
-		return imageMapper.delImage();
+		return imageMapper.delImage(pDTO);
 	}
 
 
 	@Override
-	public int updateImage() {
+	public int updateImage(ImageDTO pDTO) {
 		// TODO Auto-generated method stub
-		return imageMapper.updateImage();
+		return imageMapper.updateImage(pDTO);
 	}
 
 

@@ -16,9 +16,9 @@ public interface IImageService {
 	
 	List<ImageDTO> getMyBoard(ImageDTO pDTO);
 
-	int delImage();
+	int delImage(ImageDTO pDTO);
 
-	int updateImage();
+	int updateImage(ImageDTO pDTO);
 
 	List<ImageDTO> loadUserImg(ImageDTO pDTO);
 

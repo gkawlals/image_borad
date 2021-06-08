@@ -48,17 +48,12 @@
     <link rel="stylesheet" href="../resourceImg/css/detail-page.css">
     <link rel="shortcut icon" href="../resourceImg/imgs/instagram.png">
 
-
-    <style>
-        #main_container {
-            /*height: 6000px;*/
-        }
-    </style>
 </head>
 <body>
 <section id="container">
 
     <%@ include file="/WEB-INF/view/user/top.jsp" %>
+    
     <form >
     <div id="main_container">
 
@@ -89,34 +84,29 @@
                                 </div>
                             </div>
                         </header>
-
                         <section class="scroll_section">
                             <div class="admin_container">
                                 <div class="comment">
                                     <span class="user_id"></span>
-                                    <input type="text" name="one_title" value="<%=rDTO.getOne_title() %>" />                         
+                                    <input type="text" name="one_title" id="Update_one_title" value="<%=rDTO.getOne_title() %>"  />                         
+                             	</div>
                              </div>
-					</section>
+						</section>
                         <div class="bottom_icons">
-                            <div class="left_icons">
-
-                            </div>
-
-                            <div class="right_icon">
-                            </div>
+                            <div class="left_icons"></div>
+                            <div class="right_icon"></div>
                         </div>
                         <div class="commit_field">
                             <div class="heart_btn">
                                 <div class="sprite_heart_icon_outline" data-name="heartbeat"></div>
-                            </div>
-                            <div class="count_likes">
+                             </div>
+                             <div class="count_likes">
                                 좋아요
                                 <span class="like_cnt"> </span>
                             </div>
                         </div>
-                        <input type="button" value="수정" onclick="/image/updateImage.do">
-                        <input type="button" value="삭제" onclick="delImage()">
-                    </div>
+                        <input type="button" value="수정" onclick="javascript:updateImage(<%=rDTO.getImage_no()%>)">
+                        <input type="button" value="삭제" onclick="javascript:delImage(<%=rDTO.getImage_no()%>)">
                 </article>
             </div>
         </section>
@@ -127,16 +117,122 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 <script >
-function delImage() {
-    // 본인이라면(2), 삭제 확인을 물어본 후(confirm) 삭제
-    		console.log("게시글 번호 : " + <%=rDTO.getImage_no()%>);
-    
-           if(confirm("게시글을 삭제하시겠습니까?")) {
-               location.href="/img/delImage.do?no=<%=rDTO.getImage_no()%>";
-           } 
-        } 
-}
+	function delImage(image_no) {
+		
+		 // 게시글의 번호를 불러와 하이퍼링크로 컨트롤러로 넘기기
+	    console.log("게시글 번호 : " + image_no);
+		 
+		var delConfirm = "게시글을 삭제 하시겠습니까?";
+		
+			if(confirm(delConfirm)){
+				$.ajax({
+					url : "/image/delImage.do",
+					type : "post",
+					data : 
+						{
+						"image_no" : image_no
+						},
+					success : function(data){
+						if(data == 1){
+							alert("삭제에 성공했습니다.");
+						}else if(data == 0){
+							alert("삭제에 실패했습니다.");
+						}
+					}
+				})
+			}
+		}
+	function updateImage(image_no){
+		
+		var updateConfirm = "수정 하겠습니까?";
+		
+		var title = '<%=rDTO.getOne_title()%>';
+		
+		var one_title = document.getElementById('Update_one_title').value;
+		
+		if( title != one_title ){
+			if(confirm(updateConfirm)){
+				
+				console.log(" load for DTO : " + title);
+				console.log(" load for JSP : " + one_title);
+				
+				$.ajax({
+					url : "/image/updateImage.do",
+					type : "post",
+					data : 
+						{
+						"image_no" : image_no,
+						"one_title" : one_title
+						},
+					success : function(data){
+						if(data == 1){
+							alert("수정에 성공했습니다.");
+						}else if(data == 0){
+							alert("수정에 실패했습니다.");
+						}
+					}
+				})
+			}
+		}
+	}
+	
+	/* var one_title = document.getElementById("one_title").value;
+	
+	function ChangeText(e){
+		one_title = e;
+		
+		console.log(" load for TextOnchange event : " + one_title);
+	} */
+	
 
+<%-- 	function updateImage(image_no){
+		
+		/* var change_title = "" ;
+		
+		console.log(" one_title for document : " + one_title);
+		one_title.addEventListener('change', function(event){
+
+			change_title = event.target.value;
+			console.log("change ? : " + change_title);
+
+		}); */
+		
+		var one_title = document.getElementById('Update_one_title').value;
+		// 게시글의 번호를 기준으로 불러와 DTO의 title 과 수정하는 title를 비교 다르면 실행
+		console.log(" 게시글 번호 : " + image_no);
+		
+		var title = "<%=rDTO.getOne_title()%>";
+		
+		
+		var UpConfirm = "게시글을 수정 하시겠습니까?";
+		
+		console.log(" load for ImageDTO title : " + title);
+		console.log(" load for JSP title : " + one_title);
+		
+		if(title != one_title){
+			
+			if(confirm(UpConfirm)){
+				$.ajax({
+					url : "/image/updateImage.do",
+					type : "post",
+					data : 
+						{
+							"image_no" : image_no
+						},
+					success : function(data){
+						if (data == 1){
+							alert("수정에 성공했습니다.");
+							
+						} else {
+							alert("수정에 실패했습니다.");
+						}
+					}
+						
+				})
+			}
+		}
+	} --%>
+	
 </script>
 <!--<script src="js/detail.js"></script>-->
 </body>
