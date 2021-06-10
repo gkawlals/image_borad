@@ -65,11 +65,9 @@
 
                     <div class="img_section">
                         <div class="trans_inner">
-                            <div><img src="../resourceImg/Image/<%=rDTO.getSave_folder_name() %>/<%=rDTO.getSave_file_name()%>" alt=""></div>
+                            <div><img src="resourceImg/Image/<%=rDTO.getSave_folder_name() %>/<%=rDTO.getSave_file_name()%>" alt=""></div>
                         </div>
                     </div>
-
-
                     <div class="detail--right_box">
 						
                         <header class="top">
@@ -117,6 +115,7 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 <script >
+	// 게시글을 삭제할때 버튼 클릭하면 실행되는 함수 
 	function delImage(image_no) {
 		
 		 // 게시글의 번호를 불러와 하이퍼링크로 컨트롤러로 넘기기
@@ -142,6 +141,8 @@
 				})
 			}
 		}
+	
+	// 게시글을 수정할때 버튼 클릭하면 실행되는 함수 
 	function updateImage(image_no){
 		
 		var updateConfirm = "수정 하겠습니까?";
@@ -175,63 +176,6 @@
 			}
 		}
 	}
-	
-	/* var one_title = document.getElementById("one_title").value;
-	
-	function ChangeText(e){
-		one_title = e;
-		
-		console.log(" load for TextOnchange event : " + one_title);
-	} */
-	
-
-<%-- 	function updateImage(image_no){
-		
-		/* var change_title = "" ;
-		
-		console.log(" one_title for document : " + one_title);
-		one_title.addEventListener('change', function(event){
-
-			change_title = event.target.value;
-			console.log("change ? : " + change_title);
-
-		}); */
-		
-		var one_title = document.getElementById('Update_one_title').value;
-		// 게시글의 번호를 기준으로 불러와 DTO의 title 과 수정하는 title를 비교 다르면 실행
-		console.log(" 게시글 번호 : " + image_no);
-		
-		var title = "<%=rDTO.getOne_title()%>";
-		
-		
-		var UpConfirm = "게시글을 수정 하시겠습니까?";
-		
-		console.log(" load for ImageDTO title : " + title);
-		console.log(" load for JSP title : " + one_title);
-		
-		if(title != one_title){
-			
-			if(confirm(UpConfirm)){
-				$.ajax({
-					url : "/image/updateImage.do",
-					type : "post",
-					data : 
-						{
-							"image_no" : image_no
-						},
-					success : function(data){
-						if (data == 1){
-							alert("수정에 성공했습니다.");
-							
-						} else {
-							alert("수정에 실패했습니다.");
-						}
-					}
-						
-				})
-			}
-		}
-	} --%>
 	
 </script>
 <!--<script src="js/detail.js"></script>-->

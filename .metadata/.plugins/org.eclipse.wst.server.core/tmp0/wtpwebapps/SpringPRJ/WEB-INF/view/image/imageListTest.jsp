@@ -174,7 +174,7 @@
 					resHTML += '<div class="board_number" name="img_no" id="img_no" style="display:none">'+ data.getImage_no() + '</div>';
 					resHTML += '<div class="nick_name m_text" name="user_id">'+ data.getReg_id() + '</div>';
 					resHTML += '<div class="country s_text" name="LastEdit_DT">'+ data.getChg_dt() + '</div>';
-					resHTML += '<div><img src="/../resourceImg/Image/' + data.getSave_folder_name() + '/' + data.getSave_file_name() +'" alt="visual01"></div>';
+					resHTML += '<div><img src="../resourceImg/Image/' + data.getSave_folder_name() + '/' + data.getSave_file_name() +'" alt="visual01"></div>';
 					resHTML += '<div class="likes m_text"> 좋아요 <span id="like-count-39">' + userInfo.getLike_cnt() +'</span> <span id="bookmark-count-39"></span> 개 </div>';
 					resHTML += '<div class="comment_container"><div class="comment" id="comment-list-ajax-post37"><div class="comment-detail"><div class="nick_name m_text" name="user_id" ></div><div><h1>' +data.getOne_title()+'</h1></div></div></div></div>';
 		
@@ -198,7 +198,7 @@
 							resHTML += '<div class="board_number" name="img_no" id="img_no" style="display:none">'+ data.getImage_no() + '</div>';
 							resHTML += '<div class="nick_name m_text" name="user_id">'+ data.getReg_id() + '</div>';
 							resHTML += '<div class="country s_text" name="LastEdit_DT">'+ data.getChg_dt() + '</div>';
-							resHTML += '<div><img src="/../resourceImg/Image/' + data.getSave_folder_name() + '/' + data.getSave_file_name() +'" alt="visual01"></div>';
+							resHTML += '<div><img src="../resourceImg/Image/' + data.getSave_folder_name() + '/' + data.getSave_file_name() +'" alt="visual01"></div>';
 							resHTML += '<div class="likes m_text"> 좋아요 <span id="like-count-39">' + userInfo.getLike_cnt() +'</span> <span id="bookmark-count-39"></span> 개 </div>';
 							resHTML += '<div class="comment_container"><div class="comment" id="comment-list-ajax-post37"><div class="comment-detail"><div class="nick_name m_text" name="user_id" ></div><div><h1>' +data.getOne_title()+'</h1></div></div></div></div>';
 							userHTML = '<div class="scroll_inner"><div class="user">';

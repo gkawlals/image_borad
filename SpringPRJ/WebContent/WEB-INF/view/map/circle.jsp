@@ -3,22 +3,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>다음 지도 API</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <!-- Facebook Meta Tags / 페이스북 오픈 그래프 -->
+    <meta property="og:url" content="http://kindtiger.dothome.co.kr/insta">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="instagram">
+    <meta property="og:description" content="instagram clone">
+    <meta property="og:image" content="http://kindtiger.dothome.co.kr/insta/imgs/instagram.jpeg">
+    .
+    <!-- Twitter Meta Tags / 트위터 -->
+    <meta name="twitter:card" content="instagram clone">
+    <meta name="twitter:title" content="instagram">
+    <meta name="twitter:description" content="instagram clone">
+    <meta name="twitter:image" content="http://kindtiger.dothome.co.kr/insta/imgs/instagram.jpeg">
+
+    <!-- Google / Search Engine Tags / 구글 검색 엔진 -->
+    <meta itemprop="name" content="instagram">
+    <meta itemprop="description" content="instagram clone">
+    <meta itemprop="image" content="http://kindtiger.dothome.co.kr/insta/imgs/instagram.jpeg">
+
+
+    <title>circle</title>
+    <link rel="stylesheet" href="../resourceImg/css/reset.css">
+    <link rel="stylesheet" href="../resourceImg/css/common.css">
+    <link rel="stylesheet" href="../resourceImg/css/style.css">
+    <link rel="stylesheet" href="../resourceImg/css/detail-page.css">
+    <link rel="shortcut icon" href="../resourceImg/imgs/instagram.png">
+
 </head>
 <body>
-	거리<input type="text" id="Km"/> Km <input type="button" value="검색" name="Kmsearch" id="btnTest" onclick="searchKm()"/>
-	<br><br>
-	<input type="button" name="Rpoint" id="Rpoint" value="랜덤좌표 만들기" onclick="Rpoint()">
-	<input type="button" name="Load" id="LoadTest" value="왕복거리 검색하기" onclick="Load()"/>
-	<input type="button" name="center" id="centerTest" value="현재위치 가져오기" onclick="setCenter()"/>
-	
-	<div id="map" style="width:750px;height:750px;"></div>
+
+<section id="container">
+
+<%@ include file="/WEB-INF/view/user/top.jsp" %>
+	<div id="main_contaner">
+	<br><br><br><br><br>
+		<div>
+			<input type="button" name="center" id="centerTest" value="현재위치 가져오기" onclick="setCenter()"/>
+			<br><br>
+			거리<input type="text" id="Km"/> Km <input type="button" value="검색" name="Kmsearch" id="btnTest" onclick="searchKm()"/>
+			<input type="button" name="Rpoint" id="Rpoint" value="랜덤좌표 만들기" onclick="Rpoint()">
+			<input type="button" name="Load" id="LoadTest" value="왕복거리 검색하기" onclick="Load()"/>
+			
+			<div id="map" style="width:750px;height:750px;"></div>
+		</div>
+	</div>
+</section>
 	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e9c780c934dfa44e8d6dcce448c147e8"></script>
 	<script>
 		
-		
-	
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = {
 	        center: new kakao.maps.LatLng(37.55003810100931, 126.84223535396687), // 지도의 중심좌표 현재위치를 받아와서 넣어주면 될듯
@@ -30,8 +69,13 @@
 		var map = new kakao.maps.Map(mapContainer, mapOption); 
 		
 		
-		var lat; 
-		var lon;
+		var lat; // 위도을 받아올 변수 
+		var lon; // 경도를 받아올 변수
+		
+		var marker; // 현재위치를 표시해주는 마커
+		
+		var marker1; // 검색한 키로수 내의 랜덤 표시되는 랜덤 마커
+		
 		// 현재위치를 가져오는데 시간이 오래걸린다. ajax로 가져오게 되면 빨라질까? 
 		// 실험해 보자
 		function setCenter(){
@@ -45,7 +89,7 @@
 				console.log(lat, lon);
 
 						// 지도에 마커를 생성하고 표시한다
-			    		var marker = new kakao.maps.Marker({
+			    		 marker = new kakao.maps.Marker({
 			    		    position: new kakao.maps.LatLng(lat, lon),// 마커의 좌표
 			    		    map : map
 			    		});
@@ -101,33 +145,40 @@
 			// 랜덤 좌표 찍어주기
 			var centerPosition = map.getCenter(); // 원의 중심좌표 입니다.
 			// 랜덤 범위를 잡아주는 기준 구하기
-			var RlatTest = ( Km / 229007.633587786259542);
-			var RlonTest = ( Km / 90909.090909090909091 );
+			var RlatTest = ( Km / 229007.633587786259542 ); 
+			var RlonTest = ( Km / 90909.090909090909091 ); 
 			console.log(RlatTest , RlonTest);
 			// 랜덤 좌표를 만들어주는 식, 범위를 잡아준다.
 			Rlat = (Math.random() * ((lat + RlatTest) - (lat - RlatTest)) + ( lat - RlatTest));
 			Rlon = (Math.random() * ((lon + RlonTest) - (lon - RlonTest)) + ( lon - RlonTest));
 			
-    		var marker1 = new kakao.maps.Marker({
+			markerMake();
+			
+			console.log(Rlat, Rlon);
+			console.log();
+			
+		}
+		
+		function markerMake(){
+			 marker1 = new kakao.maps.Marker({
     		    position: new kakao.maps.LatLng(Rlat, Rlon),// 마커의 좌표
     		    map : map
     		});
-			console.log(Rlat, Rlon);
-			
+    		
 		}
 		
 		 // 왕복 거리 나타내는 api를 불러오는 function 
 		function searchPubTransPathAJAX() {
 			var xhr = new XMLHttpRequest();
 			//ODsay apiKey 입력
-			var url = "https://api.odsay.com/v1/api/searchPubTransPath?SX="+lat+"&SY="+lon+"&EX="+Rlat+"&EY="+Rlon+"&apiKey={VIBF+BDBYawcGbKFbkcTJw}";
+			var url = "https://api.odsay.com/v1/api/searchPubTransPath?SX="+lat+"&SY="+lon+"&EX="+Rlat+"&EY="+Rlon+"&apiKey=VIBF%2BBDBYawcGbKFbkcTJw";
 			xhr.open("GET", url, true);
 			xhr.send();
 			xhr.onreadystatechange = function() {
 				if (xhr.readyState == 4 && xhr.status == 200) {
 				console.log( JSON.parse(xhr.responseText) ); // <- xhr.responseText 로 결과를 가져올 수 있음
 				//노선그래픽 데이터 호출
-				callMapObjApiAJAX((JSON.parse(xhr.responseText))["result"]["path"][0].info.mapObj);
+				callMapObjApiAJAX((JSON.parse(xhr.responseText))['result']['path"][0].info.mapObj);
 				}
 			}
 		}
@@ -135,15 +186,17 @@
 		function callMapObjApiAJAX(mabObj){
 			var xhr = new XMLHttpRequest();
 			//ODsay apiKey 입력
-			var url = "https://api.odsay.com/v1/api/loadLane?mapObject=0:0@"+mabObj+"&apiKey={VIBF+BDBYawcGbKFbkcTJw}";
+			var url = "https://api.odsay.com/v1/api/loadLane?mapObject=0:0@"+mabObj+"&apiKey=VIBF%2BBDBYawcGbKFbkcTJw";
 			xhr.open("GET", url, true);
 			xhr.send();
 			xhr.onreadystatechange = function() {
 				if (xhr.readyState == 4 && xhr.status == 200) {
 					var resultJsonData = JSON.parse(xhr.responseText);
-					drawkakaoMarker(lat,lon);					// 출발지 마커 표시
-					drawkakaoMarker(Rlat,Rlon);					// 도착지 마커 표시
-					drawkakaoPolyLine(resultJsonData);		// 노선그래픽데이터 지도위 표시
+					//drawkakaoMarker(lat,lon);					// 출발지 마커 표시
+					maker;
+					//drawkakaoMarker(Rlat,Rlon);					// 도착지 마커 표시
+					maker1;
+					drawkakaoPolyLine(drawkakaoPolyLine);		// 노선그래픽데이터 지도위 표시
 					// boundary 데이터가 있을경우, 해당 boundary로 지도이동
 					if(resultJsonData.result.boundary){
 							var boundary = new kakao.maps.LatLngBounds(

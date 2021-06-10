@@ -8,7 +8,6 @@ public class DateUtil {
 public static String getDateTime (String fm) {
 		
 		Date toDay = new Date();
-		System.out.println(toDay);
 		
 		SimpleDateFormat date = new SimpleDateFormat(fm);
 		
@@ -24,7 +23,6 @@ public static String getDateTime (String fm) {
 public static String getTime (String fm) {
 		
 		Date toDay = new Date();
-		System.out.println(toDay);
 		
 		SimpleDateFormat date = new SimpleDateFormat(fm);
 		
@@ -33,7 +31,7 @@ public static String getTime (String fm) {
 	
 	public static String getTime() {
 	
-		return getDateTime("24hhmmss");
+		return getDateTime("HH:mm:ss");
 	}
 	
 }

@@ -1,99 +1,112 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%@page import="poly.util.CmmUtil" %>
-<%@page import="java.util.List"%>
-<%@page import="poly.dto.ImageDTO"%>
-<%@page import="poly.dto.UserDTO"%>
-
-<%
-	
-	String user_id = CmmUtil.nvl((String)session.getAttribute("SS_USER_ID"));
-	ImageDTO title = new ImageDTO();
-%>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-
-    <!-- Facebook Meta Tags / 페이스북 오픈 그래프 -->
-    <meta property="og:url" content="http://kindtiger.dothome.co.kr/insta">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="instagram">
-    <meta property="og:description" content="instagram clone">
-    <meta property="og:image" content="http://kindtiger.dothome.co.kr/insta/imgs/instagram.jpeg">
-    <!-- Twitter Meta Tags / 트위터 -->
-    <meta name="twitter:card" content="instagram clone">
-    <meta name="twitter:title" content="instagram">
-    <meta name="twitter:description" content="instagram clone">
-    <meta name="twitter:image" content="http://kindtiger.dothome.co.kr/insta/imgs/instagram.jpeg">
-
-    <!-- Google / Search Engine Tags / 구글 검색 엔진 -->
-    <meta itemprop="name" content="instagram">
-    <meta itemprop="description" content="instagram clone">
-    <meta itemprop="image" content="http://kindtiger.dothome.co.kr/insta/imgs/instagram.jpeg">
-
-    <link rel="stylesheet" href="../resourceImg/css/reset.css">
-    <link rel="stylesheet" href="../resourceImg/css/common.css">
-    <link rel="stylesheet" href="../resourceImg/css/style.css">
-    <link rel="stylesheet" href="../resourceImg/css/profile.css">
-    <link rel="shortcut icon" href="../resourceImg/imgs/instagram.png">
-    <script
-   src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>J
-<title>Insert title here</title>
+	<title>Login V1</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="../resourceLogin/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../resourceLogin/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../resourceLogin/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../resourceLogin/vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="../resourceLogin/vendor/css-hamburgers/hamburgers.min.css">
+<!--============================================== ===============================================-->
+	<link rel="stylesheet" type="text/css" href="../resourceLogin/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../resourceLogin/css/util.css">
+	<link rel="stylesheet" type="text/css" href="../resourceLogin/css/main.css">
+<!--===============================================================================================-->
 </head>
 <body>
-<select id="container">
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="../resourceLogin/images/img-01.png" alt="IMG" onclick="location.href='loginPage.do'" method="POST">
+				</div>
 
-	<header id="header">
-        <section class="inner">
-            <h1 class="logo">
-                <a href="index.html">
-                    <div class="sprite_insta_icon"></div>
-                    <div class="sprite_write_logo"></div>
-                </a>
-            </h1>
-            <div class="search_box">
-                <input type="text" placeholder="검색" id="search-field">
+				<form class="login100-form validate-form" action="../user/getUserLoginCheck.do" >
+					<span class="login100-form-title">
+						Circle 
+					</span>
+										<!-- data-validate = 공백일때 경고문구를 보여주기  -->
+					<div class="wrap-input100 validate-input" data-validate = "Valid ID is required">
+						<input class="input100" type="text" name="user_id" placeholder="ID" id="user_id">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+					</div>
 
-                <div class="fake_field">
-                    <span class="sprite_small_search_icon"></span>
-                    <span>검색</span>
-                </div>
-            </div>
-            <div class="right_icons">
-            <form enctype="multipart/form-data" action="/image/imageUpload.do" method="post">
-               <input type="file" name="fileUpload" style="display:none" onchange="fileSelect()">
-               <div class="sprite_camera_icon"
-	               onclick='document.all.fileUpload.click();' 
-	              	></div>
-				<!-- 이미지 파일 저장 -->
-						<input type="text" id="one_title" name="one_title" style="display:none"/>
-               			<input type="submit" name="fileInsert" style="display:none"/>
-           	 </form>
-           	 <script>
-	           		
-	           		function fileSelect(){
-	           			
-	           			var ppt = prompt("15자 이내의 간단한 제목을 정해주세요!","");
-	           			
-	           			if (ppt.length > 0){
-	           				
-	           				$('input[name=one_title]').attr('value', ppt);
-	           				
-	           				console.log(one_title.value);
-	           				
-		           			document.all.fileInsert.click();
-	           			}else {
-	           				alert(" 제목을 지어 주셔야 합니다 !");
-	           			}
-	           		}
-	           		
-	           </script>
-            </div>
-        </section>
-    </header>
-   </select>
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<input class="input100" type="password" name="user_pwd" placeholder="password" id="user_pwd">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+					
+					<div class="container-login100-form-btn validate-input">
+						<input type="submit" class="login100-form-btn" value="Login"/>
+					</div>
+
+					<div class="text-center p-t-12" >
+						<span class="txt1">
+							Forgot
+						</span>
+						<button class="txt2" onclick="location.href='../user/FindPass.do'">
+							Username / Password?
+						</button>
+					</div>
+
+					<div class="text-center p-t-136">
+						<a class="txt2" href="/user/SignUp.do">
+							Create your Account
+							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true" onclick="location.href='../user/SignUp.do'"></i>
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	
+
+	
+<!--===============================================================================================-->	
+	<script src="../resourceLogin/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../resourceLogin/vendor/bootstrap/js/popper.js"></script>
+	<script src="../resourceLogin/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../resourceLogin/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../resourceLogin/vendor/tilt/tilt.jquery.min.js"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="../resourceLogin/js/main.js"></script>
+	<script>
+		function page_null() {
+			var user_id = docuemnt.getElementById('user_id').value;
+			var user_pwd = docuemnt.getElementById('user_pwd').value;
+			if( user_id == "" || user_id == null){
+				var PageNull = alert(" 아이디를 입력해주세요");
+			}
+			else if( user_pwd == "" || user_pwd == null ){
+				var PageNull = alert(" 비밀번호를 입력해주세요");
+			}			
+		}
+	</script>
 </body>
 </html>
