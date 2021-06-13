@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="chg_dt"/>
+		<item key="selection" value="../resource"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="return &quot;../user/MyPage&quot;;"/>
-			<item value="\"/>
-			<item value="chg_dt"/>
-			<item value="int"/>
-			<item value="delIm"/>
-			<item value="del"/>
-			<item value="camera"/>
-			<item value="file"/>
-			<item value=".sprite_camera_icon"/>
-			<item value="logi"/>
-			<item value="uDTO"/>
-			<item value="getMy"/>
-			<item value="my"/>
-			<item value="getUserList"/>
-			<item value="getUserLisrt"/>
+			<item value="../resource"/>
+			<item value="resource/Image"/>
+			<item value="../resource/Image"/>
+			<item value="../resource/Image/"/>
+			<item value="../resource/Imag"/>
+			<item value="image/imageTestLi"/>
+			<item value="image/imageTest"/>
+			<item value="marker"/>
+			<item value="// 길찾기 API 호출"/>
+			<item value="searchPubTransPathAJAX"/>
+			<item value="XMLHttpRequest"/>
+			<item value="resultJsonData"/>
+			<item value="drawkakaoPolyLine"/>
+			<item value="drawkakaoMarker"/>
+			<item value="callMap"/>
 		</list>
 		<list key="replacehistory">
 			<item value="select"/>
@@ -43,8 +43,8 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="735"/>
-		<item key="DIALOG_Y_ORIGIN" value="348"/>
+		<item key="DIALOG_X_ORIGIN" value="673"/>
+		<item key="DIALOG_Y_ORIGIN" value="322"/>
 		<item key="DIALOG_WIDTH" value="294"/>
 		<item key="DIALOG_HEIGHT" value="408"/>
 		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
