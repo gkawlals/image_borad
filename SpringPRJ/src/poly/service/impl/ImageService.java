@@ -82,4 +82,11 @@ public class ImageService implements IImageService {
 	}
 
 
+	@Override
+	public int getCircleImage(ImageDTO pDTO) {
+		// TODO Auto-generated method stub
+		return imageMapper.getCircleImage(pDTO);
+	}
+
+
 }

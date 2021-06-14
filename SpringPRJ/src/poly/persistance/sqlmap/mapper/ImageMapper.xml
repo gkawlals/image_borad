@@ -119,4 +119,32 @@
 		
 	</select>
 	
+		<insert id="getCircleImage" parameterType="ImageDTO">
+	<!-- 게시판 삽입 -->
+		INSERT INTO circle.IMAGE_TABLE ( 
+		
+			SAVE_FILE_NAME,
+			SAVE_FILE_PATH,
+			ORG_FILE_NAME,
+			SAVE_FOLDER_NAME,
+			ONE_TITLE,
+			EXT,
+			CIRCLE_CNT,
+			REG_ID,
+			CHG_ID
+			
+		 )  VALUES (
+		 
+			#{save_file_name},
+			#{save_file_path},
+			#{org_file_name},
+			#{save_folder_name},
+			#{one_title},
+			#{ext},
+			#{reg_id},
+			#{reg_id}
+		)
+
+	</insert>
+	
 </mapper>

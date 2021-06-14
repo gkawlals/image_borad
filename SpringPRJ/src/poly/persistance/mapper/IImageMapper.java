@@ -25,4 +25,6 @@ public interface IImageMapper {
 
 	ImageDTO imageDetail(ImageDTO pDTO);// 이미지 선택하면 창띄우기
 
+	int getCircleImage(ImageDTO pDTO);// 챌린지 성공 인증 이미지 올리기
+
 }

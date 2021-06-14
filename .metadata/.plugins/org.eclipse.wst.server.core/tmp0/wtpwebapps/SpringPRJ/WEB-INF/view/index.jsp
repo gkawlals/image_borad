@@ -1,81 +1,112 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>여러개 마커 제어하기</title>
-    
+	<title>Login V1</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="../resourceLogin/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../resourceLogin/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../resourceLogin/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../resourceLogin/vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="../resourceLogin/vendor/css-hamburgers/hamburgers.min.css">
+<!--============================================== ===============================================-->
+	<link rel="stylesheet" type="text/css" href="../resourceLogin/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../resourceLogin/css/util.css">
+	<link rel="stylesheet" type="text/css" href="../resourceLogin/css/main.css">
+<!--===============================================================================================-->
 </head>
 <body>
-<div id="map" style="width:100%;height:350px;"></div>
-<p>
-    <button onclick="hideMarkers()">마커 감추기</button>
-    <button onclick="showMarkers()">마커 보이기</button>
-    <button onclick="remove()">마커 지우기</button>
-</p> 
-<em>클릭한 위치에 마커가 표시됩니다!</em>
-    
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=78d567748187bb729022787116572022"></script>
-<script>
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
-		    mapOption = { 
-		        center: new kakao.maps.LatLng(37.55003810100931, 126.84223535396687), // 지도의 중심좌표
-		        level: 3, // 지도의 확대 레벨
-		        mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
-		    };
-		
-		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-		
-		// 지도를 클릭했을때 클릭한 위치에 마커를 추가하도록 지도에 클릭이벤트를 등록합니다
-		kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
-		    // 클릭한 위치에 마커를 표시합니다 
-		    addMarker(mouseEvent.latLng);             
-		});
-		
-		// 지도에 표시된 마커 객체를 가지고 있을 배열입니다
-		var markers = [];
-		
-		// 마커 하나를 지도위에 표시합니다 
-		addMarker(new kakao.maps.LatLng(37.55003810100931, 126.84223535396687));
-		
-		// 마커를 생성하고 지도위에 표시하는 함수입니다
-		function addMarker(position) {
-		    
-		    // 마커를 생성합니다
-		    var marker = new kakao.maps.Marker({
-		        position: position
-		    });
-		
-		    // 마커가 지도 위에 표시되도록 설정합니다
-		    marker.setMap(map);
-		    
-		    // 생성된 마커를 배열에 추가합니다
-		    markers.push(marker);
-		    
-			
-			function remove(){
-				marker.setMap(null);
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="../resourceLogin/images/img-01.png" alt="IMG" onclick="location.href='loginPage.do'" method="POST">
+				</div>
+
+				<form class="login100-form validate-form" action="../user/getUserLoginCheck.do" >
+					<span class="login100-form-title">
+						Circle 
+					</span>
+										<!-- data-validate = 공백일때 경고문구를 보여주기  -->
+					<div class="wrap-input100 validate-input" data-validate = "Valid ID is required">
+						<input class="input100" type="text" name="user_id" placeholder="ID" id="user_id">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<input class="input100" type="password" name="user_pwd" placeholder="password" id="user_pwd">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+					
+					<div class="container-login100-form-btn validate-input">
+						<input type="submit" class="login100-form-btn" value="Login"/>
+					</div>
+
+					<div class="text-center p-t-12" >
+						<span class="txt1">
+							Forgot
+						</span>
+						<button class="txt2" onclick="location.href='../user/FindPass.do'">
+							Username / Password?
+						</button>
+					</div>
+
+					<div class="text-center p-t-136">
+						<a class="txt2" href="/user/SignUp.do">
+							Create your Account
+							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true" onclick="location.href='../user/SignUp.do'"></i>
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	
+
+	
+<!--===============================================================================================-->	
+	<script src="../resourceLogin/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../resourceLogin/vendor/bootstrap/js/popper.js"></script>
+	<script src="../resourceLogin/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../resourceLogin/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../resourceLogin/vendor/tilt/tilt.jquery.min.js"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="../resourceLogin/js/main.js"></script>
+	<script>
+		function page_null() {
+			var user_id = docuemnt.getElementById('user_id').value;
+			var user_pwd = docuemnt.getElementById('user_pwd').value;
+			if( user_id == "" || user_id == null){
+				var PageNull = alert(" 아이디를 입력해주세요");
 			}
+			else if( user_pwd == "" || user_pwd == null ){
+				var PageNull = alert(" 비밀번호를 입력해주세요");
+			}			
 		}
-		
-		
-		// 배열에 추가된 마커들을 지도에 표시하거나 삭제하는 함수입니다
-		function setMarkers(map) {
-		    for (var i = 0; i < markers.length; i++) {
-		        markers[i].setMap(map);
-		    }            
-		}
-		
-		// "마커 보이기" 버튼을 클릭하면 호출되어 배열에 추가된 마커를 지도에 표시하는 함수입니다
-		function showMarkers() {
-		    setMarkers(map)    
-		}
-		
-		// "마커 감추기" 버튼을 클릭하면 호출되어 배열에 추가된 마커를 지도에서 삭제하는 함수입니다
-		function hideMarkers() {
-			setMarkers(null);    
-		}
-</script>
+	</script>
 </body>
 </html>

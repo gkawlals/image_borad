@@ -32,8 +32,8 @@
             </div>
             <div class="right_icons">
             <form enctype="multipart/form-data" action="/image/imageUpload.do" method="post">
-               <input type="file" name="fileUpload" style="display:none" onchange="fileSelect()">
                 <div class="sprite_camera_icon" onclick='document.all.fileUpload.click();' ></div>
+                <input type="file" name="fileUpload" style="display:none" onchange="fileSelect()">
                 <input type="text" id="one_title" name="one_title" style="display:none"/>
                	<input type="submit" name="fileInsert" style="display:none"/>
            	 </form> <!-- prompt를 이용해 제목 값을 불러오기 -->
@@ -41,18 +41,31 @@
 	           		
 	           		function fileSelect(){
 	           			
-	           			var ppt = prompt("15자 이내의 간단한 제목을 정해주세요!","");
-	           			
-	           			if (ppt.length > 0){
+	           			if(!user_id){
 	           				
-	           				$('input[name=one_title]').attr('value', ppt);
+	           				alert("로그인을 하지않으면 실행 할 수 없습니다.");
 	           				
-	           				console.log(one_title.value);
+	           			}else{
 	           				
-		           			document.all.fileInsert.click();
-	           			}else {
-	           				alert(" 제목을 지어 주셔야 합니다 !");
+		           			var ppt = prompt("15자 이내의 간단한 제목을 정해주세요!","");
+		           			
+		           			if (!ppt){
+		           				
+		           				alert(" 제목을 지어 주셔야 합니다 !");
+		           				
+		           				console.log(" 제목을 지어라 ");
+		           				
+		           			}else {
+		           				
+		           				$('input[name=one_title]').attr('value', ppt);
+		           				
+		           				console.log(one_title.value);
+		           				
+			           			document.all.fileInsert.click();
+		           				
+		           			}
 	           			}
+	           			
 	           		}
 	           		
 	           </script>

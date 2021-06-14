@@ -16,7 +16,6 @@
     <meta property="og:title" content="instagram">
     <meta property="og:description" content="instagram clone">
     <meta property="og:image" content="http://kindtiger.dothome.co.kr/insta/imgs/instagram.jpeg">
-    .
     <!-- Twitter Meta Tags / 트위터 -->
     <meta name="twitter:card" content="instagram clone">
     <meta name="twitter:title" content="instagram">
@@ -49,40 +48,75 @@
 			<br><br>
 			거리<input type="text" id="Km"/> Km <input type="button" value="검색" name="Kmsearch" id="btnTest" onclick="searchKm()"/>
 			<input type="button" name="Rpoint" id="Rpoint" value="랜덤좌표 만들기" onclick="Rpoint()">
-			<input type="button" name="Load" id="LoadTest" value="왕복거리 검색하기" onclick="Load()"/>
-
+			<input type="button" name="Rpoint" id="Rpoint" value="직선 만들기" onclick="lineMake()">
+			<br><br><br>
+			 <form enctype="multipart/form-data" action="map/circleUpload.do" method="post">
+				<input type="button" onclick="circleInsert()" id="circleBtn" value="test" name="circleBtn" />
+				<input type="file" name="fileUpload" style="display:none" onchange="" >
+				<input type="text" id="one_title" name="one_title" style="display:none">
+				<input type="submit" name="fileInsert" style="display:none"/>
+			</form>
+			<script> 
+				function circleInsert() {
+	           			
+	           			if(!user_id){
+	           				
+	           				alert("로그인을 하지않으면 실행 할 수 없습니다.");
+	           				
+	           			}else{
+	           				
+		           			var ppt = prompt("15자 이내의 간단한 제목을 정해주세요!","");
+		           			
+		           			if (!ppt){
+		           				
+		           				alert(" 제목을 지어 주셔야 합니다 !");
+		           				
+		           				console.log(" 제목을 지어라 ");
+		           				
+		           			}else {
+		           				
+		           				$('input[name=one_title]').attr('value', ppt);
+		           				
+		           				console.log(one_title.value);
+		           				
+			           			document.all.fileInsert.click();
+		           				
+		           			}
+		           		}
+					}
+			</script>
+			<br><br>
 			<div id="map" style="width:100%;height:500px;"></div>
 		</div>
 	</div>
 </section>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=78d567748187bb729022787116572022"></script>
 	<script>
-		
+		// WEB에서 Test하는 kakao map key = 78d567748187bb729022787116572022
+		// SERBER에 올리는 kakao map key = e9c780c934dfa44e8d6dcce448c147e8
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = {
 	        center: new kakao.maps.LatLng(37.55003810100931, 126.84223535396687), // 지도의 중심좌표 현재위치를 받아와서 넣어주면 될듯
-	        level: 5, // 지도의 확대 레벨
+	        level: 6, // 지도의 확대 레벨
 	        mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
 	    }; 
 	
 		// 지도를 생성한다 
 		var map = new kakao.maps.Map(mapContainer, mapOption); 
 		
-		
-		var lat = 37.55003810100931; // 위도을 받아올 변수 
-		var lon = 126.84223535396687; // 경도를 받아올 변수
+	
+		var lat ; // 위도을 받아올 변수 
+		var lon ; // 경도를 받아올 변수
 		
 		var marker; // 현재위치를 표시해주는 마커
 		
-		var marker1; // 검색한 키로수 내의 랜덤 표시되는 랜덤 마커
-		
-		var marker2 = new kakao.maps.Marker({
- 		    position: new kakao.maps.LatLng(37.55003810100931, 126.84223535396687),// 마커의 좌표
- 		    map : map
- 		});
+		var Rmarker; // 검색한 키로수 내의 랜덤 표시되는 랜덤 마커
 		
 		// 현재위치를 가져오는데 시간이 오래걸린다. ajax로 가져오게 되면 빨라질까? 
 		// 실험해 보자
+		
+		var arMarker = [];
+		
 		function setCenter(){
 			if (navigator.geolocation) {
 		    
@@ -117,6 +151,7 @@
 			
 		}
 		
+		// 반경 그려주기
 		var arraycircle = [];
 		
 		function searchKm(){
@@ -126,7 +161,10 @@
 			console.log("2 거리는? : "  + Km);
     		// 지도에 원을 표시한다 거리를 검색 기본적으로 3Km로 해야함 
     		
+    		delmaker();
+    		
     		delcircle();
+    		
 			var	circle = new kakao.maps.Circle({
 				map: map, // 원을 표시할 지도 객체
 				center : new kakao.maps.LatLng(lat, lon), // 지도의 중심 좌표
@@ -142,7 +180,7 @@
 			arraycircle.push(circle); 
 		}
 		
-		// 배열에 추가된 마커들을 지도에 표시하거나 삭제하는 함수입니다
+		// 배열에 추가된 반경들을 삭제하는 함수입니다
 		function delcircle(map) {
 		    for (var i = 0; i < arraycircle.length; i++) {
 		    	arraycircle[i].setMap(null);
@@ -150,10 +188,13 @@
 		}
 		
 		
-		
-		var Rlat ;
+		// 랜덤 마커 찍어주기 
+		var Rlat;
 		var Rlon;
-		var Rmarker = [];
+		var arRmarker = [];
+		
+		// 라인 그려주는 변수
+		var arrayLine = [];
 		
 		function Rpoint(){
 			
@@ -170,126 +211,66 @@
 			Rlat = (Math.random() * ((lat + RlatTest) - (lat - RlatTest)) + ( lat - RlatTest));
 			Rlon = (Math.random() * ((lon + RlonTest) - (lon - RlonTest)) + ( lon - RlonTest));
 			
+			// 랜덤마커 생성을 다시 클릭했을때 있던 라인 지우기
+			delline();
+			// 랜덤가 계속 생성되는거 막기
 			delmaker();
 			
 			// 랜덤범위안에 마커를 찍어주기
-			 marker1 = new kakao.maps.Marker({
+			 Rmarker = new kakao.maps.Marker({
 	    		    position: new kakao.maps.LatLng(Rlat, Rlon), // 마커의 좌표
 	    		    map : map
 	    		});
 			 
-			 Rmarker.push(marker1);
-			//markerMake();
+			arRmarker.push(Rmarker);
 			
-			console.log(Rlat, Rlon);
+			/* console.log(Rlat, Rlon); */
 			
 		}
 		
-		// 배열에 추가된 마커들을 지도에 표시하거나 삭제하는 함수입니다
+		function lineMake(){
+			
+				console.log("라인을 그리기 위한 좌표 받아오기");
+/* 				console.log(lon, lat); //  현재위치 좌표 
+				console.log(Rlon, Rlat);// 랜덤 좌표 
+				 */
+				delline();
+				
+		        // 선을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 선을 표시합니다
+		        var linePath = [
+		            new kakao.maps.LatLng(lat, lon),
+		            new kakao.maps.LatLng(Rlat, Rlon) 
+		        ];
+				
+		        // 지도에 표시할 선을 생성합니다
+		        var polyline = new kakao.maps.Polyline({
+		            path: linePath, // 선을 구성하는 좌표배열 입니다
+		            map : map, // map의 표시하는 map 객체
+		            strokeWeight: 5, // 선의 두께 입니다
+		            strokeColor: '#FFAE00', // 선의 색깔입니다
+		            strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+		            strokeStyle: 'solid' // 선의 스타일입니다
+		        });
+		        
+		        arrayLine.push(polyline);
+		        
+		}
+		
+		// 배열에 추가된 마커들을 삭제하는 함수입니다
 		function delmaker(map) {
-		    for (var i = 0; i < Rmarker.length; i++) {
-		    	Rmarker[i].setMap(null);
+		    for (var i = 0; i < arRmarker.length; i++) {
+		    	arRmarker[i].setMap(null);
 		    }            
 		}
 		
-		/* function markerMake(){
-			 marker1 = new kakao.maps.Marker({
-    		    position: new kakao.maps.LatLng(Rlat, Rlon), // 마커의 좌표
-    		    map : map
-    		});
-    		
-		} */
-		
-		 // 왕복 거리 나타내는 api를 불러오는 function 
-		function searchPubTransPathAJAX() {
-			var xhr = new XMLHttpRequest();
-			//ODsay apiKey 입력
-			var url = "https://api.odsay.com/v1/api/searchPubTransPath?SX="+lat+"&SY="+lon+"&EX="+Rlat+"&EY="+Rlon+"&apiKey=93pKzmOErRnE%2B40DxD%2FwkK99bvgQbAQlvJPpsrPvvVw";
-			xhr.open("GET", url, true);
-			xhr.send();
-			xhr.onreadystatechange = function() {
-				if (xhr.readyState == 4 && xhr.status == 200) {
-				console.log( JSON.parse(xhr.responseText) ); // <- xhr.responseText 로 결과를 가져올 수 있음
-				//노선그래픽 데이터 호출
-				callMapObjApiAJAX((JSON.parse(xhr.responseText))['result']['path'][0].info.mapObj);
-				}
-			}
+		// 배열에 추가된 직선들을 삭제하는 함수입니다
+		function delline(map){
+		    for (var i = 0; i < arrayLine.length; i++) {
+		    	arrayLine[i].setMap(null);
+		    }  
 		}
-		 
-		function callMapObjApiAJAX(mabObj){
-			var xhr = new XMLHttpRequest();
-			//ODsay apiKey 입력
-			var url = "https://api.odsay.com/v1/api/loadLane?mapObject=0:0@"+mabObj+"&apiKey=93pKzmOErRnE%2B40DxD%2FwkK99bvgQbAQlvJPpsrPvvVw";
-			xhr.open("GET", url, true);
-			xhr.send();
-			xhr.onreadystatechange = function() {
-				if (xhr.readyState == 4 && xhr.status == 200) {
-					var resultJsonData = JSON.parse(xhr.responseText);
-					//drawkakaoMarker(lat,lon);					// 출발지 마커 표시
-					maker;
-					//drawkakaoMarker(Rlat,Rlon);					// 도착지 마커 표시
-					maker1;
-					drawkakaoPolyLine(drawkakaoPolyLine);		// 노선그래픽데이터 지도위 표시
-					// boundary 데이터가 있을경우, 해당 boundary로 지도이동
-					if(resultJsonData.result.boundary){
-							var boundary = new kakao.maps.LatLngBounds(
-					                new kakao.maps.LatLng(resultJsonData.result.boundary.top, resultJsonData.result.boundary.left),
-					                new kakao.maps.LatLng(resultJsonData.result.boundary.bottom, resultJsonData.result.boundary.right)
-					                );
-							map.panToBounds(boundary);
-					}
-				}
-			}
-		}
-		
-    	
-		function Load() {
-			
-			function drawkakaoPolyLine(data){
-				var lineArray;
-				
-				for(var i = 0 ; i < data.result.lane.length; i++){
-					for(var j=0 ; j <data.result.lane[i].section.length; j++){
-						lineArray = null;
-						lineArray = new Array();
-						for(var k=0 ; k < data.result.lane[i].section[j].graphPos.length; k++){
-							lineArray.push(new kakao.maps.LatLng(data.result.lane[i].section[j].graphPos[k].y, data.result.lane[i].section[j].graphPos[k].x));
-						}
-						
-					//지하철결과의 경우 노선에 따른 라인색상 지정하는 부분 (1,2호선의 경우만 예로 들음)
-						if(data.result.lane[i].type == 1){
-							var polyline = new kakao.maps.Polyline({
-							    map: map,
-							    path: lineArray,
-							    strokeWeight: 3,
-							    strokeColor: '#003499'
-							});
-						}else if(data.result.lane[i].type == 2){
-							var polyline = new kakao.maps.Polyline({
-							    map: map,
-							    path: lineArray,
-							    strokeWeight: 3,
-							    strokeColor: '#37b42d'
-							});
-						}else{
-							var polyline = new kakao.maps.Polyline({
-							    map: map,
-							    path: lineArray,
-							    strokeWeight: 3
-							});
-						}
-					}
-				}
-			}
-			
-			//왕복 거리 찍어주기 api Odsay사용 길찾기 API 호출
-			
-			searchPubTransPathAJAX();
-			
-			// 노선그래픽 데이터를 이용하여 지도위 폴리라인 그려주는 함수
-			
-			callMapObjApiAJAX(map);
-		}
+
+	
 	
 </script>
 </body>

@@ -33,7 +33,7 @@ public class ImageController {
 	
 	private Logger log = Logger.getLogger(this.getClass());
 	
-	final private String FILE_UPLOAD_SAVE_PATH = "/Users/hamjimin/Desktop/data/image/"; // localhost : Users/hamjimin/Desktop/data/image
+	final private String FILE_UPLOAD_SAVE_PATH = "/data/image/"; // localhost : Users/hamjimin/Desktop/data/image
 	
 	// image service import? um....
 	@Resource(name = "ImageService")
@@ -41,6 +41,7 @@ public class ImageController {
 	
 	@Resource(name = "UserService")
 	private IUserService userService;
+	
 	// insert image page open
 	@RequestMapping(value="image/imagetest")
 	public String imagetest(HttpSession session) {

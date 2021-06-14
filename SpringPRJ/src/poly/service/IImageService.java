@@ -24,4 +24,6 @@ public interface IImageService {
 
 	ImageDTO imageDetail(ImageDTO pDTO);
 
+	int getCircleImage(ImageDTO pDTO);
+
 }
