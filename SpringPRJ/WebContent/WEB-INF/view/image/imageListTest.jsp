@@ -149,6 +149,7 @@
 </section>
 </body>
 <script>
+		
 		function search() {
 			//alert("test");
 			var img_no = $('#img_no').val();
@@ -209,6 +210,90 @@
 					}
 						// 게시판의 대한 정보 들고오기 
 					$("#contents").html(resHTML); // 설정된 div, span, selection 등의 contents id값 밑으로 html을 생성한다. 
+				}
+			}
+		});
+	}
+		$(function(){
+			var index= 0;
+			$(window).scroll(function(){
+				var $window = $(this); 
+				var scrollTop = $window.scrollTop();
+				 //현재문서의 높이를 구함.
+				var documentHeight  = $(document).height();
+				 //세로 스크롤위치 max값과 창의 높이를 더하면 현재문서의 높이를 구할수있음.
+				var scrollHeight = $(window).scrollTop()+$(window).height(); 
+				var windowHeight = $(document).height();
+				 
+				if( scrollTop + windowHeight +1>= documentHeight){
+					index ++; 
+					setTimeout(scroll,200);
+					scroll();
+				}
+			})
+		});
+		
+		function scroll() {
+			//alert("test");
+			var img_no = $('#img_no').val();
+			//alert("제목 : " + post_title);
+			if ($('#img_no').val() == "") {
+				$('#img_no').focus();
+				return false;
+			}
+		
+			console.log("img_no : " + img_no);
+	
+			$.ajax({
+				url : '/image/scrollList.do', // 내가 설정한 controller의 url로 이동함 
+				type : 'post',
+				data : {
+					"img_no" : img_no
+				},
+				success : function(data) {
+					console.log("test");
+					console.log(data);
+					
+					var resHTML = ""; // 게시판 정보 들고오기
+					resHTML += '<div class="board_number" name="img_no" id="img_no" style="display:none">'+ data.getImage_no() + '</div>';
+					resHTML += '<div class="nick_name m_text" name="user_id">'+ data.getReg_id() + '</div>';
+					resHTML += '<div class="country s_text" name="LastEdit_DT">'+ data.getChg_dt() + '</div>';
+					resHTML += '<div><img src="../resourceImg/Image/' + data.getSave_folder_name() + '/' + data.getSave_file_name() +'" alt="visual01"></div>';
+					resHTML += '<div class="likes m_text"> 좋아요 <span id="like-count-39">' + userInfo.getLike_cnt() +'</span> <span id="bookmark-count-39"></span> 개 </div>';
+					resHTML += '<div class="comment_container"><div class="comment" id="comment-list-ajax-post37"><div class="comment-detail"><div class="nick_name m_text" name="user_id" ></div><div><h1>' +data.getOne_title()+'</h1></div></div></div></div>';
+		
+					if (data.length == 0) {
+		
+						resHTML += '<div class="board_number" name="img_no" id="img_no" style="display:none"></div>';
+						resHTML += '<div class="nick_name m_text" name="user_id"></div>';
+						resHTML += '<div class="country s_text" name="LastEdit_DT"></div>';
+						resHTML += '<div><img src="../resourceImg/imgs/thumb.jepg" alt="visual01"></div>';
+						resHTML += '<div class="likes m_text"> 좋아요 <span id="like-count-39"></span> <span id="bookmark-count-39"></span> 개 </div>';
+						resHTML += '<div class="comment_container"><div class="comment" id="comment-list-ajax-post37"><div class="comment-detail"><div class="nick_name m_text" name="user_id" ></div><div><h1></h1></div></div></div></div>';
+						userHTML = '<div style="display:none" name="user_no"></div>';
+						userHTML = '<div class="thumb_img"> <img src="../resourceImg/imgs/thumb.jpeg"/></div>';
+						userHTML = '</div> </div> </div>';
+			
+		
+					} else {
+		
+						for (var i = 0; i < data.length; i++) {
+							
+							resHTML += '<div class="board_number" name="img_no" id="img_no" style="display:none">'+ data.getImage_no() + '</div>';
+							resHTML += '<div class="nick_name m_text" name="user_id">'+ data.getReg_id() + '</div>';
+							resHTML += '<div class="country s_text" name="LastEdit_DT">'+ data.getChg_dt() + '</div>';
+							resHTML += '<div><img src="../resourceImg/Image/' + data.getSave_folder_name() + '/' + data.getSave_file_name() +'" alt="visual01"></div>';
+							resHTML += '<div class="likes m_text"> 좋아요 <span id="like-count-39">' + userInfo.getLike_cnt() +'</span> <span id="bookmark-count-39"></span> 개 </div>';
+							resHTML += '<div class="comment_container"><div class="comment" id="comment-list-ajax-post37"><div class="comment-detail"><div class="nick_name m_text" name="user_id" ></div><div><h1>' +data.getOne_title()+'</h1></div></div></div></div>';
+							userHTML = '<div class="scroll_inner"><div class="user">';
+							userHTML = '<div class="thumb_img"> <img src="../resourceImg/imgs/thumb.jpeg"/></div>';
+		 					userHTML = data.getReg_id()+'</div> </div> </div>';
+				
+							
+					}
+						// 게시판의 대한 정보 들고오기 
+					$("#contents").append(resHTML); // 설정된 div, span, selection 등의 contents id값 밑으로 html을 생성한다. 
+					$(resHTML).appendTo("#contents");
 				}
 			}
 		});

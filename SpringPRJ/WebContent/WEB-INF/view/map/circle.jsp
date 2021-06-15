@@ -50,41 +50,69 @@
 			<input type="button" name="Rpoint" id="Rpoint" value="랜덤좌표 만들기" onclick="Rpoint()">
 			<input type="button" name="Rpoint" id="Rpoint" value="직선 만들기" onclick="lineMake()">
 			<br><br><br>
-			 <form enctype="multipart/form-data" action="map/circleUpload.do" method="post">
-				<input type="button" onclick="circleInsert()" id="circleBtn" value="test" name="circleBtn" />
-				<input type="file" name="fileUpload" style="display:none" onchange="" >
-				<input type="text" id="one_title" name="one_title" style="display:none">
-				<input type="submit" name="fileInsert" style="display:none"/>
+			 <form enctype="multipart/form-data" action="/image/circleUpload.do" method="post">
+				
+				<input type="button" onclick='document.all.circleUpload.click();' id="circleBtn" value="test" name="circleBtn" />
+				
+				<input type="file" name="circleUpload" style="display:none" onchange="circleIn()" >
+				
+				<input type="text" id="cir_title" name="cir_title" style="display:none"/>
+				
+				<input type="text" id="location" name="location" style="display:none"/>
+				
+				<input type="submit" name="circleInsert" id="circleInstert" style="display:none"/>
+				
 			</form>
-			<script> 
-				function circleInsert() {
-	           			
-	           			if(!user_id){
+			<!-- 시연을 위해 좌표를 같게 만드는 버튼 -->
+			<input type="button" onclick="Geo()" id="geo" value="geotest" name="geo">
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script> 
+		var location;
+		// 좌표가 같을 때 실행할 수 있는 사진 저장 
+			function circleIn(){
+					console.log(user_id);
+					if (Rlat == lat && Rlon == lon){
+						
+	           	 	if(!user_id){
 	           				
 	           				alert("로그인을 하지않으면 실행 할 수 없습니다.");
 	           				
-	           			}else{
+	           			}else{ 
 	           				
-		           			var ppt = prompt("15자 이내의 간단한 제목을 정해주세요!","");
+		           			var ppt2 = prompt("15자 이내의 간단한 제목을 정해주세요!","");
 		           			
-		           			if (!ppt){
+		           			if (!ppt2){
 		           				
 		           				alert(" 제목을 지어 주셔야 합니다 !");
 		           				
 		           				console.log(" 제목을 지어라 ");
 		           				
+		           			}else if( ppt2.length > 15){
+		           				
+		           				alert(" 제목의 길이가 너무 길어 저장에 실패 했습니다.");
+		           				
 		           			}else {
 		           				
-		           				$('input[name=one_title]').attr('value', ppt);
+		           				$('input[name=cir_title]').attr('value', ppt2);
 		           				
-		           				console.log(one_title.value);
+		           				$('input[name=location]').attr('value', Rlat + '/' + Rlon);
 		           				
-			           			document.all.fileInsert.click();
+		           				console.log(location);
+		           				console.log(cir_title.value);
+		           				
+			           			document.all.circleInsert.click();
 		           				
 		           			}
 		           		}
+	           		
+					}else {
+						
+						alert(" 좌표가 달라 실행할 수 없습니다.");
 					}
-			</script>
+           			
+				}
+		
+		</script>
 			<br><br>
 			<div id="map" style="width:100%;height:500px;"></div>
 		</div>
@@ -269,7 +297,17 @@
 		    	arrayLine[i].setMap(null);
 		    }  
 		}
-
+		
+		//  test를 위한 좌표 조작 
+		function Geo(){
+			
+			Rlat = lat; 
+			Rlon = lon;
+			console.log("그려주기");
+			console.log(Rlat, Rlon);
+			console.log(lat, lon);
+			
+		}
 	
 	
 </script>

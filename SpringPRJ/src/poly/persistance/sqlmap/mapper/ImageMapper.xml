@@ -129,7 +129,7 @@
 			SAVE_FOLDER_NAME,
 			ONE_TITLE,
 			EXT,
-			CIRCLE_CNT,
+			CIRCLE,
 			REG_ID,
 			CHG_ID
 			
@@ -141,6 +141,7 @@
 			#{save_folder_name},
 			#{one_title},
 			#{ext},
+			1,
 			#{reg_id},
 			#{reg_id}
 		)

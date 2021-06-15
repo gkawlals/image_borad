@@ -25,5 +25,7 @@ public interface IImageService {
 	ImageDTO imageDetail(ImageDTO pDTO);
 
 	int getCircleImage(ImageDTO pDTO);
+	
+	int insertMongo (String location, String user_id ) throws Exception; // 좌표 몽고로 넣기
 
 }

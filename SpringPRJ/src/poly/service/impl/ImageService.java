@@ -8,9 +8,9 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import poly.dto.ImageDTO;
-import poly.dto.UserDTO;
 import poly.persistance.mapper.IImageMapper;
 import poly.persistance.mapper.IUserMapper;
+import poly.persistance.mongo.IMongoTestMapper;
 import poly.service.IImageService;
 
 
@@ -18,6 +18,16 @@ import poly.service.IImageService;
 public class ImageService implements IImageService {
 	
 	private Logger log = Logger.getLogger(this.getClass());
+	
+	@Resource(name="MongoTestMapper")
+	private IMongoTestMapper mongoTestMapper;
+	
+	@Override
+	public int insertMongo(String location, String user_id) throws Exception {
+		// TODO Auto-generated method stub
+		return mongoTestMapper.insertMongo(location, "locationCol" ,user_id );
+	}
+	
 	
 	@Resource(name="ImageMapper")
 	private IImageMapper imageMapper;

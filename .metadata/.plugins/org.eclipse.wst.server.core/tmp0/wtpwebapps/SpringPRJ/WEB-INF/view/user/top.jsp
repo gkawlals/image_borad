@@ -32,18 +32,25 @@
             </div>
             <div class="right_icons">
             <form enctype="multipart/form-data" action="/image/imageUpload.do" method="post">
+                
                 <div class="sprite_camera_icon" onclick='document.all.fileUpload.click();' ></div>
+                
                 <input type="file" name="fileUpload" style="display:none" onchange="fileSelect()">
+                
                 <input type="text" id="one_title" name="one_title" style="display:none"/>
+               	
                	<input type="submit" name="fileInsert" style="display:none"/>
+           	 
            	 </form> <!-- prompt를 이용해 제목 값을 불러오기 -->
            	    <script>
-	           		
+           	 		var user_id = '<%=user_id%>';
+           	 		// 카메라 이미지 클릭시 저장 실행
 	           		function fileSelect(){
 	           			
 	           			if(!user_id){
 	           				
 	           				alert("로그인을 하지않으면 실행 할 수 없습니다.");
+	           				
 	           				
 	           			}else{
 	           				
@@ -55,15 +62,20 @@
 		           				
 		           				console.log(" 제목을 지어라 ");
 		           				
-		           			}else {
+		           			}else if( ppt.length > 15){
+		           				
+		           				alert(" 제목의 길이가 너무 길어 저장에 실패 했습니다.");
+		           				
+		           			} else {
 		           				
 		           				$('input[name=one_title]').attr('value', ppt);
 		           				
-		           				console.log(one_title.value);
+		           				//console.log(one_title.value);
 		           				
 			           			document.all.fileInsert.click();
 		           				
 		           			}
+	           				
 	           			}
 	           			
 	           		}
