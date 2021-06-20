@@ -26,7 +26,7 @@
     <meta itemprop="name" content="instagram">
     <meta itemprop="description" content="instagram clone">
     <meta itemprop="image" content="http://kindtiger.dothome.co.kr/insta/imgs/instagram.jpeg">
-
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
     <title>circle</title>
     <link rel="stylesheet" href="../resourceImg/css/reset.css">
@@ -65,14 +65,17 @@
 			</form>
 			<!-- 시연을 위해 좌표를 같게 만드는 버튼 -->
 			<input type="button" onclick="Geo()" id="geo" value="geotest" name="geo">
-		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script> 
 		var location;
 		// 좌표가 같을 때 실행할 수 있는 사진 저장 
 			function circleIn(){
+			
 					console.log(user_id);
+					
 					if (Rlat == lat && Rlon == lon){
 						
+						clearInterval(MakeLocation);
+
 	           	 	if(!user_id){
 	           				
 	           				alert("로그인을 하지않으면 실행 할 수 없습니다.");
@@ -111,14 +114,13 @@
 					}
            			
 				}
-		
 		</script>
 			<br><br>
 			<div id="map" style="width:100%;height:500px;"></div>
 		</div>
 	</div>
 </section>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=78d567748187bb729022787116572022"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e9c780c934dfa44e8d6dcce448c147e8"></script>
 	<script>
 		// WEB에서 Test하는 kakao map key = 78d567748187bb729022787116572022
 		// SERBER에 올리는 kakao map key = e9c780c934dfa44e8d6dcce448c147e8
@@ -128,6 +130,7 @@
 	        level: 6, // 지도의 확대 레벨
 	        mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
 	    }; 
+		
 	
 		// 지도를 생성한다 
 		var map = new kakao.maps.Map(mapContainer, mapOption); 
@@ -167,6 +170,9 @@
 					    // 지도 중심을 이동 시킵니다
 					    map.setCenter(moveLatLon);
 					    console.log(map.getCenter());
+					    
+					    arMarker.push(marker);
+					    
 			      });
 			    
 			} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
@@ -256,12 +262,22 @@
 			
 		}
 		
+		//  test를 위한 좌표 조작 
+		function Geo(){
+			
+			Rlat = lat; 
+			Rlon = lon;
+/* 			if(Rlat == lat && Rlon == lon){
+				clearInterval(MakeLocation);
+			} */
+			console.log("그려주기");
+			console.log(Rlat, Rlon);
+			console.log(lat, lon);
+			
+		}
+		
 		function lineMake(){
 			
-				console.log("라인을 그리기 위한 좌표 받아오기");
-/* 				console.log(lon, lat); //  현재위치 좌표 
-				console.log(Rlon, Rlat);// 랜덤 좌표 
-				 */
 				delline();
 				
 		        // 선을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 선을 표시합니다
@@ -279,9 +295,60 @@
 		            strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
 		            strokeStyle: 'solid' // 선의 스타일입니다
 		        });
-		        
+		        // 지우기 위해 기억해주는 배열에 추가하기 
 		        arrayLine.push(polyline);
+		        // 
 		        
+				if(Rlat == lat && Rlon == lon){
+					clearInterval(MakeLocation);
+				}else {
+					  MakeLocation;
+				}
+		}
+		
+		<!-- 여기서 계속 자기자리를 찍어주는 함수를 실행시켜 계속해서 자기자리를 찍으면서 직선과 마커를 찍었다 지웠다 하면 됨-->
+	       var MakeLocation = setInterval( function(){
+	    	   
+	        		if(Rlat > 0 && Rlon > 0){
+					
+	        			if (navigator.geolocation) {
+	    		    	
+			    		    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+			    		    navigator.geolocation.getCurrentPosition(function(position) {
+		    		    	
+		  		    			delarMarker();
+		  		    		
+			    		    	lat = position.coords.latitude; // 위도
+			    				lon = position.coords.longitude; // 경도
+			    				
+			    				console.log('5초마다 좌표 찍기');
+			    				console.log(lat, lon);
+		
+		 						// 지도에 마커를 생성하고 표시한다
+		 			    		 marker = new kakao.maps.Marker({
+		 			    		    position: new kakao.maps.LatLng(lat, lon),// 마커의 좌표
+		 			    		    map : map
+		 			    		});
+		 				
+		 			    		// 이동할 위도 경도 위치를 생성합니다 
+		 					    var moveLatLon = new kakao.maps.LatLng(lat, lon);
+		 					    
+		 					    // 지도 중심을 이동 시킵니다
+		 					    map.setCenter(moveLatLon);
+		 					    console.log(map.getCenter());
+		 					    lineMake();
+		 					    arMarker.push(marker);
+		    		    
+		    		    	});
+	       		 	}
+				}
+			}, 3000);
+		
+    	 // 배열에 추가된 마커들을 삭제하는 함수입니다
+		function delarMarker(map) {
+		    for (var i = 0; i < arMarker.length; i++) {
+		    	arMarker[i].setMap(null);
+		    }            
 		}
 		
 		// 배열에 추가된 마커들을 삭제하는 함수입니다
@@ -298,18 +365,6 @@
 		    }  
 		}
 		
-		//  test를 위한 좌표 조작 
-		function Geo(){
-			
-			Rlat = lat; 
-			Rlon = lon;
-			console.log("그려주기");
-			console.log(Rlat, Rlon);
-			console.log(lat, lon);
-			
-		}
-	
-	
 </script>
 </body>
 </html>

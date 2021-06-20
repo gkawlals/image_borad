@@ -22,6 +22,9 @@ public interface IUserMapper {
 	List<UserDTO> getUserList(); // Image Board에서 사용되는 userList
 
 	UserDTO userListAll(UserDTO uDTO);
+	
+	UserDTO getFindID(UserDTO pDTO) throws Exception;
 
+	UserDTO IDCheck(String user_id);
 
 }

@@ -65,7 +65,7 @@
 
                     <div class="img_section">
                         <div class="trans_inner">
-                            <div><img src="resourceImg/Image/<%=rDTO.getSave_folder_name() %>/<%=rDTO.getSave_file_name()%>" alt=""></div>
+                            <div><img src="../resourceImg/Image/<%=rDTO.getSave_folder_name() %>/<%=rDTO.getSave_file_name()%>" alt=""></div>
                         </div>
                     </div>
                     <div class="detail--right_box">

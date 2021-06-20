@@ -29,5 +29,8 @@ public interface IUserService {
 	void uploadImg(UserDTO vo);
 
 	UserDTO userListAll(UserDTO urDTO);
+	
+	UserDTO getFindID(UserDTO pDTO) throws Exception;
+
 
 }

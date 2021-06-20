@@ -50,9 +50,12 @@ public class UserService implements IUserService{
 			 rDTO = new UserDTO();
 		 }
 		 
-		if(CmmUtil.nvl(rDTO.getExists_yn()).equals("N")) {
+		if(CmmUtil.nvl(rDTO.getExists_yn()).equals("Y")) {
+			
 			log.info(" 중복된 아이디 입니다.");
+			
 			res = 2;
+			
 		}else { 
 			int success = userMapper.InsertUserInfo(pDTO);
 			
@@ -66,7 +69,7 @@ public class UserService implements IUserService{
 		}
 
 		 log.info(this.getClass().getName() + " .InsertUserInfo End !");
-		return res ; 
+		return userMapper.InsertUserInfo(pDTO);
 		
 		
 	 }
@@ -89,6 +92,12 @@ public class UserService implements IUserService{
 		 
 		 return res;
 	 }
+	 
+	@Override
+	public UserDTO getFindID(UserDTO pDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return userMapper.getFindID(pDTO);
+	}
 
 	@Override
 	public List<UserDTO> getUserList() {
@@ -105,7 +114,6 @@ public class UserService implements IUserService{
 	@Override
 	public void uploadImg(UserDTO vo) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -113,6 +121,5 @@ public class UserService implements IUserService{
 		// TODO Auto-generated method stub
 		return userMapper.userListAll(uDTO);
 	}
-
 
 }

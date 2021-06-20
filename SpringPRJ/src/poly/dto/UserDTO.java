@@ -15,7 +15,7 @@ public class UserDTO {
 	private String reg_dt; // 가입 일
 	private String chg_id; // 변경 아이디
 	private String chg_dt; // 변경일
-	private String exists_yn; // 중복확인 이메일 유무 
+	private String exists_yn; // 중복확인 아아디 유무 
 	private String user_profile_name; // 프로필 사진 이름
 	private String user_folder_name; // 프로필 사진 폴더 이름
 	private String user_profile_path; // 프로필 사진 전체경로

@@ -83,7 +83,7 @@
 <!--===============================================================================================-->	
 	<script src="../resourceLogin/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="../resourceLogin/vendor/bootstrap/js/popper.js"></script>
+	<script src="../resourceLogin/vendor/bootstrap/js/popper.js"></script>Ç
 	<script src="../resourceLogin/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 	<script src="../resourceLogin/vendor/select2/select2.min.js"></script>

@@ -13,12 +13,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import poly.dto.ImageDTO;
 import poly.dto.UserDTO;
 import poly.service.IImageService;
 import poly.service.IUserService;
 import poly.util.CmmUtil;
+import poly.util.EncryptUtil;
 
 @Controller
 public class UserController {
@@ -54,6 +56,7 @@ public class UserController {
 	public String FindPass() {
 		
 		log.info(this.getClass().getName() + " .user/FindPass start !");
+		
 		return "user/FindPass";
 	}
 	
@@ -120,7 +123,7 @@ public class UserController {
 		try {
 			
 			String user_id = CmmUtil.nvl(request.getParameter("user_id"));
-			String user_pwd = CmmUtil.nvl(request.getParameter("user_pwd"));
+			String user_pwd = CmmUtil.nvl(EncryptUtil.encHashSHA256(request.getParameter("user_pwd")));
 			
 			log.info("user_id : " + user_id);
 			log.info("user_pwd : " + user_pwd);
@@ -170,6 +173,7 @@ public class UserController {
 			log.info("로그인의 실패했습니다.");
 			log.info(e.toString());
 			e.printStackTrace();
+			return "user/loginPage";
 		
 		}finally {
 			
@@ -180,7 +184,7 @@ public class UserController {
 			
 		}
 		
-		return "image/imageListTest";
+		return "user/loginPage";
 	}
 	
 	@RequestMapping(value="user/InsertUserInfo",method=RequestMethod.POST)
@@ -207,7 +211,7 @@ public class UserController {
 			pDTO = new UserDTO();
 			
 			pDTO.setUser_id(user_id);
-			pDTO.setUser_pwd(user_pwd);
+			pDTO.setUser_pwd(EncryptUtil.encHashSHA256(user_pwd));
 			pDTO.setUser_name(user_name);
 			pDTO.setUser_mail(user_mail);
 		
@@ -237,5 +241,38 @@ public class UserController {
 		
 		return "user/loginPage";
 	}
-
+	
+	// 유저 아이디 찾기
+	@RequestMapping(value="user/getFindID")
+	public String getFindID (HttpServletRequest request, HttpServletResponse response,
+				ModelMap model, HttpSession session) throws Exception{
+		log.info(this.getClass().getName() + "Find ID Start");
+		
+		String user_name = CmmUtil.nvl(request.getParameter("user_name"));
+		String user_mail = CmmUtil.nvl(request.getParameter("user_mail"));
+		
+		log.info(" user_name : " + user_name);
+		log.info(" user_mail : " + user_mail);
+		
+		UserDTO pDTO = new UserDTO();
+		
+		pDTO.setUser_name(user_name);
+		pDTO.setUser_mail(user_mail);
+		
+		UserDTO rDTO = userService.getFindID(pDTO);
+		
+		if(rDTO == null) {
+			log.info("아이디 찾기 실패");
+			rDTO = new UserDTO();
+		}
+		
+		session.setAttribute("SS_USER_ID", rDTO.getUser_id());
+		
+		log.info("load for DTO to user_id : " + rDTO.getUser_id());
+		
+		log.info(this.getClass().getName() + "Find ID End");
+		
+		return "user/FindPass";
+	}
+	
 }

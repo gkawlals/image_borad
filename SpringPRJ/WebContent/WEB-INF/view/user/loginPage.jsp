@@ -38,7 +38,8 @@
 					</span>
 										<!-- data-validate = 공백일때 경고문구를 보여주기  -->
 					<div class="wrap-input100 validate-input" data-validate = "Valid ID is required">
-						<input class="input100" type="text" name="user_id" placeholder="ID" id="user_id">
+						<input class="input100" type="text" name="user_id" placeholder="ID" 
+						id="user_id">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
@@ -100,10 +101,10 @@
 		function page_null() {
 			var user_id = docuemnt.getElementById('user_id').value;
 			var user_pwd = docuemnt.getElementById('user_pwd').value;
-			if( user_id == "" || user_id == null){
+			if( user_id == "" || user_id == null || !user_id){
 				var PageNull = alert(" 아이디를 입력해주세요");
 			}
-			else if( user_pwd == "" || user_pwd == null ){
+			else if( user_pwd == "" || user_pwd == null || !user_pwd){
 				var PageNull = alert(" 비밀번호를 입력해주세요");
 			}			
 		}

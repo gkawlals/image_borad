@@ -65,8 +65,6 @@
                 <div class="detail">
                     <div class="top">
                         <div class="user_name" id="SS_USER_ID"><%=SS_USER_ID %></div>
-                        <a href="profile_edit.html" class="profile_edit">프로필편집</a>
-                        <a href="#" class="logout">로그아웃</a>
                     </div>
 
                     <ul class="middle">
@@ -80,10 +78,6 @@
                             <%=imageCnt %>
                         </li>
                     </ul>
-                    <p class="about">
-                        <span class="nick_name">kindtigerrr</span>
-                    </p>
-
                 </div>
                 
             </div>

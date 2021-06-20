@@ -24,10 +24,10 @@
     
     
 <title>안녕 디지몬</title>
-<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
 <body>
 <section id="container">
+
  	 <%@ include file="/WEB-INF/view/user/top.jsp" %>
     
     
@@ -91,7 +91,7 @@
 		<div class="inner">
 		<% for(ImageDTO userInfo : rList) { %>
             <div class="contents_box">
-                <article class="contents" id="contents">
+                <article class="contents" id="contents" style="height:600px; width:450px">
                     <header class="top">
                         <div class="user_container">
                             <div class="profile_img">
@@ -214,7 +214,7 @@
 			}
 		});
 	}
-		$(function(){
+		/* $(function(){
 			var index= 0;
 			$(window).scroll(function(){
 				var $window = $(this); 
@@ -297,7 +297,7 @@
 				}
 			}
 		});
-	}
+	} */
 		
 </script>
 

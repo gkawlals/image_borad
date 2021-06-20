@@ -4,14 +4,15 @@
 
 	<!-- 아이디 비밀번호를 기준으로 로그인  -->
 	<select id="getUserLoginCheck" resultType="UserDTO">
+		
 		SELECT 
 		
-			USER_ID,
-			USER_PWD
+			USER_ID
 			
 		FROM circle.USR_TABLE
 			
 			WHERE USR_TABLE.USER_ID = #{user_id} AND USR_TABLE.USER_PWD = #{user_pwd}
+			
 	</select>
 	
 	<insert id="InsertUserInfo" parameterType="UserDTO" >
@@ -38,11 +39,30 @@
 	</insert>	
 
 	<select id="getUserExists" parameterType="UserDTO" resultType="UserDTO">
-		<!-- 이메일을 기준으로 중복체크   -->
-		SELECT IF(COUNT(1), 'N','Y') AS EXISTS_YN
-			FROM circle.USR_TABLE
-		WHERE USR_TABLE.USER_MAIL = #{user_mail}
+		<!-- 아이디 기준으로 중복체크   -->
 
+		SELECT 
+			( 
+		    CASE
+				WHEN COUNT(USR_TABLE.USER_NO) = 1 THEN 'Y'
+		        WHEN COUNT(USR_TABLE.USER_NO) = 0 THEN 'N'
+		    END
+		    ) AS EXISTS_NY1
+  		FROM circle.USR_TABLE WHERE USER_ID = #{user_id};
+
+	</select>
+	
+	<select id="getFindID" parameterType="UserDTO" resultType="UserDTO">
+	
+	SELECT USER_ID FROM 
+	
+		circle.USR_TABLE 
+		
+	WHERE 
+		USR_TABLE.USER_NAME = #{user_name} 
+	AND 
+		USR_TABLE.USER_MAIL = #{user_mail};
+	
 	</select>
 	
 	<select id="getUserList" parameterType="UserDTO" resultType="UserDTO">

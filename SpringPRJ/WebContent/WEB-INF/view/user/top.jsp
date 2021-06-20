@@ -13,13 +13,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<!-- <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> -->
+<script src="../resourceImg/js/jquery-3.5.1.js"></script>
 <body>
 	<header id="header">
         <section class="inner">
             <h1 class="logo">
                 <a href="index.html">
-                    <div class="sprite_insta_icon"></div>
-                    <div class="sprite_write_logo"></div>
+                   <a href="../image/imageListTest.do"> <div class="sprite_insta_icon"></div></a>
+                   <a href="../image/imageListTest.do">  <div class="sprite_write_logo"></div></a>
                 </a>
             </h1>
             <div class="search_box">

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@page import="poly.util.CmmUtil"%>
 <html lang="en">
 <head>
 	<title>Login V1</title>
@@ -32,13 +33,12 @@
 					<img src="../resourceLogin/images/img-01.png" alt="IMG" onclick="location.href='loginPage.do'">
 				</div>
 
-				<form class="login100-form validate-form">
 					<span class="login100-form-title">
 						Circle Find Page
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="user_name" placeholder="user_name">
+						<input class="input100" type="text" name="user_name" id="user_name" placeholder="user_name">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
@@ -46,36 +46,53 @@
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="email" placeholder="Email">
+						<input class="input100" type="text" name="user_mail" id="user_mail" placeholder="Email">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
 						</span>
 					</div>
 					
-					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<input class="input100" type="password" name="pass" placeholder="Password">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
-						</span>
-					</div>
-					
-
-					
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" onclick="location.href='/user/FindPassId.do'">
+						<button class="login100-form-btn" onclick="Find()" >
 							OK
 						</button>
 					</div>
-
 					<div class="text-center p-t-136">
 						<a class="txt2" href="/user/SignUp.do">
 							Create your Account
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
+						
+						<script>
+							
+							function Find(){
+								
+								var user_name = document.getElementById('user_name').value;
+								var user_mail = document.getElementById('user_mail').value;
+								
+								console.log(user_name);
+								console.log(user_mail);
+								
+							$.ajax({
+									url : "/user/getFindID.do",
+									type : "post",
+									data : {
+										"user_name" : user_name,
+										"user_mail" : user_mail
+									},
+									success : function(data){
+										if(data == 1){
+											
+										}else{
+											alert("가입된 정보가 없거나 입력하신 정보가 틀렸습니다.");
+										}
+									}
+								}); 
+								
+							}
+						</script>
 					</div>
-				</form>
 			</div>
 		</div>
 	</div>
@@ -96,6 +113,5 @@
 	</script>
 <!--===============================================================================================-->
 	<script src="../resourceLogin/js/main.js"></script>
-
 </body>
 </html>
