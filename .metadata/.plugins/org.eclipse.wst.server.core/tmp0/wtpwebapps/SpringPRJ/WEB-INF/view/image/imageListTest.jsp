@@ -37,7 +37,7 @@
 			    	<div class="user">
 			    	<input type="text" style="display:none" name="user_no" value="<%=userId.getUser_no() %>"/>
 			    		<div class="thumb_img">
-			    			<img src="../resourceImg/<%=userId.getUser_folder_name()%>/<%=userId.getUser_profile_name()%>"/> <!-- 프로필 사진 경로 -->
+			    			<img src="../resourceImg/<%=userId.getUser_folder_name()%>/<%=userId.getUser_profile_name()%>" /> <!-- 프로필 사진 경로 -->
 			    		</div>
 			    		<%=userId.getUser_id()%>
 			    	</div>
@@ -91,7 +91,7 @@
 		<div class="inner">
 		<% for(ImageDTO userInfo : rList) { %>
             <div class="contents_box">
-                <article class="contents" id="contents" style="height:600px; width:450px">
+                <article class="contents" id="contents" >
                     <header class="top">
                         <div class="user_container">
                             <div class="profile_img">

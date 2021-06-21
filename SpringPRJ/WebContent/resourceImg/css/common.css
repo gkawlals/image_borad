@@ -11,7 +11,7 @@ body {
 
 .sprite_write_logo {
     display: inline-block;
-    background: url('../imgs/circleText.png') no-repeat -94px -72px;
+    background: url('../imgs/circleText.png') no-repeat -4px -2px;
     width: 103px;
     height: 29px;
 }

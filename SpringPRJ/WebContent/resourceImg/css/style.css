@@ -159,7 +159,8 @@ body{
 
 
 .contents{
-    max-width: 614px;
+    max-width: 450px;
+    max-height : 600px;
     border: 1px solid rgba(0,0,0,0.09);
     border-radius: 3px;
     margin-bottom: 60px;
@@ -222,10 +223,15 @@ body{
 }
 
 .contents .img_section{
+	display:table;
+	vertical-align:middle;
     overflow:hidden;
+    width:450px;
+    max-height:600px;
 }
 
 .contents .img_section img{
+	display:table-cell;
     width: 100%;
 }
 

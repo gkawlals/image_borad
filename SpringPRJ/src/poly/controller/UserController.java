@@ -217,7 +217,7 @@ public class UserController {
 		
 			int res = userService.InsertUserInfo(pDTO);
 			
-			if(res==1) {
+			if(res == 1) {
 				msg = "회원가입되었습니다. ";
 				
 			}else if(res == 2) {

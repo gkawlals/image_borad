@@ -43,33 +43,43 @@ public class UserService implements IUserService{
 		 }
 		 
 		 UserDTO rDTO = userMapper.getUserExists(pDTO);
+		 
 		 log.info(this.getClass().getName() + " .mapper end");
 		 
+		 String Exists = CmmUtil.nvl("중복확인 문구 " + rDTO.getExists_yn() );
 		 
 		 if(rDTO == null ) {
 			 rDTO = new UserDTO();
 		 }
 		 
+		 log.info(Exists);
+		 
 		if(CmmUtil.nvl(rDTO.getExists_yn()).equals("Y")) {
-			
-			log.info(" 중복된 아이디 입니다.");
-			
+			log.info(" 중복된 아이디 입니다." + CmmUtil.nvl(rDTO.getExists_yn()));
 			res = 2;
 			
 		}else { 
+			
 			int success = userMapper.InsertUserInfo(pDTO);
 			
 			if(success > 0) {
+				
 				log.info("회원가입 완료");
+				
 				res = 1;
+				
 			}else {
+				
 				log.info(" 알수없는 에러");
+				
 				res = 0;
+				
 			}
 		}
 
 		 log.info(this.getClass().getName() + " .InsertUserInfo End !");
-		return userMapper.InsertUserInfo(pDTO);
+		 
+		return res;
 		
 		
 	 }

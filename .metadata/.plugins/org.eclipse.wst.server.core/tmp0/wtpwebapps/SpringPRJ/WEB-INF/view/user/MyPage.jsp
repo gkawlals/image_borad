@@ -88,8 +88,8 @@
 		            <div class="pic"> 
             	<form action="../image/imageDetail.do">
 		            		<input type="text" value="<%=myList.getImage_no()%>" id="image_no" name="image_no" style="display:none" />
-		            	<button type="submit" >
-		            		<img src="../resourceImg/Image/<%=myList.getSave_folder_name()%>/<%=myList.getSave_file_name()%>" name="user_profile">
+		            	<button type="submit" style="display:table; vartical-align:middle; overflow:hidden; width:450px; max-height:650px;">
+		            		<img src="../resourceImg/Image/<%=myList.getSave_folder_name()%>/<%=myList.getSave_file_name()%>" name="user_profile" style="display:table-cell; width:100%;">
 		            	</button>
          		  </form>
 		            </div>

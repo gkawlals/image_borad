@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="contents"/>
+		<item key="selection" value="직선"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="contents"/>
-			<item value="Find"/>
-			<item value="upda"/>
-			<item value="up"/>
-			<item value="google"/>
-			<item value="jackson"/>
-			<item value="apache.comm"/>
-			<item value="apache,comm"/>
-			<item value="apache"/>
-			<item value="ap"/>
-			<item value="iba"/>
-			<item value="component"/>
-			<item value="spring-tx"/>
-			<item value="mysql"/>
-			<item value="**"/>
+			<item value="직선"/>
+			<item value="짃ㄴ"/>
+			<item value="load"/>
+			<item value="편"/>
+			<item value="ㅕㅍㄴ"/>
+			<item value="프로"/>
+			<item value="프로피"/>
+			<item value="file"/>
+			<item value="jq"/>
+			<item value="fq"/>
+			<item value="sprite_"/>
+			<item value="sprite_write"/>
+			<item value="sprite"/>
+			<item value="sprite_write_logo "/>
+			<item value="write_logo"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>
@@ -43,7 +43,7 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1413"/>
+		<item key="DIALOG_X_ORIGIN" value="1146"/>
 		<item key="DIALOG_Y_ORIGIN" value="387"/>
 		<item key="DIALOG_WIDTH" value="294"/>
 		<item key="DIALOG_HEIGHT" value="408"/>

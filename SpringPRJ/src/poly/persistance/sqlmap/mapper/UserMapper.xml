@@ -43,11 +43,15 @@
 
 		SELECT 
 			( 
+		    
 		    CASE
-				WHEN COUNT(USR_TABLE.USER_NO) = 1 THEN 'Y'
+				WHEN COUNT(USR_TABLE.USER_NO) >= 1 THEN 'Y'
 		        WHEN COUNT(USR_TABLE.USER_NO) = 0 THEN 'N'
+		        ELSE 'Y'
 		    END
-		    ) AS EXISTS_NY1
+		    
+		    ) AS EXISTS_NY
+		    
   		FROM circle.USR_TABLE WHERE USER_ID = #{user_id};
 
 	</select>
