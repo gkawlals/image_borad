@@ -48,8 +48,10 @@
     <link rel="shortcut icon" href="../resourceImg/imgs/instagram.png">
 </head>
 <body>
+
 <section id="container">
-  	 <%@ include file="/WEB-INF/view/user/top.jsp" %>
+
+  	<%@ include file="/WEB-INF/view/user/top.jsp" %>
   	 
     <div id="main_container">
 
@@ -86,11 +88,13 @@
 	    	%>
 	        <div class="mylist_contents contents_container active">
 		            <div class="pic"> 
-            	<form action="../image/imageDetail.do">
-		            		<input type="text" value="<%=myList.getImage_no()%>" id="image_no" name="image_no" style="display:none" />
-		            	<button type="submit" style="display:table; vartical-align:middle; overflow:hidden; width:450px; max-height:650px;">
-		            		<img src="../resourceImg/Image/<%=myList.getSave_folder_name()%>/<%=myList.getSave_file_name()%>" name="user_profile" style="display:table-cell; width:100%;">
-		            	</button>
+            	<form action="../image/imageDetail.do" style="text-align:center; display:table; border:1px solid #cecece; width:280px; height:250px;">
+		            		<input type="text" value="<%=myList.getImage_no()%>" id="image_no" name="image_no" style="display:none " />
+		            	<div style="display:table-cell; vertical-align:middle;">
+			            	<button type="submit">
+			            		<img src="../resourceImg/Image/<%=myList.getSave_folder_name()%>/<%=myList.getSave_file_name()%>" name="user_profile" style="width:100%;">
+			            	</button>
+		            	</div>
          		  </form>
 		            </div>
 	           </div>

@@ -26,7 +26,6 @@
     <meta itemprop="name" content="instagram">
     <meta itemprop="description" content="instagram clone">
     <meta itemprop="image" content="http://kindtiger.dothome.co.kr/insta/imgs/instagram.jpeg">
-	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
     <title>circle</title>
     <link rel="stylesheet" href="../resourceImg/css/reset.css">
@@ -41,6 +40,7 @@
 <section id="container">
 
 <%@ include file="/WEB-INF/view/user/top.jsp" %>
+
 	<div id="main_contaner">
 	<br><br><br><br><br>
 		<div>
@@ -177,7 +177,7 @@
 			    
 			} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
 
-				var locPosition = new kakao.maps.LatLng(37.55003810100931, 126.84223535396687),    
+				var locPosition = new kakao.maps.LatLng(lat, lon),    
 			    
 				message = 'geolocation을 사용할수 없어요..'
 			
@@ -227,7 +227,7 @@
 		var Rlon;
 		var arRmarker = [];
 		
-		// 라인 그려주는 변수
+		// 그려진 라인들을 담는 변수
 		var arrayLine = [];
 		
 		function Rpoint(){
@@ -301,6 +301,8 @@
 		        
 				if(Rlat == lat && Rlon == lon){
 					clearInterval(MakeLocation);
+					document.getElementById('circleBtn').click();
+					
 				}else {
 					  MakeLocation;
 				}

@@ -120,7 +120,7 @@
 		</div>
 	</div>
 </section>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e9c780c934dfa44e8d6dcce448c147e8"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=78d567748187bb729022787116572022"></script>
 	<script>
 		// WEB에서 Test하는 kakao map key = 78d567748187bb729022787116572022
 		// SERBER에 올리는 kakao map key = e9c780c934dfa44e8d6dcce448c147e8
@@ -227,7 +227,7 @@
 		var Rlon;
 		var arRmarker = [];
 		
-		// 라인 그려주는 변수
+		// 그려진 라인들을 담는 변수
 		var arrayLine = [];
 		
 		function Rpoint(){
@@ -301,6 +301,8 @@
 		        
 				if(Rlat == lat && Rlon == lon){
 					clearInterval(MakeLocation);
+					document.getElementById('circleBtn').click();
+					
 				}else {
 					  MakeLocation;
 				}
@@ -310,16 +312,6 @@
 	       var MakeLocation = setInterval( function(){
 	    	   
 	        		if(Rlat > 0 && Rlon > 0){
-					
-	        			if (navigator.geolocation) {
-	    		    	
-			    		    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-			    		    navigator.geolocation.getCurrentPosition(function(position) {
-		    		    	
-		  		    			delarMarker();
-		  		    		
-			    		    	lat = position.coords.latitude; // 위도
-			    				lon = position.coords.longitude; // 경도
 			    				
 			    				console.log('5초마다 좌표 찍기');
 			    				console.log(lat, lon);
@@ -338,9 +330,6 @@
 		 					    console.log(map.getCenter());
 		 					    lineMake();
 		 					    arMarker.push(marker);
-		    		    
-		    		    	});
-	       		 	}
 				}
 			}, 3000);
 		
