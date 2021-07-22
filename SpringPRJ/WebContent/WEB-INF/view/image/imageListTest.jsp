@@ -105,7 +105,7 @@
 
                         </div>
 
-                        <div class="sprite_more_icon" data-name="more">
+                        <div class="sprite_more_icon" data-name="more"> 
                             <ul class="toggle_box">
                                <li><input type="submit" class="follow" value="팔로우" data-name="follow"></li>
                                <li>수정</li>

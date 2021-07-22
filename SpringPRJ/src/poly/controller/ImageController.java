@@ -203,8 +203,35 @@ public class ImageController {
 		return rList;
 	}
 	
+	// 모달 페이지로 선택한 이미지 불러오는지 실험하기 
+		@RequestMapping(value="image/Detail")
+		public String imageDetaile2(HttpServletRequest request, ModelMap model, HttpSession session) {
+			// 불러올 정보 = 이미지 번호, 이미지 경로, 이미지 제목
+			String image_no = request.getParameter("image_no");
+			
+			log.info("image_no : "+image_no);
+			
+			ImageDTO pimgDTO = new ImageDTO();
+			
+			pimgDTO.setImage_no(image_no);
+			
+			ImageDTO rimgDTO = imageService.imageDetail(pimgDTO);
+			
+			model.addAttribute("pimgDTO",rimgDTO);
+			
+			if(rimgDTO == null) {
+				rimgDTO = new ImageDTO();
+			}
+			
+			log.info("image_no : "+ rimgDTO.getImage_no());
+			log.info("image_title : "+ rimgDTO.getOne_title());
+			log.info("image_file_path : "+ rimgDTO.getSave_file_path());
+			
+			return"image/image_List";
+		}
+	
 	// 이미지 선택하여 정보확인하기
-		@RequestMapping(value="image/imageDetail")
+		@RequestMapping(value="image/imageDetail", method=RequestMethod.GET)
 		public String imageDetail ( HttpServletRequest request, ModelMap model, HttpSession session) {
 			
 			String image_no = request.getParameter("image_no");
